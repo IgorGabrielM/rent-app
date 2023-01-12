@@ -1,5 +1,5 @@
 {
-  "name": "rent-app",
+  "name": "rent-app-client",
   "integrations": {
     "capacitor": {}
   },
