@@ -1,0 +1,8 @@
+name: Client CI
+on:
+  push:
+    branches:
+      - main
+      - develop
+jobs:
+  lint:
