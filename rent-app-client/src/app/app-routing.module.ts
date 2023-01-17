@@ -3,11 +3,11 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'tabs',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
-    path: 'main-auth',
+    path: '',
     loadChildren: () => import('./auth/main-auth/main-auth.module').then(m => m.MainAuthPageModule)
   },
   {
@@ -20,23 +20,23 @@ const routes: Routes = [
   },
   {
     path: 'help-desk',
-    loadChildren: () => import('./help-desk/help-desk.module').then( m => m.HelpDeskPageModule)
+    loadChildren: () => import('./help-desk/help-desk.module').then(m => m.HelpDeskPageModule)
   },
   {
     path: 'contacts',
-    loadChildren: () => import('./contacts/contacts.module').then( m => m.ContactsPageModule)
+    loadChildren: () => import('./contacts/contacts.module').then(m => m.ContactsPageModule)
   },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
     path: 'contracts',
-    loadChildren: () => import('./contracts/contracts.module').then( m => m.ContractsPageModule)
+    loadChildren: () => import('./contracts/contracts.module').then(m => m.ContractsPageModule)
   },
   {
     path: 'patrimony',
-    loadChildren: () => import('./patrimony/patrimony.module').then( m => m.PatrimonyPageModule)
+    loadChildren: () => import('./patrimony/patrimony.module').then(m => m.PatrimonyPageModule)
   }
 ];
 @NgModule({
@@ -45,4 +45,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

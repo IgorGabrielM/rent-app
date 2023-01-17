@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { MainAuthPageRoutingModule } from './main-auth-routing.module';
 
 import { MainAuthPage } from './main-auth.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MainAuthPageRoutingModule
+    MainAuthPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [MainAuthPage]
 })
-export class MainAuthPageModule {}
+export class MainAuthPageModule { }
