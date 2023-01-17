@@ -1,9 +1,16 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>home</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <swiper>
+    <ng-template swiperSlide>Slide 1</ng-template>
+    <ng-template swiperSlide>Slide 2</ng-template>
+    <ng-template swiperSlide>Slide 3</ng-template>
+  </swiper>
 
+  <div class="content">
+    <div class="mt-10">
+      <div class="mt-3" *ngFor="let item of data">
+        <omni-card [title]="item.title" [description]="item.description" icon="paper-plane-sharp">
+        </omni-card>
+      </div>
+    </div>
+  </div>
 </ion-content>

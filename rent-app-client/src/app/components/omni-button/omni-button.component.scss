@@ -6,13 +6,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--ion-color-primary);
+    color: var(--ion-color-primary-tint);
     font-size: 30px;
     box-shadow: 1px 1px 8px black;
 }
 
 .outline {
-    background-color: var(--ion-color-primary);
+    background-color: var(--ion-color-primary-tint);
     width: 90vw;
     height: 60px;
     border-radius: 10px;
@@ -21,5 +21,5 @@
     align-items: center;
     color: var(--ion-color-primary-contrast);
     font-size: 30px;
-    box-shadow: 1px 1px 10px black;
+    box-shadow: 1px 1px 8px black;
 }

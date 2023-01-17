@@ -1,3 +1,7 @@
-<div [ngClass]="type === 'primary' ? 'primary' : 'outline'">
+<div *ngIf="type === 'outline'" class="outline">
   <p>{{ title }}</p>
+</div>
+
+<div *ngIf="type === 'primary'" class="primary">
+  <strong>{{ title }}</strong>
 </div>
