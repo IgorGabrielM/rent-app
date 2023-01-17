@@ -1,0 +1,40 @@
+name: Client CI
+on:
+  push:
+    branches:
+      - main
+      - develop
+    paths:
+      - 'rent-app-client/**'
+permissions:
+  contents: read
+jobs:
+  lint:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Setup client
+        uses: ./.github/actions/setup-client
+
+      - name: Lint code
+        working-directory: rent-app-client/
+        run: npm run lint
+
+  test:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Setup client
+        uses: ./.github/actions/setup-client
+
+      - name: Test project
+        working-directory: rent-app-client/
+        run: npm run test
+
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Setup client
+        uses: ./.github/actions/setup-client
+
+      - name: Build project
+        working-directory: rent-app-client/
+        run: npm run build

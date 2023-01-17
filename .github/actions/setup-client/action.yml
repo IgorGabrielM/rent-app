@@ -1,0 +1,24 @@
+name: Setup Client for CI
+description: Checkout code, cache and install dependencies
+author: matheus-dr
+runs:
+  using: composite
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup nodejs
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18.13.0
+
+    - name: Cache dependencies
+      uses: actions/cache@v3
+      with:
+        path: rent-app-client/node_modules/
+        key: node-modules-${{ hashFiles('**/package-lock.json') }}
+
+    - name: Install dependencies
+      working-directory: rent-app-client/
+      run: npm ci
+      shell: bash
