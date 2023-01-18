@@ -1,9 +1,20 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>help-desk</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-
+  <div class="flex justify-center mt-5">
+    <div>
+      <div class="mt-3">
+        <omni-input placeholder="Título"></omni-input>
+      </div>
+      <div class="mt-3">
+        <omni-input placeholder="Descrição" class=""></omni-input>
+      </div>
+      <div class="mt-3">
+        <omni-input placeholder="Criticidade" [isSelect]="true"></omni-input>
+      </div>
+    </div>
+  </div>
+  <div class="flex justify-center mt-5">
+    <div>
+      <omni-button type="primary" title="Enviar"></omni-button>
+    </div>
+  </div>
 </ion-content>

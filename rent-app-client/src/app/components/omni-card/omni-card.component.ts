@@ -1,12 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-export class DescriptionCardModel {
-  value: string;
-  products: string[];
-  timeStart: string;
-  timeEnd: string;
-}
-
 @Component({
   selector: 'omni-card',
   templateUrl: './omni-card.component.html',
@@ -14,7 +7,7 @@ export class DescriptionCardModel {
 })
 export class OmniCardComponent implements OnInit {
   @Input() title: string;
-  @Input() description: DescriptionCardModel;
+  @Input() description: any;
   @Input() icon?: string;
 
   constructor() { }

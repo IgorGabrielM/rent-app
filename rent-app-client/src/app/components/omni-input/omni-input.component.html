@@ -1,1 +1,9 @@
-<ion-input class="custom" [placeholder]="placeholder"></ion-input>
+<ion-input class="custom" [placeholder]="placeholder" *ngIf="!isSelect"></ion-input>
+
+<div class="select-input" *ngIf="isSelect">
+    <ion-select interface="popover" [placeholder]="placeholder">
+        <ion-select-option value="low">Baixa</ion-select-option>
+        <ion-select-option value="medium">Média</ion-select-option>
+        <ion-select-option value="high">Alta</ion-select-option>
+    </ion-select>
+</div>

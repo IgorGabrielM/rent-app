@@ -1,32 +1,13 @@
-<div class="flex">
-  <div>
-
+<ion-item slot="header" color="tertiary" class="rounded-2xl shadow-xl">
+  <div class="card h-28 flex justify-between items-center">
+    <div class="text-xl">
+      <strong class="text-2xl">{{ title }}</strong>
+      <h2 class="mt-2" *ngIf="description.telephone">{{description.telephone}}</h2>
+      <h2 *ngIf="description.email">{{description.email}}</h2>
+    </div>
+    <div *ngIf="icon"
+      class="text-4xl flex justify-center items-center text-gray bg-[color:var(--ion-color-primary-tint)] rounded-full w-16 h-16">
+      <ion-icon [name]="icon"></ion-icon>
+    </div>
   </div>
-  <ion-accordion-group>
-    <ion-accordion value="first">
-      <ion-item slot="header" color="tertiary" class="rounded-2xl">
-        <div class="w-96 h-20 flex justify-between items-center">
-          <div class="text-xl">
-            <strong>{{ title }}</strong>
-            <h2>{{description.value}}</h2>
-          </div>
-          <div *ngIf="icon"
-            class="text-3xl flex justify-center items-center text-gray bg-[color:var(--ion-color-primary-tint)] rounded-full w-12 h-12">
-            <ion-icon [name]="icon"></ion-icon>
-          </div>
-        </div>
-      </ion-item>
-      <div
-        class="ml-8 bg-[color:var(--ion-color-tertiary)] text-[color:var(--ion-color-tertiary-contrast)] ion-padding flex w-96 justify-between rounded-b-lg"
-        slot="content">
-        <div>
-          <p *ngFor="let product of description.products">{{ product }}</p>
-        </div>
-        <div>
-          <p>{{ description.timeStart }}</p>
-          <p>{{ description.timeEnd }}</p>
-        </div>
-      </div>
-    </ion-accordion>
-  </ion-accordion-group>
-</div>
+</ion-item>

@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { HelpDeskPageRoutingModule } from './help-desk-routing.module';
 
 import { HelpDeskPage } from './help-desk.page';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HelpDeskPageRoutingModule
+    HelpDeskPageRoutingModule,
+    ComponentsModule,
   ],
   declarations: [HelpDeskPage]
 })
-export class HelpDeskPageModule {}
+export class HelpDeskPageModule { }

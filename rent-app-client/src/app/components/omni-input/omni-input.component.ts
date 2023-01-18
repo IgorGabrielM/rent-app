@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class OmniInputComponent implements OnInit {
   @Input() placeholder: string
   @Input() data: any
+  @Input() isSelect?: boolean
 
   constructor() { }
 
