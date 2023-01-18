@@ -4,9 +4,6 @@ author: matheus-dr
 runs:
   using: composite
   steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
     - name: Setup nodejs
       uses: actions/setup-node@v3
       with:
