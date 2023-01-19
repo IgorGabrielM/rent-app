@@ -9,6 +9,7 @@ export class OmniInputComponent implements OnInit {
   @Input() placeholder: string
   @Input() data: any
   @Input() isSelect?: boolean
+  @Input() options?: any[]
 
   constructor() { }
 

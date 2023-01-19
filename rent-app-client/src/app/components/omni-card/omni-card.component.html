@@ -2,10 +2,13 @@
   <div class="card h-28 flex justify-between items-center">
     <div class="text-xl">
       <strong class="text-2xl">{{ title }}</strong>
-      <h2 class="mt-2" *ngIf="description.data1">{{ description.data1 }}</h2>
+      <div class="flex mt-2 mb-1">
+        <h2 *ngIf="description.data0" class="text-gray-500">{{ description.data0 }} &nbsp;</h2>
+        <h2 *ngIf="description.data1">{{ description.data1 }}</h2>
+      </div>
       <div class="flex">
         <h2 *ngIf="description.data2">{{ description.data2 }}</h2>
-        <h2 *ngIf="description.data3" class="text-gray-500">{{ description.data3 }}</h2>
+        <h2 *ngIf="description.data3" class="text-gray-500">&nbsp;{{ description.data3 }}</h2>
       </div>
     </div>
 

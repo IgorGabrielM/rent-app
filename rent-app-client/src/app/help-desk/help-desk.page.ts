@@ -6,6 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./help-desk.page.scss'],
 })
 export class HelpDeskPage implements OnInit {
+  optionCriticity: any[] = [
+    {
+      name: 'Baixa',
+      value: 'low',
+    },
+    {
+      name: 'Media',
+      value: 'medium',
+    },
+    {
+      name: 'Alta',
+      value: 'high',
+    },
+  ]
 
   constructor() { }
 

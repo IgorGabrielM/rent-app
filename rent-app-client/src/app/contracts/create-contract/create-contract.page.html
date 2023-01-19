@@ -1,0 +1,42 @@
+<ion-toolbar color="tertiary">
+  <ion-buttons slot="start">
+    <ion-back-button default-href="#"></ion-back-button>
+  </ion-buttons>
+  <ion-title *ngIf="!codeQueryParam">Criar contrato</ion-title>
+  <ion-title *ngIf="codeQueryParam">Editarr contrato</ion-title>
+</ion-toolbar>
+
+<ion-content>
+  <div class="content">
+    <div>
+      <div class="inputs">
+        <div class="input">
+          <omni-input placeholder="Nome do lacatório"></omni-input>
+        </div>
+        <div class="input">
+          <omni-input placeholder="Bairro"></omni-input>
+        </div>
+        <div class="input">
+          <omni-input placeholder="Rua"></omni-input>
+        </div>
+        <div class="input">
+          <omni-input placeholder="Complemento"></omni-input>
+        </div>
+        <div class="input">
+          <omni-input placeholder="Rua"></omni-input>
+        </div>
+        <div class="input">
+          <omni-input placeholder="Equipamento" [isSelect]="true" [options]="tools"></omni-input>
+        </div>
+        <div class="input">
+          <omni-text-area placeholder="Assinatura do locatório" heightData="300px"></omni-text-area>
+        </div>
+      </div>
+      <div class="flex justify-center mt-7 mb-5">
+        <div>
+          <omni-button type="primary" title="Criar"></omni-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

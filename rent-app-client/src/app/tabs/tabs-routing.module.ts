@@ -32,8 +32,37 @@ const routes: Routes = [
         loadChildren: () => import('../contracts/contracts.module').then(m => m.ContractsPageModule)
       },
       {
+        path: 'contracts/create-contract',
+        loadChildren: () => import('../contracts/create-contract/create-contract.module').then(m => m.CreateContractPageModule)
+      },
+      {
+        path: 'contracts/edit-contract/:id',
+        loadChildren: () => import('../contracts/create-contract/create-contract.module').then(m => m.CreateContractPageModule)
+      },
+      {
         path: 'patrimony',
         loadChildren: () => import('../patrimony/patrimony.module').then(m => m.PatrimonyPageModule)
+      },
+      {
+        path: 'patrimony/create-tool',
+        loadChildren: () => import('../patrimony/create-tool/create-tool.module').then(m => m.CreateToolPageModule)
+      },
+      {
+        path: 'patrimony/edit-tool/:id',
+        loadChildren: () => import('../patrimony/create-tool/create-tool.module').then(m => m.CreateToolPageModule)
+      },
+      {
+        path: 'patrimony/edit-categories-and-tools',
+        //path: 'patrimony/edit-categories-and-tools/:category-id',
+        loadChildren: () => import('../patrimony/edit-categories-and-tools/edit-categories-and-tools.module').then(m => m.EditCategoriesAndToolsPageModule)
+      },
+      {
+        path: 'patrimony/create-tool-category',
+        loadChildren: () => import('../patrimony/create-tool-category/create-tool-category.module').then(m => m.CreateToolCategoryPageModule)
+      },
+      {
+        path: 'patrimony/edit-tool-category/:id',
+        loadChildren: () => import('../patrimony/create-tool-category/create-tool-category.module').then(m => m.CreateToolCategoryPageModule)
       },
       {
         path: '',

@@ -1,0 +1,32 @@
+<ion-toolbar color="tertiary">
+  <ion-buttons slot="start">
+    <ion-back-button default-href="#"></ion-back-button>
+  </ion-buttons>
+  <ion-title>Criar categoria</ion-title>
+</ion-toolbar>
+
+<ion-content>
+  <div class="content">
+    <div>
+      <div class="flex justify-center mt-8">
+        <div
+          class="category-card h-52 rounded-xl flex justify-center items-center  shadow-xl bg-[color:var(--ion-color-tertiary)]">
+          <ion-icon name="folder-open-sharp" class="text-9xl mb-4 text-[color:var(--ion-color-primary)]"></ion-icon>
+        </div>
+      </div>
+      <div class="inputs">
+        <div class="input">
+          <omni-input placeholder="Nome"></omni-input>
+        </div>
+        <div class="input">
+          <omni-input placeholder="Valor"></omni-input>
+        </div>
+      </div>
+      <div class="flex justify-center mt-7 mb-5">
+        <div>
+          <omni-button type="primary" title="Criar"></omni-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

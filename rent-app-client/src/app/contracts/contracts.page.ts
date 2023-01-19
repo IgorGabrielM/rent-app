@@ -9,6 +9,7 @@ export class ContractsPage implements OnInit {
 
   data = [
     {
+      id: '1',
       title: 'Igor Gabriel',
       description: {
         data1: 'Jd. Park Real',
@@ -16,6 +17,7 @@ export class ContractsPage implements OnInit {
       }
     },
     {
+      id: '2',
       title: 'Matheus Dantas',
       description: {
         data1: 'Jd. Park Real',

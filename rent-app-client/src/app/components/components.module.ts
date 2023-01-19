@@ -8,12 +8,9 @@ import { SwiperModule } from 'swiper/angular';
 import { OmniCardAcordionComponent } from './omni-card-acordion/omni-card-acordion.component';
 import { OmniCardComponent } from './omni-card/omni-card.component';
 import { FormsModule } from '@angular/forms';
-import { AppRoutingModule } from '../app-routing.module';
 import { RouterModule } from '@angular/router';
 import { OmniTextAreaComponent } from './omni-text-area/omni-text-area.component';
-
-
-
+import { OmniSignaturePadComponent } from './omni-signature-pad/omni-signature-pad.component';
 @NgModule({
   declarations: [
     OmniButtonComponent,
@@ -21,7 +18,8 @@ import { OmniTextAreaComponent } from './omni-text-area/omni-text-area.component
     OmniSwiperDaysComponent,
     OmniCardAcordionComponent,
     OmniCardComponent,
-    OmniTextAreaComponent
+    OmniTextAreaComponent,
+    OmniSignaturePadComponent,
   ],
   imports: [
     CommonModule,
@@ -36,7 +34,8 @@ import { OmniTextAreaComponent } from './omni-text-area/omni-text-area.component
     OmniCardAcordionComponent,
     OmniSwiperDaysComponent,
     OmniCardComponent,
-    OmniTextAreaComponent
+    OmniTextAreaComponent,
+    OmniSignaturePadComponent,
   ]
 })
 export class ComponentsModule { }

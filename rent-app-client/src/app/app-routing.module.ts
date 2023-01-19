@@ -42,6 +42,18 @@ const routes: Routes = [
     path: 'create-contact',
     loadChildren: () => import('./contacts/create-contact/create-contact.module').then(m => m.CreateContactPageModule)
   },
+  {
+    path: 'create-contract',
+    loadChildren: () => import('./contracts/create-contract/create-contract.module').then(m => m.CreateContractPageModule)
+  },
+  {
+    path: 'create-tool',
+    loadChildren: () => import('./patrimony/create-tool/create-tool.module').then(m => m.CreateToolPageModule)
+  },
+  {
+    path: 'edit-categories-and-tools',
+    loadChildren: () => import('./patrimony/edit-categories-and-tools/edit-categories-and-tools.module').then(m => m.EditCategoriesAndToolsPageModule)
+  },
 ];
 @NgModule({
   imports: [

@@ -2,17 +2,18 @@
   <div class="mx-2 mt-1">
     <ion-searchbar animated="true" placeholder="Buscar contrato" color="tertiary"></ion-searchbar>
   </div>
-  <div class="content">
+  <div class="flex justify-center">
     <div class="mt-1">
       <div class="mt-3" *ngFor="let item of data">
-        <omni-card [title]="item.title" [description]="item.description" icon="clipboard-sharp"></omni-card>
+        <omni-card [title]="item.title" [description]="item.description" icon="clipboard-sharp" data="./edit-contract"
+          [queryParam]="item.id"></omni-card>
       </div>
     </div>
   </div>
 </ion-content>
 
 <ion-fab vertical="bottom" horizontal="end">
-  <ion-fab-button>
+  <ion-fab-button routerLink="create-contract">
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
 </ion-fab>
