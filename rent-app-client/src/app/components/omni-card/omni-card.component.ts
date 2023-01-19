@@ -9,6 +9,8 @@ export class OmniCardComponent implements OnInit {
   @Input() title: string;
   @Input() description: any;
   @Input() icon?: string;
+  @Input() data?: string;
+  @Input() queryParam?: string
 
   constructor() { }
 

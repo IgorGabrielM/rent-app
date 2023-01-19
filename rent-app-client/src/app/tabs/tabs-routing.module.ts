@@ -13,7 +13,15 @@ const routes: Routes = [
       },
       {
         path: 'contacts',
-        loadChildren: () => import('../contacts/contacts.module').then(m => m.ContactsPageModule)
+        loadChildren: () => import('../contacts/contacts.module').then(m => m.ContactsPageModule),
+      },
+      {
+        path: 'contacts/create-contact',
+        loadChildren: () => import('../contacts/create-contact/create-contact.module').then(m => m.CreateContactPageModule)
+      },
+      {
+        path: 'contacts/edit-contact/:id',
+        loadChildren: () => import('../contacts/create-contact/create-contact.module').then(m => m.CreateContactPageModule)
       },
       {
         path: 'home',
@@ -44,4 +52,4 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule { }

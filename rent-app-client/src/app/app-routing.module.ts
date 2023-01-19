@@ -37,7 +37,11 @@ const routes: Routes = [
   {
     path: 'patrimony',
     loadChildren: () => import('./patrimony/patrimony.module').then(m => m.PatrimonyPageModule)
-  }
+  },
+  {
+    path: 'create-contact',
+    loadChildren: () => import('./contacts/create-contact/create-contact.module').then(m => m.CreateContactPageModule)
+  },
 ];
 @NgModule({
   imports: [

@@ -5,14 +5,16 @@
   <div class="content">
     <div class="mt-1">
       <div class="mt-3" *ngFor="let item of data">
-        <omni-card [title]="item.title" [description]="item.description" icon="pencil-sharp"></omni-card>
+        <omni-card [title]="item.title" [description]="item.description" icon="pencil-sharp" data="./edit-contact"
+          [queryParam]="item.id"></omni-card>
       </div>
     </div>
   </div>
 </ion-content>
 
+
 <ion-fab vertical="bottom" horizontal="end">
-  <ion-fab-button>
+  <ion-fab-button routerLink="create-contact">
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
 </ion-fab>

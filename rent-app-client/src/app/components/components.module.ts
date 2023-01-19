@@ -7,6 +7,10 @@ import { OmniSwiperDaysComponent } from './omni-swiper-days/omni-swiper-days.com
 import { SwiperModule } from 'swiper/angular';
 import { OmniCardAcordionComponent } from './omni-card-acordion/omni-card-acordion.component';
 import { OmniCardComponent } from './omni-card/omni-card.component';
+import { FormsModule } from '@angular/forms';
+import { AppRoutingModule } from '../app-routing.module';
+import { RouterModule } from '@angular/router';
+import { OmniTextAreaComponent } from './omni-text-area/omni-text-area.component';
 
 
 
@@ -16,19 +20,23 @@ import { OmniCardComponent } from './omni-card/omni-card.component';
     OmniInputComponent,
     OmniSwiperDaysComponent,
     OmniCardAcordionComponent,
-    OmniCardComponent
+    OmniCardComponent,
+    OmniTextAreaComponent
   ],
   imports: [
     CommonModule,
+    FormsModule,
     IonicModule,
-    SwiperModule
+    SwiperModule,
+    RouterModule,
   ],
   exports: [
     OmniButtonComponent,
     OmniInputComponent,
     OmniCardAcordionComponent,
     OmniSwiperDaysComponent,
-    OmniCardComponent
+    OmniCardComponent,
+    OmniTextAreaComponent
   ]
 })
 export class ComponentsModule { }

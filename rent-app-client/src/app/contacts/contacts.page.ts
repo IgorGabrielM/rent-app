@@ -9,6 +9,7 @@ export class ContactsPage implements OnInit {
 
   data = [
     {
+      id: '1',
       title: 'Igor Gabriel',
       description: {
         data1: '(19)99999-9999',
@@ -16,6 +17,7 @@ export class ContactsPage implements OnInit {
       }
     },
     {
+      id: '2',
       title: 'Igor Gabriel',
       description: {
         data1: '(19)99999-9999',

@@ -2,17 +2,22 @@
   <ion-buttons slot="start">
     <ion-back-button default-href="#"></ion-back-button>
   </ion-buttons>
-  <ion-title>Criar conta</ion-title>
+  <ion-title *ngIf="!codeQueryParam">Criar contato</ion-title>
+  <ion-title *ngIf="codeQueryParam">Editarr contato</ion-title>
 </ion-toolbar>
+
 <ion-content>
   <div class="content">
     <div>
+      <div class="flex justify-center mt-8">
+        <div
+          class="w-52 h-52 rounded-full flex justify-center items-center  shadow-xl bg-[color:var(--ion-color-tertiary)]">
+          <ion-icon name="person-sharp" class="text-9xl mb-5 text-[color:var(--ion-color-primary)]"></ion-icon>
+        </div>
+      </div>
       <div class="inputs">
         <div class="input">
           <omni-input placeholder="Nome"></omni-input>
-        </div>
-        <div class="input">
-          <omni-input placeholder="CPF"></omni-input>
         </div>
         <div class="input">
           <omni-input placeholder="Telefone"></omni-input>
@@ -23,7 +28,7 @@
       </div>
       <div class="flex justify-center mt-7">
         <div>
-          <omni-button type="primary" title="Enviar"></omni-button>
+          <omni-button type="primary" title="Criar"></omni-button>
         </div>
       </div>
     </div>
