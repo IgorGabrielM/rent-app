@@ -1,6 +1,9 @@
 <ion-content>
+  <div class="mx-2 mt-1">
+    <ion-searchbar animated="true" placeholder="Buscar contato" color="tertiary"></ion-searchbar>
+  </div>
   <div class="content">
-    <div class="mt-10">
+    <div class="mt-1">
       <div class="mt-3" *ngFor="let item of data">
         <omni-card [title]="item.title" [description]="item.description" icon="pencil-sharp"></omni-card>
       </div>

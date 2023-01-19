@@ -11,15 +11,15 @@ export class ContactsPage implements OnInit {
     {
       title: 'Igor Gabriel',
       description: {
-        telephone: '(19)99999-9999',
-        email: 'example@email.com',
+        data1: '(19)99999-9999',
+        data2: 'example@email.com',
       }
     },
     {
       title: 'Igor Gabriel',
       description: {
-        telephone: '(19)99999-9999',
-        email: 'example@email.com',
+        data1: '(19)99999-9999',
+        data2: 'example@email.com',
       }
     }
   ]

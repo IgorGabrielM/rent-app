@@ -2,8 +2,12 @@
   <div class="card h-28 flex justify-between items-center">
     <div class="text-xl">
       <strong class="text-2xl">{{ title }}</strong>
-      <h2 class="mt-2" *ngIf="description.telephone">{{description.telephone}}</h2>
-      <h2 *ngIf="description.email">{{description.email}}</h2>
+      <h2 class="mt-2" *ngIf="description.data1">{{ description.data1 }}</h2>
+      <div class="flex">
+        <h2 *ngIf="description.data2">{{ description.data2 }}</h2>
+        <h2 *ngIf="description.data3" class="text-gray-500">{{ description.data3 }}</h2>
+      </div>
+
     </div>
     <div *ngIf="icon"
       class="text-4xl flex justify-center items-center text-gray bg-[color:var(--ion-color-primary-tint)] rounded-full w-16 h-16">

@@ -7,6 +7,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PatrimonyPage implements OnInit {
 
+  data = [
+    {
+      title: 'Escoras',
+      description: {
+        data1: 'R$10,00',
+        data2: '01/10',
+        data3: '(Disponiveis)'
+      }
+    },
+    {
+      title: 'Betoneiras',
+      description: {
+        data1: 'R$10,00',
+        data2: '01/10',
+        data3: '(Disponiveis)'
+      }
+    }
+  ]
+
   constructor() { }
 
   ngOnInit() {

@@ -1,8 +1,8 @@
 <div class="flex">
-  <ion-accordion-group>
+  <ion-accordion-group class="card">
     <ion-accordion value="first">
       <ion-item slot="header" color="tertiary" class="rounded-2xl">
-        <div class="w-96 h-20 flex justify-between items-center">
+        <div class="h-20 w-80 flex justify-between items-center">
           <div class="text-xl">
             <strong class="text-2xl">{{ title }}</strong>
             <h2>{{description.value}}</h2>
@@ -14,7 +14,7 @@
         </div>
       </ion-item>
       <div
-        class="ml-8 bg-[color:var(--ion-color-tertiary)] text-[color:var(--ion-color-tertiary-contrast)] ion-padding flex w-96 justify-between rounded-b-lg"
+        class="ml-8 ion-padding flex w-80 justify-between rounded-b-lg bg-[color:var(--ion-color-tertiary)] text-[color:var(--ion-color-tertiary-contrast)]"
         slot="content">
         <div>
           <p *ngFor="let product of description.products">{{ product }}</p>

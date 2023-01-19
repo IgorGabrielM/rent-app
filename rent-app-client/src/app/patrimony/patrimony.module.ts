@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { PatrimonyPageRoutingModule } from './patrimony-routing.module';
 
 import { PatrimonyPage } from './patrimony.page';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PatrimonyPageRoutingModule
+    PatrimonyPageRoutingModule,
+    ComponentsModule,
   ],
   declarations: [PatrimonyPage]
 })
-export class PatrimonyPageModule {}
+export class PatrimonyPageModule { }
