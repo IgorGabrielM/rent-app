@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  client:
+    build:
+      context: .
+      dockerfile: ./infra/docker/dockerfiles/dev/client.dockerfile
+    hostname: rent-app-client
+    ports:
+      - "4200:4200"
+
+networks:
+  rent-app: { }
