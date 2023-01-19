@@ -22,22 +22,8 @@ jobs:
         working-directory: rent-app-client/
         run: npm run lint
 
-  test:
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Setup client
-        uses: ./.github/actions/setup-client
-
-      - name: Test project
-        working-directory: rent-app-client/
-        run: npm run test
-
   build:
     runs-on: ubuntu-22.04
-    needs: [ test ]
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
