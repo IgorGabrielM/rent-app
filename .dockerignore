@@ -1,5 +1,10 @@
 **/*
+
+## Client
 !rent-app-client/*.json
 !rent-app-client/src
 !rent-app-client/*.ts
 !rent-app-client/*.js
+
+## Docker assets
+!infra/docker/nginx
