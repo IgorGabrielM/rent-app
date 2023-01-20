@@ -19,7 +19,7 @@ FROM nginx:1.23.3-alpine
 
 WORKDIR /var/www/rent-app
 
-COPY infra/docker/nginx/client.conf /etc/nginx/conf.d/default.conf
+COPY infra/docker/nginx/prod/client.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /usr/app/dist .
 
 EXPOSE 80

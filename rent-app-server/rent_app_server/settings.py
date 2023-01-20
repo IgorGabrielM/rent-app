@@ -25,7 +25,9 @@ SECRET_KEY = getenv('APP_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = getenv('APP_DEBUG') == 'True'
 
-ALLOWED_HOSTS = getenv('ALLOWED_HOSTS').split(',')
+ALLOWED_HOSTS = [
+    'backend'
+]
 
 # Application definition
 

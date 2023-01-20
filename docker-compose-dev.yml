@@ -1,15 +1,63 @@
 version: '3'
 
 services:
+  web:
+    build:
+      context: .
+      dockerfile: infra/docker/dockerfiles/dev/web.dockerfile
+    depends_on:
+      - client
+      - server
+    hostname: rent-app-web
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    networks:
+      - rent-app
+
   client:
     build:
       context: .
       dockerfile: ./infra/docker/dockerfiles/dev/client.dockerfile
     hostname: rent-app-client
-    ports:
-      - "4200:4200"
+    restart: unless-stopped
     volumes:
-      - ./rent-app-client/src:/usr/app/src
+      - "$PWD/rent-app-client:/usr/app"
+    networks:
+      - rent-app
+
+  server:
+    build:
+      context: .
+      dockerfile: ./infra/docker/dockerfiles/dev/server.dockerfile
+    hostname: rent-app-server
+    restart: unless-stopped
+    environment:
+      - APP_SECRET_KEY=rz#1!*$j(tbl00u)dawi!prw)c@gu&poelg3y)!cj(4r9re!f*
+      - APP_DEBUG=True
+      - DB_NAME=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+    volumes:
+      - "$PWD/rent-app-server:/usr/app"
+    networks:
+      - rent-app
+
+  db:
+    image: postgres:15-alpine
+    hostname: rent-app-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - "rent-app-db:/var/lib/postgresql/data"
+    networks:
+      - rent-app
+
+volumes:
+  rent-app-db: { }
 
 networks:
   rent-app: { }
