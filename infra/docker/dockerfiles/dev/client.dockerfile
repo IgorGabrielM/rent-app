@@ -12,4 +12,6 @@ ENV NODE_ENV development
 
 EXPOSE 4200
 
+VOLUME [ "/usr/app/node_modules" ]
+
 CMD [ "npm", "start" ]

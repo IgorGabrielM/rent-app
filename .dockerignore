@@ -6,5 +6,9 @@
 !rent-app-client/*.ts
 !rent-app-client/*.js
 
+## Server
+!rent-app-server/requirements.txt
+!rent-app-server/**/*.py
+
 ## Docker assets
 !infra/docker/nginx
