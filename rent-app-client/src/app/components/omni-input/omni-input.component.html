@@ -2,6 +2,7 @@
 
 <div class="select-input" *ngIf="isSelect">
     <ion-select interface="popover" [placeholder]="placeholder">
-        <ion-select-option *ngFor="let item of options" [value]="item.value">{{ item.name }}</ion-select-option>
+        <ion-select-option *ngFor="let option of options" [value]="option.id">{{ option.description
+            }}</ion-select-option>
     </ion-select>
 </div>

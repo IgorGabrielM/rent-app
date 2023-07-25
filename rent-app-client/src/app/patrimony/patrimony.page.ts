@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AssetCategoryModel } from 'src/@core/models/assetCategory.model';
+import { AssetCategoryService } from 'src/@core/services/assetCategory.service';
 
 @Component({
   selector: 'app-patrimony',
@@ -26,9 +28,20 @@ export class PatrimonyPage implements OnInit {
     }
   ]
 
-  constructor() { }
+  assetCategories: AssetCategoryModel[] = []
+
+  constructor(
+    private assetCategoryService: AssetCategoryService
+  ) { }
 
   ngOnInit() {
+    this.loadCategoriesAsset()
+  }
+
+  loadCategoriesAsset() {
+    this.assetCategoryService.list().subscribe((assetsCategories) => {
+      this.assetCategories = assetsCategories as AssetCategoryModel[]
+    })
   }
 
 }

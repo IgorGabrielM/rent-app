@@ -11,6 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { OmniTextAreaComponent } from './omni-text-area/omni-text-area.component';
 import { OmniSignaturePadComponent } from './omni-signature-pad/omni-signature-pad.component';
+import { AssetCategoryCardComponent } from './asset-category-card/asset-category-card.component';
+import { AssetCardComponent } from './asset-card/asset-card.component';
 @NgModule({
   declarations: [
     OmniButtonComponent,
@@ -20,6 +22,8 @@ import { OmniSignaturePadComponent } from './omni-signature-pad/omni-signature-p
     OmniCardComponent,
     OmniTextAreaComponent,
     OmniSignaturePadComponent,
+    AssetCardComponent,
+    AssetCategoryCardComponent,
   ],
   imports: [
     CommonModule,
@@ -36,6 +40,8 @@ import { OmniSignaturePadComponent } from './omni-signature-pad/omni-signature-p
     OmniCardComponent,
     OmniTextAreaComponent,
     OmniSignaturePadComponent,
+    AssetCardComponent,
+    AssetCategoryCardComponent,
   ]
 })
 export class ComponentsModule { }

@@ -1,4 +1,4 @@
-<ion-toolbar color="tertiary">
+<ion-toolbar color="secondary">
   <ion-buttons slot="start">
     <ion-back-button default-href="#"></ion-back-button>
   </ion-buttons>
@@ -10,22 +10,16 @@
     <div>
       <div class="flex justify-center mt-8">
         <div
-          class="category-card h-52 rounded-xl flex justify-center items-center  shadow-xl bg-[color:var(--ion-color-tertiary)]">
+          class="category-card h-52 rounded-xl flex justify-center items-center  shadow-xl bg-[color:var(--ion-color-secondary)]">
           <ion-icon name="folder-open-sharp" class="text-9xl mb-4 text-[color:var(--ion-color-primary)]"></ion-icon>
         </div>
       </div>
-      <div class="inputs">
-        <div class="input">
-          <omni-input placeholder="Nome"></omni-input>
-        </div>
-        <div class="input">
-          <omni-input placeholder="Valor"></omni-input>
-        </div>
+      <div class="mt-3 flex flex-col gap-2">
+        <ion-input required class="custom" placeholder="Nome" [(ngModel)]="assetCategory.description"></ion-input>
+        <ion-input required class="custom" placeholder="Valor" [(ngModel)]="assetCategory.value"></ion-input>
       </div>
-      <div class="flex justify-center mt-7 mb-5">
-        <div>
-          <omni-button type="primary" title="Criar"></omni-button>
-        </div>
+      <div class="flex justify-center mt-4 mb-5">
+        <omni-button type="primary" title="Criar" (click)="onSubmit()" [disabled]="verifyAllResponsed()"></omni-button>
       </div>
     </div>
   </div>

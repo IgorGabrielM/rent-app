@@ -1,4 +1,4 @@
-<ion-toolbar color="tertiary">
+<ion-toolbar color="secondary">
   <ion-buttons slot="start">
     <ion-back-button default-href="#"></ion-back-button>
   </ion-buttons>
@@ -10,7 +10,7 @@
     <div>
       <div class="flex justify-center mt-8">
         <div
-          class="category-card h-52 rounded-xl flex justify-center items-center shadow-xl bg-[color:var(--ion-color-tertiary)]">
+          class="category-card h-52 rounded-xl flex justify-center items-center shadow-xl bg-[color:var(--ion-color-secondary)]">
           <div class="flex flex-col justify-center">
             <ion-icon name="folder-open-sharp" class="text-9xl ml-6 text-[color:var(--ion-color-primary)]"></ion-icon>
             <strong class="text-3xl text-[color:var(--ion-color-primary)]">Categorias</strong>
@@ -23,6 +23,7 @@
             data="./edit-tool-category" [queryParam]="item.id"></omni-card>
         </div>
       </div>
+
       <div class="mt-6">
         <div class="mt-2" *ngFor="let item of dataTools">
           <omni-card [title]="item.title" [description]="item.description" icon="pencil-sharp" data="./edit-tool"
