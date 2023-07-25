@@ -1,9 +1,25 @@
-version: '3'
+version: '3.8'
 
 services:
+  web:
+    build:
+      context: .
+      dockerfile: ./infra/docker/dockerfiles/prod/web.dockerfile
+    depends_on:
+      - client
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    networks:
+      - rent-app
+
   client:
     build:
       context: .
       dockerfile: ./infra/docker/dockerfiles/prod/client.dockerfile
-    ports:
-      - "80:80"
+    restart: unless-stopped
+    networks:
+      - rent-app
+
+networks:
+  rent-app: { }
