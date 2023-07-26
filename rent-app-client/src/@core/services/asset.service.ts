@@ -29,7 +29,7 @@ export class AssetService {
   }
 
   update(asset: AssetModel) {
-    const assetDocRef = doc(this.firestore, `notes/${asset.id}`)
+    const assetDocRef = doc(this.firestore, `notes/${asset.id_assetModel}`)
     return updateDoc(assetDocRef, { asset })
   }
 

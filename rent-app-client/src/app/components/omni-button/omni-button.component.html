@@ -1,7 +1,7 @@
-<div *ngIf="type === 'outline'" class="outline">
+<ion-button *ngIf="type === 'outline'" ck [disabled]="disabled" class="outline">
   <p>{{ title }}</p>
-</div>
+</ion-button>
 
-<div *ngIf="type === 'primary'" class="primary">
+<ion-button *ngIf="type === 'primary'" color="secondary" [disabled]="disabled" class="primary">
   <strong>{{ title }}</strong>
-</div>
+</ion-button>

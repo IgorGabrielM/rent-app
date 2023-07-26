@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ContactModel } from 'src/@core/models/contact.model';
+import { ContactService } from 'src/@core/services/contact.service';
 
 @Component({
   selector: 'app-contacts',
@@ -6,29 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contacts.page.scss'],
 })
 export class ContactsPage implements OnInit {
+  contacts: ContactModel[] = []
 
-  data = [
-    {
-      id: '1',
-      title: 'Igor Gabriel',
-      description: {
-        data1: '(19)99999-9999',
-        data2: 'example@email.com',
-      }
-    },
-    {
-      id: '2',
-      title: 'Igor Gabriel',
-      description: {
-        data1: '(19)99999-9999',
-        data2: 'example@email.com',
-      }
-    }
-  ]
-
-  constructor() { }
+  constructor(
+    private contactService: ContactService,
+  ) { }
 
   ngOnInit() {
+    this.loadContact()
+  }
+
+  loadContact() {
+    this.contactService.list().subscribe((contacts) => {
+      console.log(contacts)
+      this.contacts = contacts as ContactModel[];
+    });
   }
 
 }
