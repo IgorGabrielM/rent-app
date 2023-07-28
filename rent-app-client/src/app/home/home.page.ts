@@ -18,7 +18,7 @@ export class HomePage implements OnInit {
       }
     },
     {
-      title: 'Matheus Dantas',
+      title: 'Igor Gab',
       description: {
         value: 'R$ 300,00',
         products: ['1x - Betoneira', '20x - Andaime', '15x - Escora'],

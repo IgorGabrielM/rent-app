@@ -19,7 +19,7 @@ export class AssetService {
 
   list() {
     const assetsRef = collection(this.firestore, 'asset')
-    return collectionData(assetsRef)
+    return collectionData(assetsRef, { idField: 'id' })
   }
 
   listByAssetCategory(idAssetCateogry: string) {
@@ -29,7 +29,7 @@ export class AssetService {
   }
 
   update(asset: AssetModel) {
-    const assetDocRef = doc(this.firestore, `notes/${asset.id_assetModel}`)
+    const assetDocRef = doc(this.firestore, `notes/${asset.id}`)
     return updateDoc(assetDocRef, { asset })
   }
 

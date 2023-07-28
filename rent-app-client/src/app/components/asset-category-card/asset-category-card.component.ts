@@ -23,7 +23,7 @@ export class AssetCategoryCardComponent implements OnInit {
   }
 
   loadAssets() {
-    this.assetService.listByAssetCategory(String(this.assetCategotry.id_asset_category)).subscribe((assets) => {
+    this.assetService.listByAssetCategory(String(this.assetCategotry.id)).subscribe((assets) => {
       this.assets = assets as AssetModel[]
       this.assetsAvailable = assets.filter((asset: AssetModel) => asset.is_available) as AssetModel[]
     })

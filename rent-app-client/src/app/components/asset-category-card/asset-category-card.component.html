@@ -3,14 +3,15 @@
         <div>
             <strong class="text-xl">{{ assetCategotry.description }}</strong>
             <div class="flex flex-col">
-                <h2 class="text-gray-500">R$ {{ assetCategotry.value }},00</h2>
-                <h2>
+                <h2 class="text-gray-700">R$ {{ assetCategotry.value }},00 <span class="text-gray-400">(Valor
+                        Unitário)</span></h2>
+                <h2 *ngIf="assetsAvailable.length > 0 && assets.length > 0">
                     {{ assetsAvailable.length }} / {{ assets.length }} <span class="text-gray-400">(Disponiveis)</span>
                 </h2>
             </div>
         </div>
 
-        <div routerLink="edit-categories-and-tools" [queryParams]="{ id: assetCategotry.id_asset_category}"
+        <div [routerLink]="'edit-categories-and-tools'" [queryParams]="{ id: assetCategotry.id}"
             class="text-3xl flex justify-center items-center text-gray bg-[color:var(--ion-color-secondary-tint)] rounded-full w-12 h-12">
             <ion-icon name="pencil-sharp"></ion-icon>
         </div>

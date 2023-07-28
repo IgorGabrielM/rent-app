@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firestore, addDoc, collection, collectionData, query, where, doc, deleteDoc, updateDoc } from '@angular/fire/firestore';
 import { ContactModel } from '../models/contact.model';
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -23,7 +21,7 @@ export class ContactService {
   }
 
   update(contact: ContactModel) {
-    const contactDocRef = doc(this.firestore, `notes/${contact.id_contact}`)
+    const contactDocRef = doc(this.firestore, `notes/${contact.id}`)
     return updateDoc(contactDocRef, { contact })
   }
 

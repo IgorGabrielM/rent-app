@@ -18,7 +18,7 @@ export class ContractsPage implements OnInit {
     },
     {
       id: '2',
-      title: 'Matheus Dantas',
+      title: 'Igor Gab',
       description: {
         data1: 'Jd. Park Real',
         data2: 'Rua 10 - Nº 120',

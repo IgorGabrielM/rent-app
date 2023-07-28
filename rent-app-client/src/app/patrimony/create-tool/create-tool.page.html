@@ -22,7 +22,7 @@
           <div class="select-input">
             <ion-select interface="popover" placeholder="Equipamento" name="id_asset_category"
               [(ngModel)]="asset.id_asset_category" required>
-              <ion-select-option *ngFor="let option of assetCategories" [value]="option.id_asset_category">{{
+              <ion-select-option *ngFor="let option of assetCategories" [value]="option.id">{{
                 option.description
                 }}</ion-select-option>
             </ion-select>
