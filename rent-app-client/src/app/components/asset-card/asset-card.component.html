@@ -3,16 +3,11 @@
     <div class="">
       <strong class="text-xl">{{ title }}</strong>
       <div class="flex">
-        <h2 *ngIf="description.data0" class="text-gray-500">{{ description.data0 }} &nbsp;</h2>
-        <h2 *ngIf="description.data1">{{ description.data1 }}</h2>
-      </div>
-      <div class="flex">
-        <h2 *ngIf="description.data2">{{ description.data2 }}</h2>
-        <h2 *ngIf="description.data3" class="text-gray-500">&nbsp;{{ description.data3 }}</h2>
+        <h2 class="text-gray-500">{{ description }} &nbsp;</h2>
       </div>
     </div>
 
-    <div *ngIf="icon && data" [routerLink]="[data]" [queryParams]="{ id: queryParam }"
+    <div *ngIf="icon && data" [routerLink]="[data]" [queryParams]="{ id: queryParamData }"
       class="text-3xl flex justify-center items-center text-gray bg-[color:var(--ion-color-secondary-tint)] rounded-full w-12 h-12">
       <ion-icon [name]="icon"></ion-icon>
     </div>

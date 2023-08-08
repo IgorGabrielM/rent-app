@@ -18,13 +18,14 @@
         </div>
       </div>
       <div class="mt-2" *ngIf="assetCategory">
-        <asset-category-card [assetCategotry]="assetCategory"></asset-category-card>
+        <asset-category-card data="../create-tool-category/" [queryParamData]="assetCategoryId"
+          [assetCategotry]="assetCategory"></asset-category-card>
       </div>
 
       <div class="mt-6">
-        <div class="mt-2" *ngFor="let item of dataTools">
-          <omni-card [title]="item.title" [description]="item.description" icon="pencil-sharp" data="./edit-tool"
-            [queryParam]="item.id"></omni-card>
+        <div class="mt-2" *ngFor="let asset of assets">
+          <asset-card [title]="asset.name" [description]="asset.identifier" icon="pencil-sharp" data="../edit-tool/"
+            [queryParamData]="asset.id"></asset-card>
         </div>
       </div>
     </div>

@@ -48,7 +48,7 @@ const routes: Routes = [
         loadChildren: () => import('../patrimony/create-tool/create-tool.module').then(m => m.CreateToolPageModule)
       },
       {
-        path: 'patrimony/edit-tool/:id',
+        path: 'patrimony/edit-tool',
         loadChildren: () => import('../patrimony/create-tool/create-tool.module').then(m => m.CreateToolPageModule)
       },
       {
@@ -61,7 +61,7 @@ const routes: Routes = [
         loadChildren: () => import('../patrimony/create-tool-category/create-tool-category.module').then(m => m.CreateToolCategoryPageModule)
       },
       {
-        path: 'patrimony/edit-tool-category/:id',
+        path: 'patrimony/edit-tool-category',
         loadChildren: () => import('../patrimony/create-tool-category/create-tool-category.module').then(m => m.CreateToolCategoryPageModule)
       },
       {

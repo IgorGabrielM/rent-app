@@ -12,7 +12,6 @@ export class ContactCardComponent {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.contact)
   }
 
 }

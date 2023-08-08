@@ -10,10 +10,11 @@ export class AssetCardComponent implements OnInit {
   @Input() description: any;
   @Input() icon?: string;
   @Input() data?: string;
-  @Input() queryParam?: string
+  @Input() queryParamData?: string
 
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
 }

@@ -10,6 +10,9 @@ import { AssetService } from 'src/@core/services/asset.service';
 })
 export class AssetCategoryCardComponent implements OnInit {
   @Input() assetCategotry: AssetCategoryModel
+  @Input() data?: string;
+  @Input() queryParamData?: string
+
 
   assets: AssetModel[] = []
   assetsAvailable: AssetModel[] = []

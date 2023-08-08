@@ -20,7 +20,6 @@ export class ContactsPage implements OnInit {
 
   loadContact() {
     this.contactService.list().subscribe((contacts) => {
-      console.log(contacts)
       this.contacts = contacts as ContactModel[];
     });
   }

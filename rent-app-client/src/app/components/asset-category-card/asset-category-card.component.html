@@ -11,7 +11,7 @@
             </div>
         </div>
 
-        <div [routerLink]="'edit-categories-and-tools'" [queryParams]="{ id: assetCategotry.id}"
+        <div *ngIf="data || queryParamData" [routerLink]="[data]" [queryParams]="{ id: queryParamData }"
             class="text-3xl flex justify-center items-center text-gray bg-[color:var(--ion-color-secondary-tint)] rounded-full w-12 h-12">
             <ion-icon name="pencil-sharp"></ion-icon>
         </div>

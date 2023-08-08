@@ -12,38 +12,9 @@ import { AssetCategoryService } from 'src/@core/services/assetCategory.service';
 })
 export class EditCategoriesAndToolsPage implements OnInit {
 
-  dataCategory = [
-    {
-      id: '1',
-      title: 'Escoras',
-      description: {
-        data0: 'Valor unitário:',
-        data1: 'R$10,00',
-        data2: '01/02',
-        data3: '(Disponíveis)'
-      }
-    },
-  ]
-
-  dataTools = [
-    {
-      id: '1',
-      title: 'Escora Gerdau',
-      description: {
-        data1: '0001',
-      }
-    },
-    {
-      id: '2',
-      title: 'Escora Menegoti',
-      description: {
-        data1: '0002',
-      }
-    },
-  ]
-
   assetCategory: AssetCategoryModel
   assets: AssetModel[] = []
+  assetCategoryId: string
 
   constructor(
     private route: ActivatedRoute,
@@ -52,6 +23,9 @@ export class EditCategoriesAndToolsPage implements OnInit {
   ) { }
 
   ngOnInit() {
+  }
+
+  ionViewWillEnter() {
     this.getQueryParams()
   }
 
@@ -59,21 +33,20 @@ export class EditCategoriesAndToolsPage implements OnInit {
     this.route.queryParams.subscribe(params => {
       const id = params['id'];
       this.loadAssetCategory(id)
+      this.loadAssets(id)
+      this.assetCategoryId = id
     });
   }
 
   loadAssetCategory(categoryAssetId: string) {
     this.assetCategoryService.find(categoryAssetId).then((assetCategory) => {
       this.assetCategory = assetCategory as AssetCategoryModel
-      console.log(this.assetCategory)
-      //this.loadAssets(this.assetCategory.id)
     })
   }
 
   loadAssets(assetCategoryId: string) {
-    this.assetService.listByAssetCategory(this.assetCategory.id).subscribe((assets) => {
+    this.assetService.listByAssetCategory(assetCategoryId).subscribe((assets) => {
       this.assets = assets as AssetModel[]
-      console.log(this.assets)
     })
   }
 
