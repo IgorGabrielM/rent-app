@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ContractModel } from 'src/@core/models/contract.model';
+import { ContractService } from 'src/@core/services/contract.service';
 
 @Component({
   selector: 'app-contracts',
@@ -7,28 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContractsPage implements OnInit {
 
-  data = [
-    {
-      id: '1',
-      title: 'Igor Gabriel',
-      description: {
-        data1: 'Jd. Park Real',
-        data2: 'Rua 10 - Nº 120',
-      }
-    },
-    {
-      id: '2',
-      title: 'Igor Gab',
-      description: {
-        data1: 'Jd. Park Real',
-        data2: 'Rua 10 - Nº 120',
-      }
-    }
-  ]
+  contracts: ContractModel[] = []
 
-  constructor() { }
+  constructor(
+    private contractService: ContractService,
+  ) { }
 
   ngOnInit() {
+    this.loadContracts()
+  }
+
+  loadContracts() {
+    this.contractService.list().subscribe((contracts: ContractModel[]) => {
+      this.contracts = contracts
+    })
   }
 
 }

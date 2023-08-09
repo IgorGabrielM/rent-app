@@ -72,7 +72,6 @@ export class CreateToolPage implements OnInit {
         this.asset = new AssetModel()
       })
     }
-
   }
 
 }

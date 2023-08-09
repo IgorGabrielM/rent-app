@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import SignaturePad from 'signature_pad';
 
 @Component({
   selector: 'omni-signature-pad',
@@ -9,6 +10,7 @@ export class OmniSignaturePadComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
 }

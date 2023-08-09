@@ -36,10 +36,6 @@ const routes: Routes = [
         loadChildren: () => import('../contracts/create-contract/create-contract.module').then(m => m.CreateContractPageModule)
       },
       {
-        path: 'contracts/edit-contract/:id',
-        loadChildren: () => import('../contracts/create-contract/create-contract.module').then(m => m.CreateContractPageModule)
-      },
-      {
         path: 'patrimony',
         loadChildren: () => import('../patrimony/patrimony.module').then(m => m.PatrimonyPageModule)
       },
