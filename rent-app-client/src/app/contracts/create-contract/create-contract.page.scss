@@ -17,6 +17,20 @@ ion-input.custom {
     --padding-top: 10px;
 }
 
+ion-input.date {
+    width: 90vw;
+    height: 50px;
+    font-size: 15px;
+    border-radius: 2px;
+    --color: rgba(119, 119, 119, 0.606);
+    --background: var(--ion-color-secondary);
+    --padding-bottom: 10px;
+    --padding-end: 10px;
+    --padding-start: 15px;
+    --padding-top: 10px;
+}
+
+
 .select-input {
     width: 90vw;
     height: 50px;

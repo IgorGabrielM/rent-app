@@ -14,7 +14,7 @@ export class ContractService {
 
   create(contract: ContractModel) {
     const asssetsRef = collection(this.firestore, 'contract')
-    return addDoc(asssetsRef, { ...contract, contactId: contract.contactId } as ContractModel)
+    return addDoc(asssetsRef, { ...contract, contactId: contract.contactId, createdAt: new Date() } as ContractModel)
   }
 
   list() {

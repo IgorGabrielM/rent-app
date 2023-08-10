@@ -1,6 +1,6 @@
 export class DefaultModel {
   id: string
-  createdAt?: Date;
+  createdAt?: Date | string;
   updatedAt?: Date;
   deletedAt?: Date;
 }

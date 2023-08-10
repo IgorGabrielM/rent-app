@@ -9,7 +9,8 @@ import { ContractModel } from 'src/@core/models/contract.model';
 export class ContractCardComponent implements OnInit {
   @Input() contract: ContractModel
 
-  constructor() { }
+  constructor(
+  ) { }
 
   ngOnInit() { }
 

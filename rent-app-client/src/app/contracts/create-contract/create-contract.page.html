@@ -20,6 +20,9 @@
           <ion-input class="custom" placeholder="Complemento" name="complement"
             [(ngModel)]="contract.complement"></ion-input>
 
+          <ion-input class="date" type="date" placeholder="Data final da locação" name="endDateLocate"
+            [(ngModel)]="contract.endDateLocate"></ion-input>
+
           <div class="select-input">
             <ion-select interface="popover" placeholder="Contato" name="id_contact" [(ngModel)]="contract.contactId"
               required>

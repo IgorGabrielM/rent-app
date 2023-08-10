@@ -42,6 +42,7 @@ export class CreateContractPage implements OnInit {
     this.getQueryParam();
     this.loadContacts();
     this.loadAssets();
+    console.log(new Date() as Date)
   }
 
   ionViewWillEnter() {
@@ -93,28 +94,31 @@ export class CreateContractPage implements OnInit {
     })
   }
 
+  getNameContact(id: string): string {
+    return this.contacts.find((contact) => contact.id == id)?.name
+  }
+
   onSubmit() {
     if (!this.codeQueryParam) {
       this.savePad();
-
-      this.contractService.create(this.contract).then(() => {
+      this.contractService.create({ ...this.contract, contactName: this.getNameContact(this.contract.contactId) }).then(() => {
         this.toastService.show('Sucesso', 'Contrato criado com sucesso!', {
           color: 'success',
           duration: 3000,
           position: 'top',
         });
-        this.route.navigate(['/tabs/patrimony'])
+        this.route.navigate(['/tabs/contracts'])
         this.contract = new ContractModel();
       })
     } else {
       this.savePad();
-      this.contractService.update(this.contract).then(() => {
+      this.contractService.update({ ...this.contract, contactName: this.getNameContact(this.contract.contactId) }).then(() => {
         this.toastService.show('Sucesso', 'Contrato atualizado com sucesso!', {
           color: 'success',
           duration: 3000,
           position: 'top',
         });
-        this.route.navigate(['/tabs/patrimony'])
+        this.route.navigate(['/tabs/contracts'])
         this.contract = new ContractModel();
       })
     }

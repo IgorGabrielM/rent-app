@@ -6,6 +6,7 @@ export class ContractModel extends DefaultModel {
   cep: number;
   numberHouse: number;
   complement: string;
+  endDateLocate: Date;
 
   contactId: string;
   contactName: string;
