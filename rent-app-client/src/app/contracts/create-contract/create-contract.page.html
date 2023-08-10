@@ -14,9 +14,10 @@
           <ion-input class="custom" placeholder="Bairro" name="neighborhood" [(ngModel)]="contract.neighborhood"
             required></ion-input>
           <ion-input class="custom" placeholder="Rua" name="street" [(ngModel)]="contract.street" required></ion-input>
-          <ion-input class="custom" placeholder="CEP" name="cep" [(ngModel)]="contract.cep" required></ion-input>
-          <ion-input class="custom" placeholder="Número" name="numberHouse" [(ngModel)]="contract.numberHouse"
-            required></ion-input>
+          <ion-input class="custom" placeholder="CEP" [maskito]="cepMask" [maskitoElement]="maskPredicate" name="cep"
+            [(ngModel)]="contract.cep" required></ion-input>
+          <ion-input class="custom" placeholder="Telefone" [maskito]="phoneMask" [maskitoElement]="maskPredicate"
+            name="numberHouse" [(ngModel)]="contract.numberHouse" required></ion-input>
           <ion-input class="custom" placeholder="Complemento" name="complement"
             [(ngModel)]="contract.complement"></ion-input>
 
@@ -42,24 +43,62 @@
           </div>
 
         </div>
-        <div class="flex justify-center mt-5">
-          <div [hidden]="!signature">
-            <canvas #canvas (touchstart)="startDrawing($event)" (touchmove)="moved($event)"></canvas>
-            <ion-grid>
-              <ion-row class="flex justify-end">
-                <ion-button color="danger" (click)="clearPad()">Limpar</ion-button>
-              </ion-row>
-            </ion-grid>
-          </div>
-        </div>
         <div class="flex justify-center mt-5 mb-5">
           <div>
-            <omni-button type="primary" [title]="codeQueryParam ? 'Editar' : 'Criar'"
-              (click)="onSubmit()"></omni-button>
+            <omni-button type="primary" title="Termos de contrato" (click)="isOpenContractTerms = true"></omni-button>
+
+
           </div>
         </div>
       </ng-form>
     </div>
-
   </div>
 </ion-content>
+
+<ion-modal [isOpen]="isOpenContractTerms">
+  <ng-template>
+    <ion-toolbar color="secondary">
+      <ion-buttons slot="end">
+        <ion-buttons slot="primary" (click)="isOpenContractTerms = false">
+          <ion-button>
+            <ion-icon size="large" slot="icon-only" name="close-circle-sharp"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-buttons>
+      <ion-title>Assinar contrato</ion-title>
+    </ion-toolbar>
+
+    <ion-content>
+      <div class="text-center mt-3">
+        <div>
+          <strong class="text-xl">
+            Titulo
+          </strong>
+        </div>
+
+        <div class="m-5">
+          <p>
+            {{contractTerms[0].term }}
+          </p>
+        </div>
+      </div>
+
+
+      <div class="w-screen">
+        <div [hidden]="!signature">
+          <canvas #canvas (touchstart)="startDrawing($event)" (touchmove)="moved($event)"></canvas>
+          <ion-grid>
+            <ion-row class="flex justify-end">
+              <ion-button color="danger" (click)="clearPad()">Limpar</ion-button>
+            </ion-row>
+          </ion-grid>
+        </div>
+        <div class="flex justify-center mt-5">
+          <omni-button type="primary" [title]="codeQueryParam ? 'Editar' : 'Criar'" (click)="onSubmit()"></omni-button>
+        </div>
+      </div>
+    </ion-content>
+
+  </ng-template>
+
+</ion-modal>

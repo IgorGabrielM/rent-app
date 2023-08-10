@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MaskitoElementPredicateAsync, MaskitoOptions } from '@maskito/core';
 import SignaturePad from 'signature_pad';
 import { AssetModel } from 'src/@core/models/asset.model';
 import { ContactModel } from 'src/@core/models/contact.model';
@@ -26,6 +27,19 @@ export class CreateContractPage implements OnInit {
   signatureImg: string;
   signature = true;
   isSignature = true;
+  isOpenContractTerms: boolean = false
+  contractTerms: any
+
+
+  readonly phoneMask: MaskitoOptions = {
+    mask: ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
+  };
+
+  readonly cepMask: MaskitoOptions = {
+    mask: [/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/],
+  };
+
+  readonly maskPredicate: MaskitoElementPredicateAsync = async (el) => (el as HTMLIonInputElement).getInputElement();
 
 
   constructor(
@@ -43,6 +57,7 @@ export class CreateContractPage implements OnInit {
     this.loadContacts();
     this.loadAssets();
     console.log(new Date() as Date)
+    this.loadContactTerms()
   }
 
   ionViewWillEnter() {
@@ -85,6 +100,13 @@ export class CreateContractPage implements OnInit {
   loadContacts() {
     this.contactService.list().subscribe((contacts: ContactModel[]) => {
       this.contacts = contacts
+    })
+  }
+
+  loadContactTerms() {
+    this.contractService.getTermsServices().subscribe((term) => {
+      this.contractTerms = term
+      console.log(term)
     })
   }
 

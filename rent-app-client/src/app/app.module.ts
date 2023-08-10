@@ -11,6 +11,8 @@ import { SwiperModule } from 'swiper/angular';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app'
 import { getFirestore, provideFirestore } from '@angular/fire/firestore'
 import { environment } from 'src/environments/environment';
+import { MaskitoModule } from '@maskito/angular';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +21,8 @@ import { environment } from 'src/environments/environment';
     IonicModule.forRoot(),
     AppRoutingModule,
     ComponentsModule,
+    MaskitoModule,
+    FormsModule,
     SwiperModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore())

@@ -27,6 +27,8 @@
     "@capacitor/keyboard": "4.1.0",
     "@capacitor/status-bar": "4.1.1",
     "@ionic/angular": "^6.1.9",
+    "@maskito/angular": "^1.4.0",
+    "@maskito/core": "^1.4.0",
     "firebase": "^10.1.0",
     "firebase-tools": "^12.4.5",
     "ionicons": "^6.0.3",

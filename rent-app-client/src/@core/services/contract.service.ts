@@ -22,6 +22,11 @@ export class ContractService {
     return collectionData(contractsRef, { idField: 'id' })
   }
 
+  getTermsServices() {
+    const contractsRef = collection(this.firestore, 'contract_terms')
+    return collectionData(contractsRef, { idField: 'id' })
+  }
+
   async find(id: string) {
     const contractsCategoryRef = collection(this.firestore, 'contract');
     return getDoc(doc(contractsCategoryRef, id))
