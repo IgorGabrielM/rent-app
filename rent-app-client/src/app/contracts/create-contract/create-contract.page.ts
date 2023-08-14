@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MaskitoElementPredicateAsync, MaskitoOptions } from '@maskito/core';
 import SignaturePad from 'signature_pad';
@@ -19,17 +19,11 @@ export class CreateContractPage implements OnInit {
   codeQueryParam: string
   contacts: ContactModel[] = []
   assets: AssetModel[] = []
-
   contract: ContractModel
 
-  signaturePad: SignaturePad;
-  @ViewChild('canvas') canvasEl: ElementRef;
-  signatureImg: string;
-  signature = true;
-  isSignature = true;
   isOpenContractTerms: boolean = false
   contractTerms: any
-
+  imageAsBase64: string
 
   readonly phoneMask: MaskitoOptions = {
     mask: ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
@@ -61,25 +55,6 @@ export class CreateContractPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.signaturePad = new SignaturePad(this.canvasEl.nativeElement);
-  }
-
-  startDrawing(event: Event) {
-    this.isSignature = true;
-    console.log(event)
-  }
-
-  moved(event: Event) {
-  }
-
-  clearPad() {
-    this.isSignature = false;
-    this.signaturePad.clear();
-  }
-
-  savePad() {
-    const base64Data = this.signaturePad.toDataURL();
-    this.signatureImg = base64Data;
   }
 
   getQueryParam() {
@@ -106,7 +81,6 @@ export class CreateContractPage implements OnInit {
   loadContactTerms() {
     this.contractService.getTermsServices().subscribe((term) => {
       this.contractTerms = term
-      console.log(term)
     })
   }
 
@@ -120,9 +94,13 @@ export class CreateContractPage implements OnInit {
     return this.contacts.find((contact) => contact.id == id)?.name
   }
 
+  getImage(data: string) {
+    this.imageAsBase64 = data;
+    console.log(this.imageAsBase64)
+  }
+
   onSubmit() {
     if (!this.codeQueryParam) {
-      this.savePad();
       this.contractService.create({ ...this.contract, contactName: this.getNameContact(this.contract.contactId) }).then(() => {
         this.toastService.show('Sucesso', 'Contrato criado com sucesso!', {
           color: 'success',
@@ -133,7 +111,6 @@ export class CreateContractPage implements OnInit {
         this.contract = new ContractModel();
       })
     } else {
-      this.savePad();
       this.contractService.update({ ...this.contract, contactName: this.getNameContact(this.contract.contactId) }).then(() => {
         this.toastService.show('Sucesso', 'Contrato atualizado com sucesso!', {
           color: 'success',

@@ -41,8 +41,8 @@
                 }}</ion-select-option>
             </ion-select>
           </div>
-
         </div>
+
         <div class="flex justify-center mt-5 mb-5">
           <div>
             <omni-button type="primary" title="Termos de contrato" (click)="isOpenContractTerms = true"></omni-button>
@@ -83,20 +83,10 @@
         </div>
       </div>
 
+      <omni-signature-pad (imageBase64Emitter)="getImage($event)"></omni-signature-pad>
 
-      <div class="w-screen">
-        <div [hidden]="!signature">
-          <canvas #canvas (touchstart)="startDrawing($event)" (touchmove)="moved($event)"></canvas>
-          <ion-grid>
-            <ion-row class="flex justify-end">
-              <ion-button color="danger" (click)="clearPad()">Limpar</ion-button>
-            </ion-row>
-          </ion-grid>
-        </div>
-        <div class="flex justify-center mt-5">
-          <omni-button type="primary" [title]="codeQueryParam ? 'Editar' : 'Criar'" (click)="onSubmit()"></omni-button>
-        </div>
-      </div>
+      <omni-button type="primary" title="Salvar" (click)="onSubmit()"></omni-button>
+
     </ion-content>
 
   </ng-template>
