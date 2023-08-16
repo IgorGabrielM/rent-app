@@ -44,26 +44,35 @@ export class CreateToolCategoryPage implements OnInit {
   }
 
   onSubmit() {
-    if (!this.idAssetCategoryToEdit) {
-      this.assetCategoryService.create({ ...this.assetCategory }).then(() => {
-        this.toastService.show('Sucesso', 'Cateogria de equipamento criada com sucesso!', {
-          color: 'success',
-          duration: 3000,
-          position: 'top',
-        });
-        this.route.navigate(['/tabs/patrimony'])
-        this.assetCategory = new AssetCategoryModel()
-      })
+    if (this.assetCategory.description && this.assetCategory.value) {
+      if (!this.idAssetCategoryToEdit) {
+        this.assetCategoryService.create({ ...this.assetCategory }).then(() => {
+          this.toastService.show('Sucesso', 'Cateogria de equipamento criada com sucesso!', {
+            color: 'success',
+            duration: 2000,
+            position: 'top',
+          });
+          this.route.navigate(['/tabs/patrimony'])
+          this.assetCategory = new AssetCategoryModel()
+        })
+      } else {
+        this.assetCategoryService.update({ ...this.assetCategory, id: this.idAssetCategoryToEdit }).then(() => {
+          this.toastService.show('Sucesso', 'Cateogria de equipamento atualizada com sucesso!', {
+            color: 'success',
+            duration: 2000,
+            position: 'top',
+          });
+          this.route.navigate(['/tabs/patrimony'])
+          this.assetCategory = new AssetCategoryModel()
+        })
+      }
     } else {
-      this.assetCategoryService.update({ ...this.assetCategory, id: this.idAssetCategoryToEdit }).then(() => {
-        this.toastService.show('Sucesso', 'Cateogria de equipamento atualizada com sucesso!', {
-          color: 'success',
-          duration: 3000,
-          position: 'top',
-        });
-        this.route.navigate(['/tabs/patrimony'])
-        this.assetCategory = new AssetCategoryModel()
+      this.toastService.show('Erro', 'Preencha todos os campos!', {
+        color: 'danger',
+        duration: 2000,
+        position: 'top',
       })
     }
   }
+
 }

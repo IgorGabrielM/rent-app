@@ -51,26 +51,34 @@ export class CreateToolPage implements OnInit {
   }
 
   onSubmit() {
-    if (!this.idAssetToEdit) {
-      this.assetService.create(this.asset).then(() => {
-        this.toastService.show('Sucesso', 'Equipamento criado com sucesso!', {
-          color: 'success',
-          duration: 3000,
-          position: 'top',
-        });
-        this.route.navigate(['/tabs/patrimony'])
-        this.asset = new AssetModel()
-      })
+    if (this.asset.identifier && this.asset.name && this.asset.id_asset_category) {
+      if (!this.idAssetToEdit) {
+        this.assetService.create(this.asset).then(() => {
+          this.toastService.show('Sucesso', 'Equipamento criado com sucesso!', {
+            color: 'success',
+            duration: 2000,
+            position: 'top',
+          });
+          this.route.navigate(['/tabs/patrimony'])
+          this.asset = new AssetModel()
+        })
+      } else {
+        this.assetService.update({ ...this.asset, id: this.idAssetToEdit }).then(() => {
+          this.toastService.show('Sucesso', 'Equipamento atualizado com sucesso!', {
+            color: 'success',
+            duration: 2000,
+            position: 'top',
+          });
+          this.route.navigate(['/tabs/patrimony'])
+          this.asset = new AssetModel()
+        })
+      }
     } else {
-      this.assetService.update({ ...this.asset, id: this.idAssetToEdit }).then(() => {
-        this.toastService.show('Sucesso', 'Equipamento atualizado com sucesso!', {
-          color: 'success',
-          duration: 3000,
-          position: 'top',
-        });
-        this.route.navigate(['/tabs/patrimony'])
-        this.asset = new AssetModel()
-      })
+      this.toastService.show('Erro', 'Preencha todos os campos!', {
+        color: 'danger',
+        duration: 2000,
+        position: 'top',
+      });
     }
   }
 

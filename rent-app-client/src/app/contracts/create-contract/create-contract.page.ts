@@ -117,7 +117,7 @@ export class CreateContractPage implements OnInit {
         this.contractService.create({ ...this.contract, contactName: this.getNameContact(this.contract.contactId) }).then(() => {
           this.toastService.show('Sucesso', 'Contrato criado com sucesso!', {
             color: 'success',
-            duration: 3000,
+            duration: 2000,
             position: 'top',
           });
           this.isOpenContractTerms = false
@@ -131,7 +131,7 @@ export class CreateContractPage implements OnInit {
         this.contractService.update({ ...this.contract, contactName: this.getNameContact(this.contract.contactId), id: this.idContractToEdit }).then(() => {
           this.toastService.show('Sucesso', 'Contrato atualizado com sucesso!', {
             color: 'success',
-            duration: 3000,
+            duration: 2000,
             position: 'top',
           });
           this.isOpenContractTerms = false
@@ -146,7 +146,7 @@ export class CreateContractPage implements OnInit {
     else {
       this.toastService.show('Erro', 'Preencha todos os campos obrigatórios!', {
         color: 'danger',
-        duration: 3000,
+        duration: 2000,
         position: 'top',
       });
       this.isOpenContractTerms = false
