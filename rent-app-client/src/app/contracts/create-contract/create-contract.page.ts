@@ -16,7 +16,7 @@ import { ToastService } from 'src/@core/utils/toast.service';
   styleUrls: ['./create-contract.page.scss'],
 })
 export class CreateContractPage implements OnInit {
-  codeQueryParam: string
+  idContractToEdit: string
   contacts: ContactModel[] = []
   assets: AssetModel[] = []
   contract: ContractModel
@@ -60,9 +60,9 @@ export class CreateContractPage implements OnInit {
 
   getQueryParam() {
     this.activatedRoute.queryParams.subscribe((queryParams: any) => {
-      this.codeQueryParam = queryParams['id'];
-      if (this.codeQueryParam) {
-        this.contractService.find(this.codeQueryParam).then((contract) => {
+      this.idContractToEdit = queryParams['id'];
+      if (this.idContractToEdit) {
+        this.contractService.find(this.idContractToEdit).then((contract) => {
           setTimeout(() => {
             this.contract = contract as ContractModel
           }, 1000)
@@ -112,7 +112,7 @@ export class CreateContractPage implements OnInit {
   }
 
   onSubmit() {
-    if (!this.codeQueryParam) {
+    if (!this.idContractToEdit) {
       this.contractService.create({ ...this.contract, contactName: this.getNameContact(this.contract.contactId) }).then(() => {
         this.toastService.show('Sucesso', 'Contrato criado com sucesso!', {
           color: 'success',
