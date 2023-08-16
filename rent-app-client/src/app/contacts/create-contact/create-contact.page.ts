@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ContactModel } from 'src/@core/models/contact.model';
+import { ContactService } from 'src/@core/services/contact.service';
+import { ToastService } from 'src/@core/utils/toast.service';
 
 @Component({
   selector: 'app-create-contact',
@@ -8,9 +11,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CreateContactPage implements OnInit {
   codeQueryParam: string
+  idContactToEdit: string
+  contact: ContactModel
 
   constructor(
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private contactService: ContactService,
+    private toastService: ToastService,
+    private route: Router,
   ) { }
 
   ngOnInit() {
@@ -18,9 +26,42 @@ export class CreateContactPage implements OnInit {
   }
 
   getQueryParam() {
-    this.activatedRoute.queryParams.subscribe((queryParams: any) => {
-      this.codeQueryParam = queryParams['id'];
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.idContactToEdit = params['id'];
+      if (this.idContactToEdit) {
+        this.contactService.find(this.idContactToEdit).then((asset) => {
+          setTimeout(() => {
+            this.contact = asset as ContactModel
+          }, 1000)
+        })
+      } else {
+        this.contact = new ContactModel()
+      }
     });
+  }
+
+  onSubmit() {
+    if (!this.idContactToEdit) {
+      this.contactService.create(this.contact).then(() => {
+        this.toastService.show('Sucesso', 'Contato criado com sucesso!', {
+          color: 'success',
+          duration: 3000,
+          position: 'top',
+        });
+        this.route.navigate(['/tabs/contacts'])
+        this.contact = new ContactModel()
+      })
+    } else {
+      this.contactService.update({ ...this.contact, id: this.idContactToEdit }).then(() => {
+        this.toastService.show('Sucesso', 'Contato atualizado com sucesso!', {
+          color: 'success',
+          duration: 3000,
+          position: 'top',
+        });
+        this.route.navigate(['/tabs/contacts'])
+        this.contact = new ContactModel()
+      })
+    }
   }
 
 }

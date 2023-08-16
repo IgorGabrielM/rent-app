@@ -1,13 +1,13 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MaskitoElementPredicateAsync, MaskitoOptions } from '@maskito/core';
-import SignaturePad from 'signature_pad';
 import { AssetModel } from 'src/@core/models/asset.model';
 import { ContactModel } from 'src/@core/models/contact.model';
 import { ContractModel } from 'src/@core/models/contract.model';
 import { AssetService } from 'src/@core/services/asset.service';
 import { ContactService } from 'src/@core/services/contact.service';
 import { ContractService } from 'src/@core/services/contract.service';
+import { ImageService } from 'src/@core/services/image.service';
 import { ToastService } from 'src/@core/utils/toast.service';
 
 @Component({
@@ -44,13 +44,14 @@ export class CreateContractPage implements OnInit {
     private contactService: ContactService,
     private contractService: ContractService,
     private assetService: AssetService,
+    //private imageService: ImageService
   ) { }
 
   ngOnInit() {
     this.getQueryParam();
     this.loadContacts();
     this.loadAssets();
-    console.log(new Date() as Date)
+    //console.log(new Date() as Date)
     this.loadContactTerms()
   }
 
@@ -97,6 +98,17 @@ export class CreateContractPage implements OnInit {
   getImage(data: string) {
     this.imageAsBase64 = data;
     console.log(this.imageAsBase64)
+
+    fetch(this.imageAsBase64)
+      .then((res) => res.blob())
+      .then((blob) => {
+        console.log(blob)
+        //this.imageService.uploadImageBlob(blob)
+      })
+  }
+
+  uploadPicture(blob: Blob) {
+
   }
 
   onSubmit() {

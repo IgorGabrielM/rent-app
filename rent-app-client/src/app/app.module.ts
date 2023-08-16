@@ -13,6 +13,8 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore'
 import { environment } from 'src/environments/environment';
 import { MaskitoModule } from '@maskito/angular';
 import { FormsModule } from '@angular/forms';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFireModule } from '@angular/fire/compat';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +27,9 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     SwiperModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

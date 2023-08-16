@@ -6,8 +6,8 @@
   <ion-title *ngIf="codeQueryParam">Editarr contato</ion-title>
 </ion-toolbar>
 
-<ion-content>
-  <div class="content">
+<ion-content *ngIf="contact">
+  <div class="flex justify-center">
     <div>
       <div class="flex justify-center mt-8">
         <div
@@ -15,22 +15,44 @@
           <ion-icon name="person-sharp" class="text-9xl mb-5 text-[color:var(--ion-color-primary)]"></ion-icon>
         </div>
       </div>
-      <div class="inputs">
-        <div class="input">
-          <omni-input placeholder="Nome"></omni-input>
-        </div>
-        <div class="input">
-          <omni-input placeholder="Telefone"></omni-input>
-        </div>
-        <div class="input">
-          <omni-input placeholder="Email"></omni-input>
-        </div>
+      <div class="mt-4 flex flex-col gap-2">
+        <ion-input class="custom" placeholder="Nome" name="Nome" [(ngModel)]="contact.name" required></ion-input>
+        <ion-input class="custom" placeholder="Telefone" name="telephone" [(ngModel)]="contact.telephone"
+          required></ion-input>
+        <ion-input class="custom" placeholder="Email" name="email" [(ngModel)]="contact.email" required></ion-input>
       </div>
       <div class="flex justify-center mt-7">
         <div>
-          <omni-button type="primary" title="Criar"></omni-button>
+          <omni-button type="primary" [title]="idContactToEdit ? 'Editar' : 'Criar'" (click)="onSubmit()"></omni-button>
         </div>
       </div>
     </div>
+  </div>
+</ion-content>
+
+<!--SKELETON LOADING-->
+<ion-content *ngIf="!contact">
+  <div class="content">
+    <div>
+      <ng-form #form="ngForm">
+        <div class="flex justify-center mt-8">
+          <div
+            class="w-52 h-52 rounded-full flex justify-center items-center  shadow-xl bg-[color:var(--ion-color-tertiary)]">
+            <ion-icon name="person-sharp" class="text-9xl mb-5 text-[color:var(--ion-color-primary)]"></ion-icon>
+          </div>
+        </div>
+        <div class="mt-4 flex flex-col items-center gap-2">
+          <ion-skeleton-text [animated]="true"
+            style="width: 90vw; height: 50px; border-radius: 5px;"></ion-skeleton-text>
+          <ion-skeleton-text [animated]="true"
+            style="width: 90vw; height: 50px; border-radius: 5px;"></ion-skeleton-text>
+        </div>
+        <div class="flex justify-center mt-4 mb-5">
+          <ion-skeleton-text [animated]="true"
+            style="width: 90vw; height: 50px; border-radius: 5px;"></ion-skeleton-text>
+        </div>
+      </ng-form>
+    </div>
+
   </div>
 </ion-content>

@@ -83,9 +83,12 @@
         </div>
       </div>
 
-      <omni-signature-pad (imageBase64Emitter)="getImage($event)"></omni-signature-pad>
+      <div>
+        <omni-signature-pad (imageBase64Emitter)="getImage($event)"></omni-signature-pad>
+      </div>
 
-      <omni-button type="primary" title="Salvar" (click)="onSubmit()"></omni-button>
+      <omni-button class="flex justify-center mt-5" type="primary" title="Criar contrato"
+        (click)="onSubmit()"></omni-button>
 
     </ion-content>
 
