@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MaskitoElementPredicateAsync, MaskitoOptions } from '@maskito/core';
 import { AssetModel } from 'src/@core/models/asset.model';
@@ -7,7 +7,6 @@ import { ContractModel } from 'src/@core/models/contract.model';
 import { AssetService } from 'src/@core/services/asset.service';
 import { ContactService } from 'src/@core/services/contact.service';
 import { ContractService } from 'src/@core/services/contract.service';
-import { ImageService } from 'src/@core/services/image.service';
 import { ToastService } from 'src/@core/utils/toast.service';
 
 @Component({
@@ -112,26 +111,45 @@ export class CreateContractPage implements OnInit {
   }
 
   onSubmit() {
-    if (!this.idContractToEdit) {
-      this.contractService.create({ ...this.contract, contactName: this.getNameContact(this.contract.contactId) }).then(() => {
-        this.toastService.show('Sucesso', 'Contrato criado com sucesso!', {
-          color: 'success',
-          duration: 3000,
-          position: 'top',
-        });
-        this.route.navigate(['/tabs/contracts'])
-        this.contract = new ContractModel();
-      })
-    } else {
-      this.contractService.update({ ...this.contract, contactName: this.getNameContact(this.contract.contactId) }).then(() => {
-        this.toastService.show('Sucesso', 'Contrato atualizado com sucesso!', {
-          color: 'success',
-          duration: 3000,
-          position: 'top',
-        });
-        this.route.navigate(['/tabs/contracts'])
-        this.contract = new ContractModel();
-      })
+    if (this.contract.neighborhood && this.contract.street && this.contract.cep && this.contract.numberHouse &&
+      this.contract.contactId && this.contract.endDateLocate && this.contract.assetsIds.length > 0) {
+      if (!this.idContractToEdit) {
+        this.contractService.create({ ...this.contract, contactName: this.getNameContact(this.contract.contactId) }).then(() => {
+          this.toastService.show('Sucesso', 'Contrato criado com sucesso!', {
+            color: 'success',
+            duration: 3000,
+            position: 'top',
+          });
+          this.isOpenContractTerms = false
+          this.contract = new ContractModel();
+          setTimeout(() => {
+            this.route.navigate(['./tabs/contracts']),
+              1000
+          })
+        })
+      } else {
+        this.contractService.update({ ...this.contract, contactName: this.getNameContact(this.contract.contactId), id: this.idContractToEdit }).then(() => {
+          this.toastService.show('Sucesso', 'Contrato atualizado com sucesso!', {
+            color: 'success',
+            duration: 3000,
+            position: 'top',
+          });
+          this.isOpenContractTerms = false
+          this.contract = new ContractModel();
+          setTimeout(() => {
+            this.route.navigate(['./tabs/contracts']),
+              1000
+          })
+        })
+      }
+    }
+    else {
+      this.toastService.show('Erro', 'Preencha todos os campos obrigatórios!', {
+        color: 'danger',
+        duration: 3000,
+        position: 'top',
+      });
+      this.isOpenContractTerms = false
     }
   }
 
