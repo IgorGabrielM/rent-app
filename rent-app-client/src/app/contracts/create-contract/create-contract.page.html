@@ -35,12 +35,22 @@
 
           <div class="select-input">
             <ion-select interface="popover" placeholder="Selecione os equipamentos" name="assetes_ids"
-              [(ngModel)]="contract.assetsIds" required [multiple]="true">
-              <ion-select-option *ngFor="let asset of assets" [value]="asset.id">{{
+              [(ngModel)]="contract.assets" required [multiple]="true">
+              <ion-select-option *ngFor="let asset of assets" [value]="asset">{{
                 asset.name
                 }}</ion-select-option>
             </ion-select>
           </div>
+
+          <div class="">
+            <div class="even:bg-gray-300 odd:bg-gray-400 mx-2 rounded-md" *ngFor="let asset of contract.assets">
+              <div class="mx-5 flex items-center justify-between">
+                <p class="mr-5 text-black">{{ asset.name }}</p>
+                <ion-input class="assets" placeholder="Quantidade" [(ngModel)]="asset.quantity"></ion-input>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <div class="flex justify-center mt-5 mb-5">
@@ -71,13 +81,16 @@
       <div class="text-center mt-3">
         <div>
           <strong class="text-xl">
-            Titulo
+            {{contractTerms[0].title }}
           </strong>
         </div>
 
         <div class="m-5">
           <p>
             {{contractTerms[0].term }}
+          </p>
+          <p>Os seguinte termos se referem à locação dos seguintes equipamentos:
+            <span *ngFor="let asset of contract.assets">{{ asset.name }} - {{ asset.quantity }}</span>
           </p>
         </div>
       </div>

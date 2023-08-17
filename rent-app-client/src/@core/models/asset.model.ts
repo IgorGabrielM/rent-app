@@ -5,4 +5,6 @@ export class AssetModel extends DefaultModel {
   name: string;
   is_available: boolean;
   id_asset_category: number
+
+  quantity?: number
 }

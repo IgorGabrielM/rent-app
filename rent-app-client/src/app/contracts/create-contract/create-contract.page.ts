@@ -112,7 +112,7 @@ export class CreateContractPage implements OnInit {
 
   onSubmit() {
     if (this.contract.neighborhood && this.contract.street && this.contract.cep && this.contract.numberHouse &&
-      this.contract.contactId && this.contract.endDateLocate && this.contract.assetsIds.length > 0) {
+      this.contract.contactId && this.contract.endDateLocate && this.contract.assets.length > 0) {
       if (!this.idContractToEdit) {
         this.contractService.create({ ...this.contract, contactName: this.getNameContact(this.contract.contactId) }).then(() => {
           this.toastService.show('Sucesso', 'Contrato criado com sucesso!', {
