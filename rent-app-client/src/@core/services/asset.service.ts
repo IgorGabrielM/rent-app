@@ -46,7 +46,7 @@ export class AssetService {
     return updateDoc(assetDocRef, asset as {});
   }
 
-  delete(assetId: number) {
+  delete(assetId: string) {
     const assetDocRef = doc(this.firestore, `asset/${assetId}`)
     return deleteDoc(assetDocRef);
   }

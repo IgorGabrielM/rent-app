@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AssetModel } from 'src/@core/models/asset.model';
 import { AssetCategoryModel } from 'src/@core/models/assetCategory.model';
 import { AssetService } from 'src/@core/services/asset.service';
+import { AssetCategoryService } from 'src/@core/services/assetCategory.service';
+import { ToastService } from 'src/@core/utils/toast.service';
 
 @Component({
   selector: 'asset-category-card',
@@ -13,12 +15,13 @@ export class AssetCategoryCardComponent implements OnInit {
   @Input() data?: string;
   @Input() queryParamData?: string
 
-
   assets: AssetModel[] = []
   assetsAvailable: AssetModel[] = []
 
   constructor(
     private assetService: AssetService,
+    private assetCategoryService: AssetCategoryService,
+    private toastService: ToastService,
   ) { }
 
   ngOnInit() {
@@ -32,5 +35,14 @@ export class AssetCategoryCardComponent implements OnInit {
     })
   }
 
+  deleteCategoryAsset(assetCategoryId: string) {
+    this.assetCategoryService.delete(assetCategoryId).then(() => {
+      this.toastService.show('Successo', 'Categoria de equipamentos deletado com sucesso', {
+        color: 'success',
+        duration: 2000,
+        position: 'top',
+      });
+    })
+  }
 
 }

@@ -24,8 +24,8 @@
 
       <div class="mt-6">
         <div class="mt-2" *ngFor="let asset of assets">
-          <asset-card [title]="asset.name" [description]="asset.identifier" icon="pencil-sharp" data="../edit-tool/"
-            [queryParamData]="asset.id"></asset-card>
+          <asset-card [title]="asset.name" [description]="asset.identifier" [assetId]="asset.id" icon="pencil-sharp"
+            data="../edit-tool/" [queryParamData]="asset.id"></asset-card>
         </div>
       </div>
     </div>

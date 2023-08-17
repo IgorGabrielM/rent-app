@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Firestore, addDoc, collection, collectionData, doc, getDoc, query, updateDoc, where } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, getDoc, updateDoc } from '@angular/fire/firestore';
 import { AssetCategoryModel } from '../models/assetCategory.model';
-import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -38,8 +37,12 @@ export class AssetCategoryService {
 
   update(asset: AssetCategoryModel) {
     const assetDocRef = doc(this.firestore, `asset_category/${asset.id}`)
-
     return updateDoc(assetDocRef, asset as {})
+  }
+
+  delete(assetCategoryId: string) {
+    const assetDocRef = doc(this.firestore, `asset_category/${assetCategoryId}`)
+    return deleteDoc(assetDocRef);
   }
 
 }

@@ -11,9 +11,17 @@
             </div>
         </div>
 
-        <div *ngIf="data || queryParamData" [routerLink]="[data]" [queryParams]="{ id: queryParamData }"
-            class="text-3xl flex justify-center items-center text-gray bg-[color:var(--ion-color-secondary-tint)] rounded-full w-12 h-12">
-            <ion-icon name="pencil-sharp"></ion-icon>
+        <div class="flex">
+            <div *ngIf="data" [routerLink]="[data]" [queryParams]="{ id: queryParamData }"
+                class="text-3xl flex justify-center items-center text-gray bg-[color:var(--ion-color-secondary-tint)] rounded-full w-12 h-12 mx-2">
+                <ion-icon name="pencil-sharp"></ion-icon>
+            </div>
+
+            <div (click)="deleteCategoryAsset(assetCategotry.id)"
+                class="text-3xl flex justify-center items-center text-gray bg-[color:var(--ion-color-secondary-tint)] rounded-full w-12 h-12">
+                <ion-icon name="trash-sharp"></ion-icon>
+            </div>
         </div>
+
     </div>
 </ion-item>

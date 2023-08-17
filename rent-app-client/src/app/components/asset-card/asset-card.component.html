@@ -7,9 +7,16 @@
       </div>
     </div>
 
-    <div *ngIf="icon && data" [routerLink]="[data]" [queryParams]="{ id: queryParamData }"
-      class="text-3xl flex justify-center items-center text-gray bg-[color:var(--ion-color-secondary-tint)] rounded-full w-12 h-12">
-      <ion-icon [name]="icon"></ion-icon>
+    <div class="flex">
+      <div *ngIf="icon && data" [routerLink]="[data]" [queryParams]="{ id: queryParamData }"
+        class="text-3xl flex justify-center items-center text-gray bg-[color:var(--ion-color-secondary-tint)] rounded-full w-12 h-12 mx-2">
+        <ion-icon [name]="icon"></ion-icon>
+      </div>
+
+      <div *ngIf="assetId" (click)="deleteCategoryAsset(assetId)"
+        class="text-3xl flex justify-center items-center text-gray bg-[color:var(--ion-color-secondary-tint)] rounded-full w-12 h-12">
+        <ion-icon name="trash-sharp"></ion-icon>
+      </div>
     </div>
   </div>
 </ion-item>

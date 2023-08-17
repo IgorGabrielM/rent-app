@@ -5,7 +5,7 @@
   <div class="content">
     <div class="mt-1">
       <div class="mt-3" *ngFor="let asset of assetCategories">
-        <asset-category-card [routerLink]="'edit-categories-and-tools'" [queryParams]="{ id: asset.id}"
+        <asset-category-card data="edit-categories-and-tools" [queryParamData]="asset.id"
           [assetCategotry]="asset"></asset-category-card>
       </div>
     </div>
