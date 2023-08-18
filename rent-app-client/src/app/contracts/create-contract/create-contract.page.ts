@@ -50,7 +50,6 @@ export class CreateContractPage implements OnInit {
     this.getQueryParam();
     this.loadContacts();
     this.loadAssets();
-    //console.log(new Date() as Date)
     this.loadContactTerms()
   }
 
@@ -90,6 +89,10 @@ export class CreateContractPage implements OnInit {
     })
   }
 
+  totalValueCalculator(assetQuantity: number, assetPrice: string) {
+    return String(assetQuantity * Number(assetPrice))
+  }
+
   getNameContact(id: string): string {
     return this.contacts.find((contact) => contact.id == id)?.name
   }
@@ -111,10 +114,11 @@ export class CreateContractPage implements OnInit {
   }
 
   onSubmit() {
+    const dateNow = new Date()
     if (this.contract.neighborhood && this.contract.street && this.contract.cep && this.contract.numberHouse &&
       this.contract.contactId && this.contract.endDateLocate && this.contract.assets.length > 0) {
       if (!this.idContractToEdit) {
-        this.contractService.create({ ...this.contract, contactName: this.getNameContact(this.contract.contactId) }).then(() => {
+        this.contractService.create({ ...this.contract, contactName: this.getNameContact(this.contract.contactId), createdAt: `${dateNow.getFullYear()}-${dateNow.getMonth()}-${dateNow.getDate()}` }).then(() => {
           this.toastService.show('Sucesso', 'Contrato criado com sucesso!', {
             color: 'success',
             duration: 2000,
@@ -128,7 +132,7 @@ export class CreateContractPage implements OnInit {
           })
         })
       } else {
-        this.contractService.update({ ...this.contract, contactName: this.getNameContact(this.contract.contactId), id: this.idContractToEdit }).then(() => {
+        this.contractService.update({ ...this.contract, contactName: this.getNameContact(this.contract.contactId), id: this.idContractToEdit, updatedAt: `${dateNow.getFullYear()}-${dateNow.getMonth()}-${dateNow.getDate()}` }).then(() => {
           this.toastService.show('Sucesso', 'Contrato atualizado com sucesso!', {
             color: 'success',
             duration: 2000,

@@ -14,7 +14,7 @@ export class AssetService {
 
   create(asset: AssetModel) {
     const asssetsRef = collection(this.firestore, 'asset')
-    return addDoc(asssetsRef, { ...asset, is_available: true, id_asset_category: asset.id_asset_category } as AssetModel)
+    return addDoc(asssetsRef, { ...asset, is_available: true, assetCategory: asset.assetCategory } as AssetModel)
   }
 
   list() {
@@ -35,9 +35,9 @@ export class AssetService {
       })
   }
 
-  listByAssetCategory(idAssetCateogry: string) {
+  listByAssetCategory(idAssetCategory: string) {
     const assetsRef = collection(this.firestore, 'asset');
-    const q = query(assetsRef, where('id_asset_category', '==', idAssetCateogry));
+    const q = query(assetsRef, where('assetCategory.id', '==', idAssetCategory));
     return collectionData(q, { idField: 'id' });
   }
 

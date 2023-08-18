@@ -51,7 +51,7 @@ export class CreateToolPage implements OnInit {
   }
 
   onSubmit() {
-    if (this.asset.identifier && this.asset.name && this.asset.id_asset_category) {
+    if (this.asset.identifier && this.asset.name && this.asset.assetCategory) {
       if (!this.idAssetToEdit) {
         this.assetService.create(this.asset).then(() => {
           this.toastService.show('Sucesso', 'Equipamento criado com sucesso!', {

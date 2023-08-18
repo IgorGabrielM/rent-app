@@ -43,10 +43,13 @@
           </div>
 
           <div class="">
-            <div class="even:bg-gray-300 odd:bg-gray-400 mx-2 rounded-md" *ngFor="let asset of contract.assets">
+            <div class="even:bg-gray-300 odd:bg-gray-400 mx-2 rounded-md my-2" *ngFor="let asset of contract.assets">
               <div class="mx-5 flex items-center justify-between">
                 <p class="mr-5 text-black">{{ asset.name }}</p>
-                <ion-input class="assets" placeholder="Quantidade" [(ngModel)]="asset.quantity"></ion-input>
+                <div>
+                  <ion-input class="assets" placeholder="Quantidade" [name]="asset.name" [(ngModel)]="asset.quantity"
+                    type="number"></ion-input>
+                </div>
               </div>
             </div>
           </div>
@@ -89,9 +92,27 @@
           <p>
             {{contractTerms[0].term }}
           </p>
-          <p>Os seguinte termos se referem à locação dos seguintes equipamentos:
-            <span *ngFor="let asset of contract.assets">{{ asset.name }} - {{ asset.quantity }}</span>
-          </p>
+        </div>
+        <div *ngIf="contract?.assets?.length > 0">
+          <p>Os seguinte termos se referem à locação dos seguintes equipamentos:</p>
+          <table class="my-5">
+            <thead>
+              <tr>
+                <th class="w-80">Nome</th>
+                <th>Quantidade</th>
+                <th>Valor Unitário</th>
+                <th>Valor Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let asset of contract.assets">
+                <td>{{ asset.name }}</td>
+                <td>{{ asset.quantity }}</td>
+                <td>{{ asset.assetCategory.value }}</td>
+                <td>{{ totalValueCalculator(asset.quantity, asset.assetCategory.value) }}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 

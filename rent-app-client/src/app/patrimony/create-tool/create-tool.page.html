@@ -20,9 +20,9 @@
             required></ion-input>
           <ion-input class="custom" placeholder="Nome" name="name" [(ngModel)]="asset.name" required></ion-input>
           <div class="select-input">
-            <ion-select interface="popover" placeholder="Equipamento" name="id_asset_category"
-              [(ngModel)]="asset.id_asset_category" required>
-              <ion-select-option *ngFor="let option of assetCategories" [value]="option.id">{{
+            <ion-select interface="popover" placeholder="Categoria de equipamento" name="assetCategory"
+              [(ngModel)]="asset.assetCategory" required>
+              <ion-select-option *ngFor="let option of assetCategories" [value]="option">{{
                 option.description
                 }}</ion-select-option>
             </ion-select>
