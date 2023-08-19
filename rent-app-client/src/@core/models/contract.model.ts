@@ -11,6 +11,8 @@ export class ContractModel extends DefaultModel {
 
   contactId: string;
   contactName: string;
+  termsContract: string;
+  titleContract: string;
   assets?: AssetModel[];
-  signatureWebPath: string;
+  signaturePath: string;
 }

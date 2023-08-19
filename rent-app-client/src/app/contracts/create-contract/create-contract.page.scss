@@ -3,23 +3,6 @@
     justify-content: center;
 }
 
-table {
-    border-collapse: collapse;
-    width: 100%;
-    border: 1px solid rgb(255, 255, 255);
-}
-
-th,
-td {
-    border: 2px solid rgb(255, 255, 255);
-    padding: 8px;
-    text-align: center;
-}
-
-th {
-    background-color: #858585;
-}
-
 ion-input.custom {
     width: 90vw;
     height: 50px;
@@ -74,6 +57,23 @@ ion-input.assets {
         --placeholder-color: var(--ion-color-primary);
         --placeholder-opacity: 0.3;
     }
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid rgb(255, 255, 255);
+}
+
+th,
+td {
+    border: 2px solid rgb(255, 255, 255);
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #858585;
 }
 
 canvas {

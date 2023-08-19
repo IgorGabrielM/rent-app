@@ -11,9 +11,15 @@
             </div>
         </div>
 
-        <div routerLink="./create-contract" [queryParams]="{ id: contract.id}"
-            class="text-3xl flex justify-center items-center text-gray bg-[color:var(--ion-color-secondary-tint)] rounded-full w-12 h-12">
-            <ion-icon name="clipboard-sharp"></ion-icon>
+        <div class="flex">
+            <div routerLink="./create-contract" [queryParams]="{ id: contract.id}"
+                class="mx-2 text-3xl flex justify-center items-center text-gray bg-[color:var(--ion-color-secondary-tint)] rounded-full w-12 h-12">
+                <ion-icon name="pencil-sharp"></ion-icon>
+            </div>
+            <div (click)="openPdfModal()"
+                class="text-3xl flex justify-center items-center text-gray bg-[color:var(--ion-color-secondary-tint)] rounded-full w-12 h-12">
+                <ion-icon name="clipboard-sharp"></ion-icon>
+            </div>
         </div>
     </div>
 </ion-item>

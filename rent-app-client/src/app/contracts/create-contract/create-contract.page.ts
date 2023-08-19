@@ -118,7 +118,13 @@ export class CreateContractPage implements OnInit {
     if (this.contract.neighborhood && this.contract.street && this.contract.cep && this.contract.numberHouse &&
       this.contract.contactId && this.contract.endDateLocate && this.contract.assets.length > 0) {
       if (!this.idContractToEdit) {
-        this.contractService.create({ ...this.contract, contactName: this.getNameContact(this.contract.contactId), createdAt: `${dateNow.getFullYear()}-${dateNow.getMonth()}-${dateNow.getDate()}` }).then(() => {
+        this.contractService.create({
+          ...this.contract,
+          contactName: this.getNameContact(this.contract.contactId),
+          createdAt: `${dateNow.getFullYear()}-${dateNow.getMonth()}-${dateNow.getDate()}`,
+          titleContract: this.contractTerms[0].title,
+          termsContract: this.contractTerms[0].term
+        }).then(() => {
           this.toastService.show('Sucesso', 'Contrato criado com sucesso!', {
             color: 'success',
             duration: 2000,

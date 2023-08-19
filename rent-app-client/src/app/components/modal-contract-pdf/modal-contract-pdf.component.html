@@ -1,0 +1,41 @@
+<ion-toolbar color="secondary">
+    <ion-buttons slot="end">
+        <ion-button (click)="closeModal()" color="danger" type="danger">
+            <ion-icon size="large" name="close-circle-sharp"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+    <ion-title>{{ contract.titleContract }}</ion-title>
+</ion-toolbar>
+
+<ion-content>
+    <div class="m-5 text-center">
+        <p>{{ contract.termsContract}}</p>
+    </div>
+
+    <div *ngIf="contract?.assets?.length > 0">
+        <table class="my-5">
+            <thead>
+                <tr>
+                    <th class="w-80">Nome</th>
+                    <th>Quantidade</th>
+                    <th>Valor Unitário</th>
+                    <th>Valor Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let asset of contract.assets">
+                    <td>{{ asset.name }}</td>
+                    <td>{{ asset.quantity }}</td>
+                    <td>{{ "R$" + asset.assetCategory.value + ",00" }}</td>
+                    <td>{{ "R$" + totalValueCalculator(asset.quantity, asset.assetCategory.value) + ",00"}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- <ion-img [src]="contract.signaturePath"></ion-img> -->
+
+    <div class="flex justify-end">
+        <ion-button (click)="generatePdf(contract)" color="secondary">Gerar pdf</ion-button>
+    </div>
+</ion-content>
