@@ -18,10 +18,6 @@ export class ContractCardComponent implements OnInit {
 
   ngOnInit() { }
 
-  getDescriptionFormated(): string {
-    return `${this.contract.street} - ${this.contract.numberHouse}`
-  }
-
   async openPdfModal() {
     const modal = await this.modalController.create({
       component: ModalContractPdfComponent,
