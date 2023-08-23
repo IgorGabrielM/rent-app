@@ -129,7 +129,7 @@ export class CreateContractPage implements OnInit {
 
   onSubmit() {
     const dateNow = new Date()
-    if (this.contract.neighborhood && this.contract.street && this.contract.cep && this.contract.numberHouse &&
+    if (this.contract.neighborhood && this.contract.street && this.contract.numberHouse &&
       this.contract.contactId && this.contract.endDateLocate && this.contract.assets.length > 0) {
       if (!this.idContractToEdit) {
         this.contractService.create({
