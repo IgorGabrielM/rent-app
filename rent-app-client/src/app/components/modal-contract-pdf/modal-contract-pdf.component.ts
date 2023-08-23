@@ -81,8 +81,8 @@ export class ModalContractPdfComponent implements OnInit {
     return formattedDate
   }
 
-  totalValueCalculator(assetQuantity: number, assetPrice: string) {
-    return String(assetQuantity * Number(assetPrice))
+  totalValueCalculator(assetQuantity: number, assetPrice: number) {
+    return String(assetQuantity * assetPrice)
   }
 
   closeModal() {

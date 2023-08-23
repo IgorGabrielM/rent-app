@@ -92,8 +92,16 @@ export class CreateContractPage implements OnInit {
     })
   }
 
-  totalValueCalculator(assetQuantity: number, assetPrice: string) {
-    return String(assetQuantity * Number(assetPrice))
+  totalValueCalculator(assetQuantity: number, assetPrice: number) {
+    return String(assetQuantity * assetPrice)
+  }
+
+  handleChangeAsset(event: any) {
+    this.contract.assets.forEach((asset) => {
+      if (!asset.quantity || asset.quantity == 0) {
+        asset.quantity = 1
+      }
+    })
   }
 
   getNameContact(id: string): string {
