@@ -5,6 +5,7 @@ import { AssetModel } from 'src/@core/models/asset.model';
 import { ContactModel } from 'src/@core/models/contact.model';
 import { ContractModel } from 'src/@core/models/contract.model';
 import { AssetService } from 'src/@core/services/asset.service';
+import { CepService } from 'src/@core/services/cep.service';
 import { ContactService } from 'src/@core/services/contact.service';
 import { ContractService } from 'src/@core/services/contract.service';
 import { ToastService } from 'src/@core/utils/toast.service';
@@ -13,6 +14,7 @@ import { ToastService } from 'src/@core/utils/toast.service';
   selector: 'app-create-contract',
   templateUrl: './create-contract.page.html',
   styleUrls: ['./create-contract.page.scss'],
+  providers: [CepService]
 })
 export class CreateContractPage implements OnInit {
   idContractToEdit: string
@@ -43,6 +45,7 @@ export class CreateContractPage implements OnInit {
     private contactService: ContactService,
     private contractService: ContractService,
     private assetService: AssetService,
+    private cepService: CepService,
     //private imageService: ImageService
   ) { }
 
@@ -95,6 +98,17 @@ export class CreateContractPage implements OnInit {
 
   getNameContact(id: string): string {
     return this.contacts.find((contact) => contact.id == id)?.name
+  }
+
+  onCepChange() {
+    if (String(this.contract.cep).length === 9) {
+      this.cepService.getAddressByCep(String(this.contract.cep))
+        .subscribe((data: any) => {
+          console.log(data)
+          this.contract.street = data.logradouro;
+          this.contract.neighborhood = data.bairro;
+        });
+    }
   }
 
   getImage(data: string) {

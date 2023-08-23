@@ -9,6 +9,7 @@ import { CreateContractPageRoutingModule } from './create-contract-routing.modul
 import { CreateContractPage } from './create-contract.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { MaskitoModule } from '@maskito/angular';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { MaskitoModule } from '@maskito/angular';
     IonicModule,
     CreateContractPageRoutingModule,
     MaskitoModule,
+    HttpClientModule,
     ComponentsModule,
   ],
   declarations: [CreateContractPage]
