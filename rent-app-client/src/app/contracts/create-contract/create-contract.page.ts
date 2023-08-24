@@ -53,10 +53,14 @@ export class CreateContractPage implements OnInit {
     this.getQueryParam();
     this.loadContacts();
     this.loadAssets();
-    this.loadContactTerms()
+    this.loadContactTerms();
   }
 
   ionViewWillEnter() {
+    this.getQueryParam();
+    this.loadContacts();
+    this.loadAssets();
+    this.loadContactTerms();
   }
 
   getQueryParam() {
