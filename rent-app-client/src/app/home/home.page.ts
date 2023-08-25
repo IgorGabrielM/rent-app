@@ -10,27 +10,6 @@ import { ContractService } from 'src/@core/services/contract.service';
 export class HomePage implements OnInit {
   contracts: ContractModel[] = []
 
-  data = [
-    {
-      title: 'Igor Gabriel',
-      description: {
-        value: 'R$ 300,00',
-        products: ['1x - Betoneira', '20x - Andaime', '15x - Escora'],
-        timeStart: '23-06-2022',
-        timeEnd: '23-06-2022'
-      }
-    },
-    {
-      title: 'Igor Gab',
-      description: {
-        value: 'R$ 300,00',
-        products: ['1x - Betoneira', '20x - Andaime', '15x - Escora'],
-        timeStart: '23-06-2022',
-        timeEnd: '23-06-2022'
-      }
-    }
-  ]
-
   constructor(
     private contractService: ContractService
   ) { }

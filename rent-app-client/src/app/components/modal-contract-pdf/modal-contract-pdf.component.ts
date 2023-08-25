@@ -3,7 +3,6 @@ import { ModalController } from '@ionic/angular';
 import { ContractModel } from 'src/@core/models/contract.model';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
-import { table } from 'console';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -60,6 +59,7 @@ export class ModalContractPdfComponent implements OnInit {
             ],
           },
         },
+        { text: "Valor total vinculado do contrato: R$" + String(this.getTotalValue()) + ",00", margin: [0, 10], style: 'justifiedText', },
       ],
       styles: {
         header: { fontSize: 18, bold: true },
@@ -79,6 +79,16 @@ export class ModalContractPdfComponent implements OnInit {
     const formattedDate = `${day}/${month}/${year}`;
 
     return formattedDate
+  }
+
+  getTotalValue(): number {
+    let totalValue: number = 0;
+
+    this.contract.assets.forEach((asset) => {
+      totalValue += Number(asset.assetCategory.value) * asset.quantity;
+    });
+
+    return totalValue;
   }
 
   totalValueCalculator(assetQuantity: number, assetPrice: number) {
