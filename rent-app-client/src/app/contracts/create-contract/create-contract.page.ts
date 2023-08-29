@@ -5,9 +5,10 @@ import { AssetModel } from 'src/@core/models/asset.model';
 import { ContactModel } from 'src/@core/models/contact.model';
 import { ContractModel } from 'src/@core/models/contract.model';
 import { AssetService } from 'src/@core/services/asset.service';
-import { CepService } from 'src/@core/services/cep.service';
 import { ContactService } from 'src/@core/services/contact.service';
 import { ContractService } from 'src/@core/services/contract.service';
+import { CepService } from 'src/@core/utils/cep.service';
+import { DateFormatService } from 'src/@core/utils/date-format.service';
 import { ToastService } from 'src/@core/utils/toast.service';
 
 @Component({
@@ -22,6 +23,7 @@ export class CreateContractPage implements OnInit {
   assets: AssetModel[] = []
   contract: ContractModel
 
+  isAgreed: boolean = false
   isOpenContractTerms: boolean = false
   contractTerms: any
   imageAsBase64: string
@@ -45,6 +47,7 @@ export class CreateContractPage implements OnInit {
     private contactService: ContactService,
     private contractService: ContractService,
     private assetService: AssetService,
+    private dateFormatService: DateFormatService,
     private cepService: CepService,
     //private imageService: ImageService
   ) { }
@@ -140,14 +143,14 @@ export class CreateContractPage implements OnInit {
   }
 
   onSubmit() {
-    const dateNow = new Date()
+    const data = new Date()
     if (this.contract.neighborhood && this.contract.street && this.contract.numberHouse &&
-      this.contract.contactId && this.contract.endDateLocate && this.contract.assets.length > 0) {
+      this.contract.contactId && this.contract.endDateLocate && this.contract.assets.length > 0 && this.isAgreed) {
       if (!this.idContractToEdit) {
         this.contractService.create({
           ...this.contract,
           contactName: this.getNameContact(this.contract.contactId),
-          createdAt: `${dateNow.getFullYear()}-${dateNow.getMonth()}-${dateNow.getDate()}`,
+          createdAt: this.dateFormatService.turnTimestampOnYearMonthDay(data),
           titleContract: this.contractTerms[0].title,
           termsContract: this.contractTerms[0].term
         }).then(() => {
@@ -164,7 +167,7 @@ export class CreateContractPage implements OnInit {
           })
         })
       } else {
-        this.contractService.update({ ...this.contract, contactName: this.getNameContact(this.contract.contactId), id: this.idContractToEdit, updatedAt: `${dateNow.getFullYear()}-${dateNow.getMonth()}-${dateNow.getDate()}` }).then(() => {
+        this.contractService.update({ ...this.contract, contactName: this.getNameContact(this.contract.contactId), id: this.idContractToEdit, updatedAt: this.dateFormatService.turnTimestampOnYearMonthDay(data) }).then(() => {
           this.toastService.show('Sucesso', 'Contrato atualizado com sucesso!', {
             color: 'success',
             duration: 2000,

@@ -116,9 +116,9 @@
           </table>
         </div>
       </div>
-      <div>
+      <div class="flex items-center m-3">
         <p>Concorda com os termos acima:</p>
-        <ion-input type="checkbox" required></ion-input>
+        <ion-checkbox (ionChange)="isAgreed = true" class="w-8 h-8 mx-2"></ion-checkbox>
       </div>
 
       <div>
