@@ -1,13 +1,21 @@
 <ion-content>
   <div>
-    <omni-swiper-days></omni-swiper-days>
+    <!--<omni-swiper-days></omni-swiper-days>-->
+
+    <ion-item>
+      <ion-datetime display-format="DD/MM/YYYY" [(ngModel)]="selectedDate" (ionChange)="filterData()"></ion-datetime>
+    </ion-item>
   </div>
 
   <div class="content">
     <div class="mt-10">
-      <div class="mt-4 mx-5" *ngFor="let contract of contracts">
-        <contract-card [contract]="contract"></contract-card>
+      <div class="mt-4 mx-5" *ngFor="let contract of filteredContracts">
+        <contract-card [routerLinkContract]="'../contracts/create-contract'" [contract]="contract"></contract-card>
       </div>
+
+      <!--       <div class="mt-4 mx-5" *ngFor="let contract of contracts">
+        <contract-card [routerLinkContract]="'../contracts/create-contract'" [contract]="contract"></contract-card>
+      </div> -->
     </div>
   </div>
 </ion-content>

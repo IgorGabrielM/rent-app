@@ -3,7 +3,7 @@
     <ion-searchbar animated="true" placeholder="Buscar contrato" color="secondary"></ion-searchbar>
   </div>
   <div class="mt-4 mx-5" *ngFor="let contract of contracts">
-    <contract-card [contract]="contract"></contract-card>
+    <contract-card [routerLinkContract]="'./create-contract'" [contract]="contract"></contract-card>
   </div>
 </ion-content>
 

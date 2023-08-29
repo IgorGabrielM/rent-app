@@ -11,6 +11,7 @@ import { AssetModel } from 'src/@core/models/asset.model';
 })
 export class ContractCardComponent implements OnInit {
   @Input() contract: ContractModel
+  @Input() routerLinkContract: string
 
   constructor(
     private modalController: ModalController
