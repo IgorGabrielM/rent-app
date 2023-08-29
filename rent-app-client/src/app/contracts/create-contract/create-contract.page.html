@@ -34,9 +34,10 @@
           </div>
 
           <div class="select-input">
-            <ion-select interface="popover" placeholder="Selecione os equipamentos" name="assetes_ids"
-              [(ngModel)]="contract.assets" required [multiple]="true">
-              <ion-select-option *ngFor="let asset of assets" [value]="asset" (ionChange)="handleChangeAsset($event)">{{
+            <ion-select (ionChange)="handleChangeAsset($event)" interface="popover"
+              placeholder="Selecione os equipamentos" name="assetes_ids" [(ngModel)]="contract.assets" required
+              [multiple]="true">
+              <ion-select-option *ngFor="let asset of assets" [value]="asset">{{
                 asset.name
                 }}</ion-select-option>
             </ion-select>
