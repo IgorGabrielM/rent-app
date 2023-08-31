@@ -45,7 +45,7 @@ export class ContractService {
     return updateDoc(contractDocRef, contract as {});
   }
 
-  delete(contractId: number) {
+  delete(contractId: string) {
     const contractDocRef = doc(this.firestore, `contract/${contractId}`)
     return deleteDoc(contractDocRef);
   }

@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { ContractModel } from 'src/@core/models/contract.model';
 import { ModalContractPdfComponent } from '../modal-contract-pdf/modal-contract-pdf.component';
 import { AssetModel } from 'src/@core/models/asset.model';
+import { ContractService } from 'src/@core/services/contract.service';
+import { ToastService } from 'src/@core/utils/toast.service';
 
 @Component({
   selector: 'contract-card',
@@ -14,7 +16,11 @@ export class ContractCardComponent implements OnInit {
   @Input() routerLinkContract: string
 
   constructor(
-    private modalController: ModalController
+    private contractService: ContractService,
+
+    private modalController: ModalController,
+    private toastService: ToastService,
+    private alertController: AlertController,
   ) { }
 
   ngOnInit() { }
@@ -43,5 +49,35 @@ export class ContractCardComponent implements OnInit {
     return totalValue;
   }
 
+  async deleteContractAlert(contractId: string) {
+    const alert = await this.alertController.create({
+      header: 'Deletar',
+      message: 'Deseja deletar o contrato? Ele não podera ser restaurado posteriormente.',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'alert-button-confirm',
+        },
+        {
+          text: 'Confirmar',
+          cssClass: 'alert-button-confirm', handler: () => {
+            this.deleteContract(contractId)
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  deleteContract(contractId: string) {
+    this.contractService.delete(contractId).then(() => {
+      this.toastService.show('Sucesso', 'Contrato deletado com sucesso', {
+        color: 'success',
+        duration: 2000,
+        position: 'top',
+      })
+    })
+  }
 
 }

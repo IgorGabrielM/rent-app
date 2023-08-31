@@ -8,7 +8,6 @@
                         <h2>Bairro: {{ contract.neighborhood }}</h2>
                         <h2>Rua: {{ contract.neighborhood }}</h2>
                         <h2>Nº: {{ contract.numberHouse }}</h2>
-                        <!-- <h2>Data inicial: {{ contract.createdAt | date:'dd/MM/yyyy' }}</h2> -->
                         <h2>Data final: {{ contract.endDateLocate | date:'dd/MM/yyyy' }}</h2>
 
                     </div>
@@ -20,13 +19,13 @@
                         class="mx-2 text-3xl flex justify-center items-center text-gray bg-[color:var(--ion-color-secondary-tint)] rounded-full w-12 h-12">
                         <ion-icon name="pencil-sharp"></ion-icon>
                     </div>
-                    <!--                     <div routerLink="./create-contract" [queryParams]="{ id: contract.id}"
-                        class="mx-2 text-3xl flex justify-center items-center text-gray bg-[color:var(--ion-color-secondary-tint)] rounded-full w-12 h-12">
-                        <ion-icon name="pencil-sharp"></ion-icon>
-                    </div> -->
                     <div (click)="openPdfModal()"
                         class="text-3xl flex justify-center items-center text-gray bg-[color:var(--ion-color-secondary-tint)] rounded-full w-12 h-12">
                         <ion-icon name="clipboard-sharp"></ion-icon>
+                    </div>
+                    <div (click)="deleteContractAlert(contract.id)"
+                        class="mx-2 text-3xl flex justify-center items-center text-gray bg-[color:var(--ion-color-secondary-tint)] rounded-full w-12 h-12">
+                        <ion-icon name="trash-sharp"></ion-icon>
                     </div>
                 </div>
             </div>
