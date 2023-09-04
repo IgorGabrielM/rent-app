@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { Storage } from '@angular/fire/storage';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MaskitoElementPredicateAsync, MaskitoOptions } from '@maskito/core';
 import { AssetModel } from 'src/@core/models/asset.model';
@@ -7,6 +9,7 @@ import { ContractModel } from 'src/@core/models/contract.model';
 import { AssetService } from 'src/@core/services/asset.service';
 import { ContactService } from 'src/@core/services/contact.service';
 import { ContractService } from 'src/@core/services/contract.service';
+import { ImageService } from 'src/@core/services/image.service';
 import { CepService } from 'src/@core/utils/cep.service';
 import { DateFormatService } from 'src/@core/utils/date-format.service';
 import { ToastService } from 'src/@core/utils/toast.service';
@@ -27,6 +30,7 @@ export class CreateContractPage implements OnInit {
   isOpenContractTerms: boolean = false
   contractTerms: any
   imageAsBase64: string
+  imageUrl?: string
 
   readonly phoneMask: MaskitoOptions = {
     mask: ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
@@ -49,7 +53,7 @@ export class CreateContractPage implements OnInit {
     private assetService: AssetService,
     private dateFormatService: DateFormatService,
     private cepService: CepService,
-    //private imageService: ImageService
+    private imageService: ImageService,
   ) { }
 
   ngOnInit() {
@@ -128,18 +132,19 @@ export class CreateContractPage implements OnInit {
 
   getImage(data: string) {
     this.imageAsBase64 = data;
-    console.log(this.imageAsBase64)
 
     fetch(this.imageAsBase64)
       .then((res) => res.blob())
       .then((blob) => {
-        console.log(blob)
-        //this.imageService.uploadImageBlob(blob)
+        this.imageService.uploadImageBlob(blob).then((res) => {
+          this.imageUrl = res
+          this.toastService.show('Sucesso', 'Imagem salva com sucesso', {
+            color: 'success',
+            duration: 2000,
+            position: 'top',
+          });
+        })
       })
-  }
-
-  uploadPicture(blob: Blob) {
-
   }
 
   onSubmit() {
@@ -147,8 +152,10 @@ export class CreateContractPage implements OnInit {
     if (this.contract.neighborhood && this.contract.street && this.contract.numberHouse &&
       this.contract.contactId && this.contract.endDateLocate && this.contract.assets.length > 0 && this.isAgreed) {
       if (!this.idContractToEdit) {
+        console.log(this.imageUrl)
         this.contractService.create({
           ...this.contract,
+          image: this.imageUrl,
           contactName: this.getNameContact(this.contract.contactId),
           createdAt: this.dateFormatService.turnTimestampOnYearMonthDay(data),
           titleContract: this.contractTerms[0].title,

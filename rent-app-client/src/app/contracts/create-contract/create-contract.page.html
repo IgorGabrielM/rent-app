@@ -122,7 +122,8 @@
       </div>
 
       <div>
-        <omni-signature-pad (imageBase64Emitter)="getImage($event)"></omni-signature-pad>
+        <img *ngIf="contract.image" [src]="contract.image" class="w-full h-60 bg-white">
+        <omni-signature-pad *ngIf="!contract.image" (imageBase64Emitter)="getImage($event)"></omni-signature-pad>
       </div>
 
       <omni-button class="flex justify-center mt-5" type="primary"

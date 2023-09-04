@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { AngularFireStorage } from "@angular/fire/compat/storage";
+import { Storage, getDownloadURL, ref, uploadBytes } from "@angular/fire/storage";
 
 @Injectable({
     providedIn: 'root'
@@ -7,11 +7,15 @@ import { AngularFireStorage } from "@angular/fire/compat/storage";
 export class ImageService {
 
     constructor(
-        private afStorage: AngularFireStorage
+        private storage: Storage
     ) { }
 
-    uploadImageBlob(blob: Blob) {
-        const ref = this.afStorage.ref('signature/image.jpg')
-        const task = ref.put(blob)
+    async uploadImageBlob(blob: Blob) {
+        const currentData = Date.now()
+        const filePath = `signatures/${currentData}.png`
+        const fileRef = ref(this.storage, filePath);
+        const task = await uploadBytes(fileRef, blob);
+        const url = await getDownloadURL(fileRef);
+        return url;
     }
 }

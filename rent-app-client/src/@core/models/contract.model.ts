@@ -9,6 +9,8 @@ export class ContractModel extends DefaultModel {
   complement: string;
   endDateLocate: Date;
 
+  image: string
+
   contactId: string;
   contactName: string;
   termsContract: string;
