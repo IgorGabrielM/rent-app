@@ -1,3 +1,4 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Storage, getDownloadURL, ref, uploadBytes } from "@angular/fire/storage";
 
@@ -7,7 +8,8 @@ import { Storage, getDownloadURL, ref, uploadBytes } from "@angular/fire/storage
 export class ImageService {
 
     constructor(
-        private storage: Storage
+        private storage: Storage,
+        private http: HttpClient
     ) { }
 
     async uploadImageBlob(blob: Blob) {

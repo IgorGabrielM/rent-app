@@ -31,9 +31,11 @@
                 </tr>
             </tbody>
         </table>
+        <div class="bg-white">
+            <img [src]="contract.image" class="w-full h-fit my-2">
+        </div>
     </div>
 
-    <!-- <ion-img [src]="contract.signaturePath"></ion-img> -->
 
     <div class="flex justify-end">
         <ion-button (click)="generatePdf(contract)" color="secondary">Gerar pdf</ion-button>

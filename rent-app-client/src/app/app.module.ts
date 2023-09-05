@@ -15,7 +15,8 @@ import { MaskitoModule } from '@maskito/angular';
 import { FormsModule } from '@angular/forms';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFireModule } from '@angular/fire/compat';
-import { provideStorage,getStorage } from '@angular/fire/storage';
+import { provideStorage, getStorage } from '@angular/fire/storage';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +26,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     AppRoutingModule,
     ComponentsModule,
     MaskitoModule,
+    HttpClientModule,
     FormsModule,
     SwiperModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),

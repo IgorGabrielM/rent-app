@@ -16,7 +16,7 @@ export class ModalContractPdfComponent implements OnInit {
   @Input() contract: ContractModel
 
   constructor(
-    private modalController: ModalController
+    private modalController: ModalController,
   ) { }
 
   ngOnInit() {
@@ -60,6 +60,11 @@ export class ModalContractPdfComponent implements OnInit {
           },
         },
         { text: "Valor total vinculado do contrato: R$" + String(this.getTotalValue()) + ",00", margin: [0, 10], style: 'justifiedText', },
+        /*         {
+                  image: this.contract.image,
+                  width: 200,
+                  height: 150,
+                }, */
       ],
       styles: {
         header: { fontSize: 18, bold: true },
