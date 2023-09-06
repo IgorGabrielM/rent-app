@@ -1,43 +1,73 @@
 <ion-accordion-group class="card">
-    <ion-accordion value="first">
-        <ion-item slot="header" color="secondary" class="rounded-md shadow-xl">
-            <div class="card w-full h-fit p-1 py-2 flex justify-between items-center">
-                <div>
-                    <strong class="text-xl">{{ contract.contactName }}</strong>
-                    <div class="flex flex-col text-slate-500">
-                        <h2>Bairro: {{ contract.neighborhood }}</h2>
-                        <h2>Rua: {{ contract.neighborhood }}</h2>
-                        <h2>Nº: {{ contract.numberHouse }}</h2>
-                        <h2>Data final: {{ contract.endDateLocate | date:'dd/MM/yyyy' }}</h2>
-
-                    </div>
+    <ion-item-sliding (ionDrag)="slideToDelete($event, contract.id)" #itemSlide>
+        <ion-item-options side="start">
+            <ion-item-option color="secondary">
+                <div [routerLink]="routerLinkContract" [queryParams]="{ id: contract.id}"
+                    class="w-12 text-3xl flex justify-center items-center text-black">
+                    <ion-icon name="pencil-sharp"></ion-icon>
                 </div>
+            </ion-item-option>
 
-
-                <div class="flex">
-                    <div [routerLink]="routerLinkContract" [queryParams]="{ id: contract.id}"
-                        class="mx-2 text-3xl flex justify-center items-center text-gray bg-[color:var(--ion-color-secondary-tint)] rounded-full w-12 h-12">
-                        <ion-icon name="pencil-sharp"></ion-icon>
-                    </div>
-                    <div (click)="openPdfModal()"
-                        class="text-3xl flex justify-center items-center text-gray bg-[color:var(--ion-color-secondary-tint)] rounded-full w-12 h-12">
-                        <ion-icon name="clipboard-sharp"></ion-icon>
-                    </div>
-                    <div (click)="deleteContractAlert(contract.id)"
-                        class="mx-2 text-3xl flex justify-center items-center text-gray bg-[color:var(--ion-color-secondary-tint)] rounded-full w-12 h-12">
-                        <ion-icon name="trash-sharp"></ion-icon>
-                    </div>
+            <ion-item-option color="medium">
+                <div (click)="openPdfModal()" class="w-12 text-3xl flex justify-center items-center text-black">
+                    <ion-icon name="clipboard-sharp"></ion-icon>
                 </div>
-            </div>
+            </ion-item-option>
+
+
+        </ion-item-options>
+
+        <ion-item-options side="end">
+            <ion-item-option color="danger">
+                <div (click)="deleteContractAlert(contract.id)"
+                    class="w-12 text-3xl flex justify-center items-center text-gray text-black">
+                    <ion-icon name="trash-sharp"></ion-icon>
+                </div>
+            </ion-item-option>
+        </ion-item-options>
+
+        <ion-item class="w-96" lines="none">
+            <ion-accordion value="first">
+                <ion-item slot="header" color="secondary" class="rounded-md shadow-xl">
+                    <div class="card w-full h-fit p-1 py-2 flex justify-between items-center">
+                        <div>
+                            <strong class="text-xl">{{ contract.contactName }}</strong>
+                            <div class="flex flex-col text-slate-500">
+                                <h2>Bairro: {{ contract.neighborhood }}</h2>
+                                <h2>Rua: {{ contract.neighborhood }}</h2>
+                                <h2>Nº: {{ contract.numberHouse }}</h2>
+                                <h2>Data final: {{ contract.endDateLocate | date:'dd/MM/yyyy' }}</h2>
+
+                            </div>
+                        </div>
+
+                        <!--                         <div class="flex">
+                            <div [routerLink]="routerLinkContract" [queryParams]="{ id: contract.id}"
+                                class="mx-2 text-3xl flex justify-center items-center text-gray bg-[color:var(--ion-color-secondary-tint)] rounded-full w-12 h-12">
+                                <ion-icon name="pencil-sharp"></ion-icon>
+                            </div>
+                            <div (click)="openPdfModal()"
+                                class="text-3xl flex justify-center items-center text-gray bg-[color:var(--ion-color-secondary-tint)] rounded-full w-12 h-12">
+                                <ion-icon name="clipboard-sharp"></ion-icon>
+                            </div>
+                            <div (click)="deleteContractAlert(contract.id)"
+                                class="mx-2 text-3xl flex justify-center items-center text-gray bg-[color:var(--ion-color-secondary-tint)] rounded-full w-12 h-12">
+                                <ion-icon name="trash-sharp"></ion-icon>
+                            </div>
+                        </div> -->
+
+                    </div>
+                </ion-item>
+                <div class="mx-auto ion-padding flex flex-col w-80 justify-between rounded-b-lg bg-[color:var(--ion-color-secondary)] text-[color:var(--ion-color-tertiary-contrast)]"
+                    slot="content">
+                    <div class="">
+                        <p *ngFor="let asset of contract.assets">{{ asset.quantity }} - {{ asset.name }} - R${{
+                            getValueOfQuantity(asset) }},00</p>
+                    </div>
+                    <p class="mt-2 font-bold">Valor total: R${{ getTotalValue() }},00</p>
+
+                </div>
+            </ion-accordion>
         </ion-item>
-        <div class="ml-8 ion-padding flex flex-col w-80 justify-between rounded-b-lg bg-[color:var(--ion-color-secondary)] text-[color:var(--ion-color-tertiary-contrast)]"
-            slot="content">
-            <div class="">
-                <p *ngFor="let asset of contract.assets">{{ asset.quantity }} - {{ asset.name }} - R${{
-                    getValueOfQuantity(asset) }},00</p>
-            </div>
-            <p class="mt-2 font-bold">Valor total: R${{ getTotalValue() }},00</p>
-
-        </div>
-    </ion-accordion>
+    </ion-item-sliding>
 </ion-accordion-group>

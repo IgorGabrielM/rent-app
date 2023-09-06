@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { AlertController, ModalController } from '@ionic/angular';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AlertController, IonItemSliding, ModalController } from '@ionic/angular';
 import { ContractModel } from 'src/@core/models/contract.model';
 import { ModalContractPdfComponent } from '../modal-contract-pdf/modal-contract-pdf.component';
 import { AssetModel } from 'src/@core/models/asset.model';
@@ -12,8 +12,12 @@ import { ToastService } from 'src/@core/utils/toast.service';
   styleUrls: ['./contract-card.component.scss']
 })
 export class ContractCardComponent implements OnInit {
+  @ViewChild('itemSlide', { static: true }) itemSlide: IonItemSliding;
+
   @Input() contract: ContractModel
   @Input() routerLinkContract: string
+
+  isFunctionCalled: boolean = false
 
   constructor(
     private contractService: ContractService,
@@ -33,6 +37,14 @@ export class ContractCardComponent implements OnInit {
       }
     });
     return await modal.present();
+  }
+
+  slideToDelete(event: any, contractId: string) {
+    const distance = event.detail.ratio;
+    if (distance >= 1 && !this.isFunctionCalled) {
+      this.deleteContractAlert(contractId)
+      this.isFunctionCalled = true;
+    }
   }
 
   getValueOfQuantity(asset: AssetModel) {
@@ -58,11 +70,18 @@ export class ContractCardComponent implements OnInit {
           text: 'Cancelar',
           role: 'cancel',
           cssClass: 'alert-button-confirm',
+          handler: () => {
+            this.isFunctionCalled = false;
+            this.itemSlide.closeOpened()
+          }
         },
         {
           text: 'Confirmar',
-          cssClass: 'alert-button-confirm', handler: () => {
+          cssClass: 'alert-button-confirm',
+          handler: () => {
             this.deleteContract(contractId)
+            this.isFunctionCalled = false;
+            this.itemSlide.closeOpened()
           }
         }
       ]
