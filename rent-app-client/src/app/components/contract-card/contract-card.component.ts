@@ -39,14 +39,6 @@ export class ContractCardComponent implements OnInit {
     return await modal.present();
   }
 
-  slideToDelete(event: any, contractId: string) {
-    const distance = event.detail.ratio;
-    if (distance >= 1 && !this.isFunctionCalled) {
-      this.deleteContractAlert(contractId)
-      this.isFunctionCalled = true;
-    }
-  }
-
   getValueOfQuantity(asset: AssetModel) {
     return Number(asset.assetCategory.value) * asset.quantity
   }
@@ -59,6 +51,14 @@ export class ContractCardComponent implements OnInit {
     });
 
     return totalValue;
+  }
+
+  slideToDelete(event: any, contractId: string) {
+    const distance = event.detail.ratio;
+    if (distance >= 1 && !this.isFunctionCalled) {
+      this.deleteContractAlert(contractId)
+      this.isFunctionCalled = true;
+    }
   }
 
   async deleteContractAlert(contractId: string) {

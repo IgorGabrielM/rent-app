@@ -1,13 +1,31 @@
-<ion-item slot="header" color="secondary" class="rounded-2xl shadow-xl">
-  <div class="card h-fit p-1 flex justify-between items-center">
-    <div class="">
-      <strong class="text-xl">{{ title }}</strong>
-      <div class="flex">
-        <h2 class="text-gray-500">{{ description }} &nbsp;</h2>
+<ion-item-sliding (ionDrag)="slideToDelete($event, assetId)" #itemSlide>
+  <ion-item-options side="start">
+    <ion-item-option color="secondary" class="rounded-xl">
+      <div *ngIf="icon && data" [routerLink]="[data]" [queryParams]="{ id: queryParamData }"
+        class="w-12 text-3xl flex justify-center items-center text-gray text-black">
+        <ion-icon [name]="icon"></ion-icon>
       </div>
-    </div>
+    </ion-item-option>
+  </ion-item-options>
 
-    <div class="flex">
+  <ion-item-options side="end">
+    <ion-item-option color="danger" class="rounded-xl">
+      <div class="w-12 text-3xl flex justify-center items-center text-gray text-black">
+        <ion-icon name="trash-sharp"></ion-icon>
+      </div>
+    </ion-item-option>
+  </ion-item-options>
+
+  <ion-item slot="header" color="secondary" class="rounded-md w-96 mx-2">
+    <div class="card h-fit p-1 flex justify-between items-center">
+      <div class="">
+        <strong class="text-xl">{{ title }}</strong>
+        <div class="flex">
+          <h2 class="text-gray-500">{{ description }} &nbsp;</h2>
+        </div>
+      </div>
+
+      <!--     <div class="flex">
       <div *ngIf="icon && data" [routerLink]="[data]" [queryParams]="{ id: queryParamData }"
         class="text-3xl flex justify-center items-center text-gray bg-[color:var(--ion-color-secondary-tint)] rounded-full w-12 h-12 mx-2">
         <ion-icon [name]="icon"></ion-icon>
@@ -17,6 +35,8 @@
         class="text-3xl flex justify-center items-center text-gray bg-[color:var(--ion-color-secondary-tint)] rounded-full w-12 h-12">
         <ion-icon name="trash-sharp"></ion-icon>
       </div>
+    </div> -->
     </div>
-  </div>
-</ion-item>
+  </ion-item>
+
+</ion-item-sliding>
