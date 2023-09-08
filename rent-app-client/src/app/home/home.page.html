@@ -2,9 +2,10 @@
   <div>
     <!--<omni-swiper-days></omni-swiper-days>-->
 
-    <ion-item>
-      <ion-datetime display-format="DD/MM/YYYY" [(ngModel)]="selectedDate" (ionChange)="filterData()"></ion-datetime>
-    </ion-item>
+    <div>
+      <ion-datetime class="m-auto h-32" presentation="date" [preferWheel]="true" display-format="DD/MM/YYYY"
+        [(ngModel)]="selectedDate" (ionChange)="filterData()"></ion-datetime>
+    </div>
   </div>
 
   <div class="content">

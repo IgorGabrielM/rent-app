@@ -17,6 +17,7 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFireModule } from '@angular/fire/compat';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { HttpClientModule } from '@angular/common/http';
+import { ContractService } from 'src/@core/services/contract.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,11 +32,11 @@ import { HttpClientModule } from '@angular/common/http';
     SwiperModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
-    AngularFireStorageModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    /*     AngularFireStorageModule,
+        AngularFireModule.initializeApp(environment.firebase), */
     provideStorage(() => getStorage()),
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ContractService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

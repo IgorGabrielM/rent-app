@@ -6,6 +6,7 @@ import { ContractService } from 'src/@core/services/contract.service';
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
+  providers: [ContractService]
 })
 export class HomePage implements OnInit {
   contracts: ContractModel[] = []
