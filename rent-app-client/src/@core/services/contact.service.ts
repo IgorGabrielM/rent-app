@@ -34,12 +34,12 @@ export class ContactService {
   }
 
   update(contact: ContactModel) {
-    const contactDocRef = doc(this.firestore, `notes/${contact.id}`)
+    const contactDocRef = doc(this.firestore, `contact/${contact.id}`)
     return updateDoc(contactDocRef, { contact })
   }
 
-  delete(contactId: number) {
-    const contactDocRef = doc(this.firestore, `notes/${contactId}`)
+  delete(contactId: string) {
+    const contactDocRef = doc(this.firestore, `contact/${contactId}`)
     return deleteDoc(contactDocRef);
   }
 

@@ -17,6 +17,9 @@ export class ContractCardComponent implements OnInit {
   @Input() contract: ContractModel
   @Input() routerLinkContract: string
 
+  @Input() icons: string[]
+  @Input() routerLinks: string[]
+
   isFunctionCalled: boolean = false
 
   constructor(

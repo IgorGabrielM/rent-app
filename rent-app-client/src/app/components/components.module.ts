@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { OmniButtonComponent } from './omni-button/omni-button.component';
 import { OmniInputComponent } from './omni-input/omni-input.component';
 import { IonicModule } from '@ionic/angular';
-import { OmniSwiperDaysComponent } from './omni-swiper-days/omni-swiper-days.component';
 import { SwiperModule } from 'swiper/angular';
 import { OmniCardAcordionComponent } from './omni-card-acordion/omni-card-acordion.component';
 import { OmniCardComponent } from './omni-card/omni-card.component';
@@ -20,7 +19,6 @@ import { ModalContractPdfComponent } from './modal-contract-pdf/modal-contract-p
   declarations: [
     OmniButtonComponent,
     OmniInputComponent,
-    OmniSwiperDaysComponent,
     OmniCardAcordionComponent,
     OmniCardComponent,
     OmniTextAreaComponent,
@@ -42,7 +40,6 @@ import { ModalContractPdfComponent } from './modal-contract-pdf/modal-contract-p
     OmniButtonComponent,
     OmniInputComponent,
     OmniCardAcordionComponent,
-    OmniSwiperDaysComponent,
     OmniCardComponent,
     OmniTextAreaComponent,
     OmniSignaturePadComponent,

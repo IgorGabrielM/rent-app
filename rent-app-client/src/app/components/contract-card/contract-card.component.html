@@ -1,20 +1,17 @@
 <ion-accordion-group class="card">
     <ion-item-sliding (ionDrag)="slideToDelete($event, contract.id)" #itemSlide>
         <ion-item-options side="start">
-            <ion-item-option color="secondary">
-                <div [routerLink]="routerLinkContract" [queryParams]="{ id: contract.id}"
+            <ion-item-option [color]="i % 2 === 0 ? 'secondary' : 'medium'" *ngFor="let option of icons; let i = index">
+                <div *ngIf="option !== 'clipboard-sharp'" [routerLink]="routerLinks[i]"
+                    [queryParams]="{ id: contract.id}"
                     class="w-12 text-3xl flex justify-center items-center text-black">
-                    <ion-icon name="pencil-sharp"></ion-icon>
+                    <ion-icon [name]="option"></ion-icon>
+                </div>
+                <div *ngIf="option === 'clipboard-sharp'" (click)="openPdfModal()"
+                    class="w-12 text-3xl flex justify-center items-center text-black">
+                    <ion-icon [name]="option"></ion-icon>
                 </div>
             </ion-item-option>
-
-            <ion-item-option color="medium">
-                <div (click)="openPdfModal()" class="w-12 text-3xl flex justify-center items-center text-black">
-                    <ion-icon name="clipboard-sharp"></ion-icon>
-                </div>
-            </ion-item-option>
-
-
         </ion-item-options>
 
         <ion-item-options side="end">
@@ -39,22 +36,6 @@
 
                             </div>
                         </div>
-
-                        <!--                         <div class="flex">
-                            <div [routerLink]="routerLinkContract" [queryParams]="{ id: contract.id}"
-                                class="mx-2 text-3xl flex justify-center items-center text-gray bg-[color:var(--ion-color-secondary-tint)] rounded-full w-12 h-12">
-                                <ion-icon name="pencil-sharp"></ion-icon>
-                            </div>
-                            <div (click)="openPdfModal()"
-                                class="text-3xl flex justify-center items-center text-gray bg-[color:var(--ion-color-secondary-tint)] rounded-full w-12 h-12">
-                                <ion-icon name="clipboard-sharp"></ion-icon>
-                            </div>
-                            <div (click)="deleteContractAlert(contract.id)"
-                                class="mx-2 text-3xl flex justify-center items-center text-gray bg-[color:var(--ion-color-secondary-tint)] rounded-full w-12 h-12">
-                                <ion-icon name="trash-sharp"></ion-icon>
-                            </div>
-                        </div> -->
-
                     </div>
                 </ion-item>
                 <div class="mx-auto ion-padding flex flex-col w-80 justify-between rounded-b-lg bg-[color:var(--ion-color-secondary)] text-[color:var(--ion-color-tertiary-contrast)]"

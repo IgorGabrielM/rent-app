@@ -34,25 +34,19 @@
 <ion-content *ngIf="!contact">
   <div class="content">
     <div>
-      <ng-form #form="ngForm">
-        <div class="flex justify-center mt-8">
-          <div
-            class="w-52 h-52 rounded-full flex justify-center items-center  shadow-xl bg-[color:var(--ion-color-tertiary)]">
-            <ion-icon name="person-sharp" class="text-9xl mb-5 text-[color:var(--ion-color-primary)]"></ion-icon>
-          </div>
+      <div class="flex justify-center mt-8">
+        <div
+          class="w-52 h-52 rounded-full flex justify-center items-center shadow-xl bg-[color:var(--ion-color-secondary)]">
+          <ion-icon name="person-sharp" class="text-9xl mb-5 text-[color:var(--ion-color-primary)]"></ion-icon>
         </div>
-        <div class="mt-4 flex flex-col items-center gap-2">
-          <ion-skeleton-text [animated]="true"
-            style="width: 90vw; height: 50px; border-radius: 5px;"></ion-skeleton-text>
-          <ion-skeleton-text [animated]="true"
-            style="width: 90vw; height: 50px; border-radius: 5px;"></ion-skeleton-text>
-        </div>
-        <div class="flex justify-center mt-4 mb-5">
-          <ion-skeleton-text [animated]="true"
-            style="width: 90vw; height: 50px; border-radius: 5px;"></ion-skeleton-text>
-        </div>
-      </ng-form>
+      </div>
+      <div class="mt-4 flex flex-col items-center gap-2">
+        <ion-skeleton-text [animated]="true" style="width: 90vw; height: 50px; border-radius: 5px;"></ion-skeleton-text>
+        <ion-skeleton-text [animated]="true" style="width: 90vw; height: 50px; border-radius: 5px;"></ion-skeleton-text>
+      </div>
+      <div class="flex justify-center mt-4 mb-5">
+        <ion-skeleton-text [animated]="true" style="width: 90vw; height: 50px; border-radius: 5px;"></ion-skeleton-text>
+      </div>
     </div>
-
   </div>
 </ion-content>

@@ -1,16 +1,37 @@
-<ion-item slot="header" color="secondary" class="rounded-2xl shadow-xl">
-    <div class="card h-fit p-1 flex justify-between items-center">
-        <div>
-            <strong class="text-xl">{{ contact.name }}</strong>
-            <div class="flex flex-col text-slate-500">
-                <h2>{{ contact.telephone }}</h2>
-                <h2>{{ contact.email }}</h2>
+<ion-item-sliding (ionDrag)="slideToDelete($event)" #itemSlide class="w-96">
+    <ion-item-options side="start">
+        <ion-item-option color="secondary">
+            <div routerLink="create-contact" [queryParams]="{ id: contact.id }"
+                class="w-12 text-3xl flex justify-center items-center text-black">
+                <ion-icon name="pencil-sharp"></ion-icon>
             </div>
-        </div>
+        </ion-item-option>
+    </ion-item-options>
 
-        <div routerLink="create-contact" [queryParams]="{ id: contact.id }"
+    <ion-item-options side="end">
+        <ion-item-option color="danger">
+            <div class="w-12 text-3xl flex justify-center items-center text-gray text-black">
+                <ion-icon name="trash-sharp"></ion-icon>
+            </div>
+        </ion-item-option>
+    </ion-item-options>
+
+    <ion-item slot="header" color="secondary" class="rounded-md shadow-xl mx-4" routerLink="create-contact"
+        [queryParams]="{ id: contact.id }" lines="none">
+        <div class="card h-fit p-1 flex justify-between items-center">
+            <div>
+                <strong class="text-xl">{{ contact.name }}</strong>
+                <div class="flex flex-col text-slate-500">
+                    <h2>{{ contact.telephone }}</h2>
+                    <h2>{{ contact.email }}</h2>
+                </div>
+            </div>
+
+            <!--         <div routerLink="create-contact" [queryParams]="{ id: contact.id }"
             class="text-3xl flex justify-center items-center text-gray bg-[color:var(--ion-color-secondary-tint)] rounded-full w-12 h-12">
             <ion-icon name="pencil-sharp"></ion-icon>
+        </div> -->
         </div>
-    </div>
-</ion-item>
+    </ion-item>
+
+</ion-item-sliding>
