@@ -30,17 +30,33 @@ export class HomePage implements OnInit {
   }
 
   filterData() {
-    this.filteredContracts = this.contracts.filter(contract => {
-      const dateWithoutTime = this.selectedDate.split("T")[0];
-      const dateMatch = !this.selectedDate || String(contract.endDateLocate) === dateWithoutTime;
-      return dateMatch;
-    });
+    if (!this.selectedDate) {
+      var dat = new Date();
+      var ano = dat.getFullYear();
+      var mes = (dat.getMonth() + 1).toString().padStart(2, '0');
+      var dia = dat.getDate().toString().padStart(2, '0');
+      this.selectedDate = ano + '-' + mes + '-' + dia
+
+      this.filteredContracts = this.contracts.filter(contract => {
+        const dateWithoutTime = this.selectedDate.split("T")[0];
+        const dateMatch = !this.selectedDate || String(contract.endDateLocate) === dateWithoutTime;
+        return dateMatch;
+      });
+
+    } else {
+      this.filteredContracts = this.contracts.filter(contract => {
+        const dateWithoutTime = this.selectedDate.split("T")[0];
+        const dateMatch = !this.selectedDate || String(contract.endDateLocate) === dateWithoutTime;
+        return dateMatch;
+      });
+    }
+
   }
 
   loadContacts() {
     this.contractService.list().subscribe((contracts: ContractModel[]) => {
       this.contracts = contracts
-      this.filteredContracts = contracts
+      this.filterData()
     })
   }
 

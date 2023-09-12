@@ -32,8 +32,8 @@ import { ContractService } from 'src/@core/services/contract.service';
     SwiperModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
-    /*     AngularFireStorageModule,
-        AngularFireModule.initializeApp(environment.firebase), */
+    AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.firebase),
     provideStorage(() => getStorage()),
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ContractService],
