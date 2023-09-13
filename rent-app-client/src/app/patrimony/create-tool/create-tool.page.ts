@@ -34,9 +34,7 @@ export class CreateToolPage implements OnInit {
       this.idAssetToEdit = params['id'];
       if (this.idAssetToEdit) {
         this.assetService.find(this.idAssetToEdit).then((asset) => {
-          setTimeout(() => {
-            this.asset = asset as AssetModel
-          }, 1000)
+          this.asset = asset as AssetModel
         })
       } else {
         this.asset = new AssetModel()
