@@ -5,6 +5,7 @@ import { ModalContractPdfComponent } from '../modal-contract-pdf/modal-contract-
 import { AssetModel } from 'src/@core/models/asset.model';
 import { ContractService } from 'src/@core/services/contract.service';
 import { ToastService } from 'src/@core/utils/toast.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'contract-card',
@@ -32,6 +33,18 @@ export class ContractCardComponent implements OnInit {
 
   ngOnInit() { }
 
+  getValueOfQuantity(asset: AssetModel) {
+    return Number(asset.assetCategory.value) * asset.quantity
+  }
+
+  getTotalValue(): number {
+    let totalValue: number = 0;
+    this.contract.assets.forEach((asset) => {
+      totalValue += Number(asset.assetCategory.value) * asset.quantity;
+    });
+    return totalValue;
+  }
+
   async openPdfModal() {
     const modal = await this.modalController.create({
       component: ModalContractPdfComponent,
@@ -40,20 +53,6 @@ export class ContractCardComponent implements OnInit {
       }
     });
     return await modal.present();
-  }
-
-  getValueOfQuantity(asset: AssetModel) {
-    return Number(asset.assetCategory.value) * asset.quantity
-  }
-
-  getTotalValue(): number {
-    let totalValue: number = 0;
-
-    this.contract.assets.forEach((asset) => {
-      totalValue += Number(asset.assetCategory.value) * asset.quantity;
-    });
-
-    return totalValue;
   }
 
   slideToDelete(event: any, contractId: string) {

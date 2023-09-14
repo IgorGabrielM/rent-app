@@ -123,7 +123,6 @@ export class CreateContractPage implements OnInit {
     if (String(this.contract.cep).length === 9) {
       this.cepService.getAddressByCep(String(this.contract.cep))
         .subscribe((data: any) => {
-          console.log(data)
           this.contract.street = data.logradouro;
           this.contract.neighborhood = data.bairro;
         });
@@ -132,11 +131,10 @@ export class CreateContractPage implements OnInit {
 
   getImage(data: string) {
     this.imageAsBase64 = data;
-
     fetch(this.imageAsBase64)
       .then((res) => res.blob())
       .then((blob) => {
-        this.imageService.uploadImageBlob(blob).then((res) => {
+        this.imageService.uploadImageBlob(blob, 'signatures').then((res) => {
           this.imageUrl = res
           this.toastService.show('Sucesso', 'Imagem salva com sucesso', {
             color: 'success',
@@ -152,7 +150,6 @@ export class CreateContractPage implements OnInit {
     if (this.contract.neighborhood && this.contract.street && this.contract.numberHouse &&
       this.contract.contactId && this.contract.endDateLocate && this.contract.assets.length > 0 && this.isAgreed) {
       if (!this.idContractToEdit) {
-        console.log(this.imageUrl)
         this.contractService.create({
           ...this.contract,
           image: this.imageUrl,

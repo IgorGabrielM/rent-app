@@ -23,8 +23,8 @@ export class AssetService {
   }
 
   async find(id: string) {
-    const assetsCategoryRef = collection(this.firestore, 'asset');
-    return getDoc(doc(assetsCategoryRef, id))
+    const assetsRef = collection(this.firestore, 'asset');
+    return getDoc(doc(assetsRef, id))
       .then((docSnapshot) => {
         if (docSnapshot.exists()) {
           const data = docSnapshot.data();

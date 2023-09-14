@@ -1,20 +1,20 @@
 <ion-content>
-  <div class="flex justify-center mt-5">
-    <div>
-      <div class="mt-3">
-        <omni-input placeholder="Título"></omni-input>
-      </div>
-      <div class="mt-3">
-        <omni-input placeholder="Descrição" class=""></omni-input>
-      </div>
-      <div class="mt-3">
-        <omni-input placeholder="Criticidade" [isSelect]="true" [options]="optionCriticity"></omni-input>
+  <ng-form #form="ngForm">
+    <div class="flex justify-center mt-5">
+      <div class="mt-4 flex flex-col gap-2">
+        <ion-input class="custom" placeholder="Title" name="title" [(ngModel)]="ticket.title" required></ion-input>
+        <ion-textarea class="custom" placeholder="Description" name="description" [(ngModel)]="ticket.description"
+          rows="20" required></ion-textarea>
+
+        <omni-button (click)="uploadImage()" type="primary"
+          [title]="!imageUrl ? 'Enviar imagem' : 'Editar imagem'"></omni-button>
+        <div class="w-96 my-2">
+          <ion-img *ngIf="imageUrl" [src]="imageUrl" alt="Imagem selecionada"></ion-img>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="flex justify-center mt-5">
-    <div>
+    <div class="flex justify-center mt-5">
       <omni-button type="outline" title="Enviar"></omni-button>
     </div>
-  </div>
+  </ng-form>
 </ion-content>

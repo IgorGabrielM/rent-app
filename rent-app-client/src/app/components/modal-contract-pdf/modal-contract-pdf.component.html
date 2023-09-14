@@ -1,6 +1,6 @@
 <ion-toolbar color="secondary">
     <ion-buttons slot="end">
-        <ion-button (click)="closeModal()" color="danger" type="danger">
+        <ion-button (click)="closeModal()" color="primary" type="danger">
             <ion-icon size="large" name="close-circle-sharp"></ion-icon>
         </ion-button>
     </ion-buttons>
@@ -19,17 +19,24 @@
                     <th class="w-80">Nome</th>
                     <th>Quantidade</th>
                     <th>Valor Unitário</th>
-                    <th>Valor Total</th>
+                    <th class="w-64">Valor Total</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let asset of contract.assets">
+                <tr *ngFor="let asset of contract.assets, let i = index"
+                    [class]="i % 2 === 0 ? 'bg-black' : 'bg-gray-900'">
                     <td>{{ asset.name }}</td>
                     <td>{{ asset.quantity }}</td>
-                    <td>{{ "R$" + asset.assetCategory.value + ",00" }}</td>
-                    <td>{{ "R$" + totalValueCalculator(asset.quantity, asset.assetCategory.value) + ",00"}}</td>
+                    <td>{{ "R$" + asset.assetCategory.value }}</td>
+                    <td class="w-64">{{ "R$" + totalValueCalculator(asset.quantity, asset.assetCategory.value)}}</td>
                 </tr>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3">Valor total do contrato</td>
+                    <td>R$ {{ getTotalValue() }}</td>
+                </tr>
+            </tfoot>
         </table>
         <div class="bg-white">
             <img [src]="contract.image" class="w-full h-fit my-2">
