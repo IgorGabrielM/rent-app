@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { LoadingController } from '@ionic/angular';
 import { TicketModel } from 'src/@core/models/ticket.model';
 import { FileSystemImageService } from 'src/@core/services/file-system-image.service';
 import { ImageService } from 'src/@core/services/image.service';
+import { TicketService } from 'src/@core/services/ticket.service';
 import { ToastService } from 'src/@core/utils/toast.service';
 
 @Component({
@@ -13,6 +15,7 @@ export class HelpDeskPage implements OnInit {
   ticket: TicketModel
   imageUrl: string
   image: any
+  isUploadingImage: boolean = false
 
   optionCriticity: { name: string, value: string }[] = [
     {
@@ -31,18 +34,19 @@ export class HelpDeskPage implements OnInit {
 
   constructor(
     private imageService: ImageService,
+    private ticketService: TicketService,
+
     private fileSystemImageService: FileSystemImageService,
-    private toastService: ToastService
+    private toastService: ToastService,
   ) { }
 
   ngOnInit() {
     this.ticket = new TicketModel()
   }
 
-  uploadImage() {
+  async uploadImage() {
+    this.isUploadingImage = true
     this.fileSystemImageService.getPhoto().then((image) => {
-      console.log(image.base64Image)
-
       fetch(`data:image/png;base64,${image.base64Image}`)
         .then((res) => res.blob())
         .then((blob) => {
@@ -53,11 +57,21 @@ export class HelpDeskPage implements OnInit {
               duration: 2000,
               position: 'top',
             });
+            this.isUploadingImage = false
           })
         })
     })
   }
 
-
+  onSubmit() {
+    this.ticket.image = this.imageUrl
+    this.ticketService.create(this.ticket).then(() => {
+      this.toastService.show('Sucesso', 'Ticket enviado com sucesso', {
+        color: 'success',
+        duration: 2000,
+        position: 'top',
+      });
+    })
+  }
 
 }

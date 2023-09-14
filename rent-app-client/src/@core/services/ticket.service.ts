@@ -14,7 +14,7 @@ export class TicketService {
 
   create(ticket: TicketModel) {
     const ticketRef = collection(this.firestore, 'ticket')
-    return addDoc(ticketRef, ticket as TicketModel)
+    return addDoc(ticketRef, { ...ticket } as TicketModel)
   }
 
   list() {

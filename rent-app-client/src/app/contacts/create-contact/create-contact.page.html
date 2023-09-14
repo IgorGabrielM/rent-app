@@ -9,23 +9,26 @@
 <ion-content *ngIf="contact">
   <div class="flex justify-center">
     <div>
-      <div class="flex justify-center mt-8">
-        <div
-          class="w-52 h-52 rounded-full flex justify-center items-center  shadow-xl bg-[color:var(--ion-color-secondary)]">
-          <ion-icon name="person-sharp" class="text-9xl mb-5 text-[color:var(--ion-color-primary)]"></ion-icon>
+      <ng-form #form="ngForm">
+        <div class="flex justify-center mt-8">
+          <div
+            class="w-52 h-52 rounded-full flex justify-center items-center  shadow-xl bg-[color:var(--ion-color-secondary)]">
+            <ion-icon name="person-sharp" class="text-9xl mb-5 text-[color:var(--ion-color-primary)]"></ion-icon>
+          </div>
         </div>
-      </div>
-      <div class="mt-4 flex flex-col gap-2">
-        <ion-input class="custom" placeholder="Nome" name="Nome" [(ngModel)]="contact.name" required></ion-input>
-        <ion-input class="custom" placeholder="Telefone" name="telephone" [(ngModel)]="contact.telephone"
-          required></ion-input>
-        <ion-input class="custom" placeholder="Email" name="email" [(ngModel)]="contact.email" required></ion-input>
-      </div>
-      <div class="flex justify-center mt-7">
-        <div>
-          <omni-button type="primary" [title]="idContactToEdit ? 'Editar' : 'Criar'" (click)="onSubmit()"></omni-button>
+        <div class="mt-4 flex flex-col gap-2">
+          <ion-input class="custom" placeholder="Nome" name="Nome" [(ngModel)]="contact.name" required></ion-input>
+          <ion-input class="custom" placeholder="Telefone" name="telephone" [(ngModel)]="contact.telephone"
+            required></ion-input>
+          <ion-input class="custom" placeholder="Email" name="email" [(ngModel)]="contact.email" required></ion-input>
         </div>
-      </div>
+        <div class="flex justify-center mt-7">
+          <div>
+            <omni-button type="primary" [title]="idContactToEdit ? 'Editar' : 'Criar'"
+              (click)="onSubmit()"></omni-button>
+          </div>
+        </div>
+      </ng-form>
     </div>
   </div>
 </ion-content>
