@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'rent-app-cliten',
+  appId: 'rent.app.client',
   appName: 'Rent App',
   webDir: 'dist',
   //webDir: 'www',

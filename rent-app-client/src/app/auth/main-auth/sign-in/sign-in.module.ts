@@ -8,6 +8,7 @@ import { SignInPageRoutingModule } from './sign-in-routing.module';
 
 import { SignInPage } from './sign-in.page';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { MaskitoModule } from '@maskito/angular';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ComponentsModule } from 'src/app/components/components.module';
     FormsModule,
     IonicModule,
     SignInPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    MaskitoModule
   ],
   declarations: [SignInPage]
 })
