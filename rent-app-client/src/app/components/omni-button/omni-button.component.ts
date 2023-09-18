@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class OmniButtonComponent implements OnInit {
   @Input() title: string
-  @Input() type: 'primary' | 'outline'
+  @Input() type: 'primary' | 'outline' | 'success'
   @Input() disabled: boolean
 
   constructor() { }

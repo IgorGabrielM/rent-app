@@ -39,7 +39,7 @@ export class ContractCardComponent implements OnInit {
 
   getTotalValue(): number {
     let totalValue: number = 0;
-    this.contract.assets.forEach((asset) => {
+    this.contract?.assets.forEach((asset) => {
       totalValue += Number(asset.assetCategory.value) * asset.quantity;
     });
     return totalValue;

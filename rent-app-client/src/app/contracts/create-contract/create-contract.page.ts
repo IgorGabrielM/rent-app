@@ -108,7 +108,7 @@ export class CreateContractPage implements OnInit {
   }
 
   handleChangeAsset(event: any) {
-    this.contract.assets.forEach((asset) => {
+    this.contract?.assets.forEach((asset) => {
       if (!asset.quantity || asset.quantity == 0) {
         asset.quantity = 1
       }
@@ -148,7 +148,7 @@ export class CreateContractPage implements OnInit {
   onSubmit() {
     const data = new Date()
     if (this.contract.neighborhood && this.contract.street && this.contract.numberHouse &&
-      this.contract.contactId && this.contract.endDateLocate && this.contract.assets.length > 0 && this.isAgreed) {
+      this.contract.contactId && this.contract.endDateLocate && this.contract?.assets.length > 0 && this.isAgreed) {
       if (!this.idContractToEdit) {
         this.contractService.create({
           ...this.contract,

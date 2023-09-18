@@ -3,6 +3,8 @@ import { ModalController } from '@ionic/angular';
 import { ContractModel } from 'src/@core/models/contract.model';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
+import { ContractService } from 'src/@core/services/contract.service';
+import { ToastService } from 'src/@core/utils/toast.service';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -15,7 +17,13 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 export class ModalContractPdfComponent implements OnInit {
   @Input() contract: ContractModel
 
+  handlePaid: boolean = false
+  newDateForPay: Date
+
   constructor(
+    private contractService: ContractService,
+
+    private toastService: ToastService,
     private modalController: ModalController,
   ) { }
 
@@ -24,7 +32,7 @@ export class ModalContractPdfComponent implements OnInit {
 
   getFormatedRowsTableOfAssets() {
     const arrayOfColumns = [];
-    this.contract.assets.forEach((asset) => {
+    this.contract?.assets.forEach((asset) => {
       arrayOfColumns.push([
         asset.name,
         asset.identifier,
@@ -84,7 +92,7 @@ export class ModalContractPdfComponent implements OnInit {
   getTotalValue(): number {
     let totalValue: number = 0;
 
-    this.contract.assets.forEach((asset) => {
+    this.contract?.assets.forEach((asset) => {
       totalValue += Number(asset.assetCategory.value) * asset.quantity;
     });
 
@@ -93,6 +101,28 @@ export class ModalContractPdfComponent implements OnInit {
 
   totalValueCalculator(assetQuantity: number, assetPrice: number) {
     return String(assetQuantity * assetPrice)
+  }
+
+  confirmNewDateForPay() {
+    this.contractService.update({ ...this.contract, endDateLocate: this.newDateForPay }).then(() => {
+      this.handlePaid = false
+      this.toastService.show('Sucesso', 'Contrato reagendado', {
+        color: 'success',
+        duration: 2000,
+        position: 'top',
+      })
+    })
+  }
+
+  markAsPaid() {
+    this.contractService.update({ ...this.contract, endDateLocate: null }).then(() => {
+      this.handlePaid = false
+      this.toastService.show('Sucesso', 'Contrato pago', {
+        color: 'success',
+        duration: 2000,
+        position: 'top',
+      })
+    })
   }
 
   closeModal() {

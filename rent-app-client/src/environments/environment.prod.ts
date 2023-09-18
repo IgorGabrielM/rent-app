@@ -1,3 +1,6 @@
+import { initializeApp } from "@angular/fire/app";
+import { getAnalytics } from "firebase/analytics";
+
 export const environment = {
   firebase: {
     projectId: 'rent-app-d693f',
@@ -11,3 +14,6 @@ export const environment = {
   },
   production: true
 };
+
+const app = initializeApp(environment.firebase);
+const analytics = getAnalytics(app);

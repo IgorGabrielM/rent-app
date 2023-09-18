@@ -18,3 +18,12 @@ th {
 .custom {
     background-color: #858585;
 }
+
+ion-modal {
+    --height: 60%;
+    --width: 90%;
+    --border-radius: 16px;
+    --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}

@@ -9,13 +9,13 @@ import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
 import { SwiperModule } from 'swiper/angular';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app'
-import { getFirestore, provideFirestore } from '@angular/fire/firestore'
 import { environment } from 'src/environments/environment';
 import { MaskitoModule } from '@maskito/angular';
 import { FormsModule } from '@angular/forms';
-import { AngularFireStorageModule } from '@angular/fire/compat/storage';
-import { AngularFireModule } from '@angular/fire/compat';
-import { provideStorage, getStorage } from '@angular/fire/storage';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore'
+import { getStorage, provideStorage } from '@angular/fire/storage';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+
 import { HttpClientModule } from '@angular/common/http';
 import { ContractService } from 'src/@core/services/contract.service';
 
@@ -31,10 +31,11 @@ import { ContractService } from 'src/@core/services/contract.service';
     FormsModule,
     SwiperModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
-    AngularFireStorageModule,
-    AngularFireModule.initializeApp(environment.firebase),
     provideStorage(() => getStorage()),
+    //AngularFireStorageModule,
+    //AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ContractService],
   bootstrap: [AppComponent],
