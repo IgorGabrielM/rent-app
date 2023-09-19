@@ -11,8 +11,9 @@
         <div class="mt-3 flex flex-col gap-2">
           <ion-input class="custom" placeholder="CNPJ" [maskito]="cnpjMask" [maskitoElement]="maskPredicate" name="cnpj"
             required></ion-input>
-          <ion-input class="custom" placeholder="Email" name="email" required></ion-input>
-          <ion-input type="password" class="custom" placeholder="Senha" name="password" required></ion-input>
+          <ion-input [(ngModel)]="userLogin.email" class="custom" placeholder="Email" name="email" required></ion-input>
+          <ion-input [(ngModel)]="userLogin.password" class="custom" placeholder="Senha" name="password" required
+            type="password"></ion-input>
         </div>
 
         <div class="mt-5">

@@ -34,8 +34,6 @@ import { ContractService } from 'src/@core/services/contract.service';
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
-    //AngularFireStorageModule,
-    //AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ContractService],
   bootstrap: [AppComponent],

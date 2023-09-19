@@ -1,14 +1,28 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { canActivate, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+
+const readirectUnauthorizedToLogin = () => redirectUnauthorizedTo([''])
+const redirectLoggedInToHome = () => redirectLoggedInTo(['tabs'])
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+    loadChildren: () => import('./auth/main-auth/main-auth.module').then(m => m.MainAuthPageModule),
+    ...canActivate(redirectLoggedInToHome)
+  },
+  {
+    path: '',
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
+    ...canActivate(readirectUnauthorizedToLogin)
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule),
   },
   {
     path: 'auth',
-    loadChildren: () => import('./auth/main-auth/main-auth.module').then(m => m.MainAuthPageModule)
+    loadChildren: () => import('./auth/main-auth/main-auth.module').then(m => m.MainAuthPageModule),
   },
   {
     path: 'sign-in',
@@ -25,10 +39,6 @@ const routes: Routes = [
   {
     path: 'contacts',
     loadChildren: () => import('./contacts/contacts.module').then(m => m.ContactsPageModule)
-  },
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
     path: 'contracts',

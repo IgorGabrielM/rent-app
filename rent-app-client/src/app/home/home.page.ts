@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ContractModel } from 'src/@core/models/contract.model';
 import { ContractService } from 'src/@core/services/contract.service';
+import { LoginService } from 'src/@core/services/login.service';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +18,10 @@ export class HomePage implements OnInit {
   selectedDate: string = '';
 
   constructor(
-    private contractService: ContractService
+    private contractService: ContractService,
+    private loginService: LoginService,
+
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -58,6 +63,11 @@ export class HomePage implements OnInit {
       this.contracts = contracts
       this.filterData()
     })
+  }
+
+  async logout() {
+    await this.loginService.logout()
+    this.router.navigateByUrl('/', { replaceUrl: true })
   }
 
 }
