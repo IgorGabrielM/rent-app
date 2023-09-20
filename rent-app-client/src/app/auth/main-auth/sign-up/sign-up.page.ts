@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
 import { MaskitoElementPredicateAsync, MaskitoOptions } from '@maskito/core';
 import { UserModel } from 'src/@core/models/user.model';
 import { LoginService } from 'src/@core/services/login.service';
+import { ToastService } from 'src/@core/utils/toast.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -19,7 +21,10 @@ export class SignUpPage implements OnInit {
 
   constructor(
     private loginService: LoginService,
-    private router: Router
+
+    private router: Router,
+    private toastService: ToastService,
+    private loadingCtrl: LoadingController
   ) { }
 
   ngOnInit() {
@@ -27,13 +32,25 @@ export class SignUpPage implements OnInit {
   }
 
   async onSubmit() {
-    //mostrar um loading
+    const loading = await this.loadingCtrl.create({ message: 'Fazendo cadastro...' });
+    loading.present();
+
     const user = await this.loginService.registerUser(this.userToCreate)
     if (user) {
+      this.toastService.show('Successo', 'Conta criada.', {
+        color: 'success',
+        duration: 2000,
+        position: 'top',
+      });
       this.router.navigateByUrl('tabs/home', { replaceUrl: true })
+      this.loadingCtrl.dismiss();
     } else {
-      //mostrar um toast de erro
-      console.log('erro')
+      this.toastService.show('Erro', 'Verifique os dados informados.', {
+        color: 'danger',
+        duration: 2000,
+        position: 'top',
+      });
+      this.loadingCtrl.dismiss();
     }
   }
 
