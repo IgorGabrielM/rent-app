@@ -21,8 +21,18 @@ export class ContractsPage implements OnInit {
 
   loadContracts() {
     this.contractService.list().subscribe((contracts: ContractModel[]) => {
-      this.contracts = contracts
+      this.contracts = contracts.sort(this.sortContracts)
     })
+  }
+
+  sortContracts(a, b) {
+    if (a.endDateLocate && !b.endDateLocate) {
+      return -1;
+    } else if (!a.endDateLocate && b.endDateLocate) {
+      return 1;
+    } else {
+      return 0;
+    }
   }
 
 }

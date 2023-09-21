@@ -13,9 +13,9 @@ export class LoginService {
     private auth: Auth
   ) { }
 
-  registerUser(userModel: UserModel) {
+  async registerUser(userModel: UserModel) {
     try {
-      const user = createUserWithEmailAndPassword(this.auth, userModel.email, userModel.password)
+      const user = await createUserWithEmailAndPassword(this.auth, userModel.email, userModel.password)
       return user
     } catch (e) {
       return null

@@ -4,6 +4,7 @@ import { LoadingController } from '@ionic/angular';
 import { MaskitoElementPredicateAsync, MaskitoOptions } from '@maskito/core';
 import { UserModel } from 'src/@core/models/user.model';
 import { LoginService } from 'src/@core/services/login.service';
+import { UserService } from 'src/@core/services/user.service';
 import { ToastService } from 'src/@core/utils/toast.service';
 
 @Component({
@@ -13,6 +14,8 @@ import { ToastService } from 'src/@core/utils/toast.service';
 })
 export class SignUpPage implements OnInit {
   userToCreate: UserModel
+  passwordConfirm: boolean
+
 
   readonly maskPredicate: MaskitoElementPredicateAsync = async (el) => (el as HTMLIonInputElement).getInputElement();
   readonly cnpjMask: MaskitoOptions = {
@@ -21,6 +24,7 @@ export class SignUpPage implements OnInit {
 
   constructor(
     private loginService: LoginService,
+    private userService: UserService,
 
     private router: Router,
     private toastService: ToastService,
@@ -36,7 +40,10 @@ export class SignUpPage implements OnInit {
     loading.present();
 
     const user = await this.loginService.registerUser(this.userToCreate)
+
     if (user) {
+      this.userService.create({ ...this.userToCreate, id: user.user.uid })
+
       this.toastService.show('Successo', 'Conta criada.', {
         color: 'success',
         duration: 2000,
@@ -51,6 +58,16 @@ export class SignUpPage implements OnInit {
         position: 'top',
       });
       this.loadingCtrl.dismiss();
+    }
+  }
+
+  verifyConsfirmPassword(event: any): void {
+    const confirmPassword = event.detail.value
+    if (confirmPassword === this.userToCreate.password && confirmPassword !== '') {
+      this.passwordConfirm = true
+    }
+    else {
+      this.passwordConfirm = false
     }
   }
 
