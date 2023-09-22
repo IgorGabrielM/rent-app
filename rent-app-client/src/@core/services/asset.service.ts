@@ -13,8 +13,10 @@ export class AssetService {
   ) { }
 
   create(asset: AssetModel) {
+    const uid = localStorage.getItem('uid')
+
     const asssetsRef = collection(this.firestore, 'asset')
-    return addDoc(asssetsRef, { ...asset, is_available: true, assetCategory: asset.assetCategory } as AssetModel)
+    return addDoc(asssetsRef, { ...asset, is_available: true, assetCategory: asset.assetCategory, uid: uid } as AssetModel)
   }
 
   list() {

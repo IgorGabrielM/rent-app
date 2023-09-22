@@ -17,15 +17,16 @@
           required></ion-input>
         <ion-input [(ngModel)]="userToCreate.password" type="password"
           [class]="!passwordConfirm ? 'custom border-2 border-red-300' : 'custom border-2 border-green-300'"
-          placeholder="Senha" name="password" required></ion-input>
+          placeholder="Senha" name="password" required minlength="6"></ion-input>
         <ion-input (ionChange)="verifyConsfirmPassword($event)" type="password"
           [class]="!passwordConfirm ? 'custom border-2 border-red-300' : 'custom border-2 border-green-300'"
-          placeholder="Confirme a senha" name="password-confirm" required></ion-input>
+          placeholder="Confirme a senha" name="password-confirm" required minlength="6"></ion-input>
       </div>
 
       <div class="flex justify-center mt-5 mb-5">
         <div>
-          <omni-button type="primary" title="Criar conta" (click)="onSubmit()"></omni-button>
+          <omni-button type="primary" title="Criar conta" [disabled]="!form.valid && !passwordConfirm"
+            (click)="onSubmit()"></omni-button>
         </div>
       </div>
     </ng-form>

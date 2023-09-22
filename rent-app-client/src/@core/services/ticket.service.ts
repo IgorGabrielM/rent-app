@@ -13,8 +13,10 @@ export class TicketService {
   ) { }
 
   create(ticket: TicketModel) {
+    const uid = localStorage.getItem('uid')
+
     const ticketRef = collection(this.firestore, 'ticket')
-    return addDoc(ticketRef, { ...ticket } as TicketModel)
+    return addDoc(ticketRef, { ...ticket, uid: uid } as TicketModel)
   }
 
   list() {

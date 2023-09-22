@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
 import { TicketModel } from 'src/@core/models/ticket.model';
 import { FileSystemImageService } from 'src/@core/services/file-system-image.service';
 import { ImageService } from 'src/@core/services/image.service';

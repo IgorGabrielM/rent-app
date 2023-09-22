@@ -2,7 +2,7 @@
   <p>{{ title }}</p>
 </ion-button>
 
-<ion-button *ngIf="type === 'primary'" color="secondary" [disabled]="disabled" class="primary">
+<ion-button *ngIf="type === 'primary'" color="secondary" [disabled]="disabled ? true : false" class="primary">
   <strong>{{ title }}</strong>
 </ion-button>
 

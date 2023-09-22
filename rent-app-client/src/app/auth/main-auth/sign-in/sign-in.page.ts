@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
-import { MaskitoElementPredicateAsync, MaskitoOptions } from '@maskito/core';
 import { UserModel } from 'src/@core/models/user.model';
 import { LoginService } from 'src/@core/services/login.service';
 import { ToastService } from 'src/@core/utils/toast.service';
@@ -13,11 +12,6 @@ import { ToastService } from 'src/@core/utils/toast.service';
 })
 export class SignInPage implements OnInit {
   userLogin: UserModel
-
-  readonly maskPredicate: MaskitoElementPredicateAsync = async (el) => (el as HTMLIonInputElement).getInputElement();
-  readonly cnpjMask: MaskitoOptions = {
-    mask: [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', '0', '0', '0', '1', '-', /\d/, /\d/],
-  };
 
   constructor(
     private loginService: LoginService,

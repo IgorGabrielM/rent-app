@@ -43,6 +43,7 @@ export class SignUpPage implements OnInit {
 
     if (user) {
       this.userService.create({ ...this.userToCreate, id: user.user.uid })
+      localStorage.setItem('uid', user.user.uid)
 
       this.toastService.show('Successo', 'Conta criada.', {
         color: 'success',

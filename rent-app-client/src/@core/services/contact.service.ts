@@ -11,8 +11,10 @@ export class ContactService {
   ) { }
 
   create(contact: ContactModel) {
+    const uid = localStorage.getItem('uid')
+
     const asssetsRef = collection(this.firestore, 'contact')
-    return addDoc(asssetsRef, { ...contact, } as ContactModel)
+    return addDoc(asssetsRef, { ...contact, uid: uid } as ContactModel)
   }
 
   list() {

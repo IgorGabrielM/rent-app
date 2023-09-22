@@ -18,9 +18,6 @@ export class UserService {
     const firestore = getFirestore();
     const userDocRef = doc(firestore, 'user', user.id);
     return setDoc(userDocRef, { ...user } as UserModel);
-
-    /*     const userRef = collection(this.firestore, 'user')
-        return addDoc(userRef, { ...user } as UserModel) */
   }
 
   list() {
