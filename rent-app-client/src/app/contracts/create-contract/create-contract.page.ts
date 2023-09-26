@@ -145,6 +145,27 @@ export class CreateContractPage implements OnInit {
       })
   }
 
+  verifyToSubmit(step: 1 | 2): boolean {
+    if (step == 1) {
+      if (this.contract.identifier && this.contract.neighborhood && this.contract.street && this.contract.numberHouse &&
+        this.contract.contactId && this.contract.endDateLocate && this.contract?.assets.length > 0) {
+        return true
+      } else {
+        return false
+      }
+    }
+    if (step == 2) {
+      if (this.contract.identifier && this.contract.neighborhood && this.contract.street && this.contract.numberHouse &&
+        this.contract.contactId && this.contract.endDateLocate && this.contract?.assets.length > 0 && this.isAgreed && this.imageUrl) {
+        return true
+      } else {
+        return false
+      }
+    }
+    return false
+
+  }
+
   onSubmit() {
     const data = new Date()
     if (this.contract.neighborhood && this.contract.street && this.contract.numberHouse &&

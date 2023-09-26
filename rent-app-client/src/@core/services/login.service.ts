@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
 import { UserModel } from '../models/user.model';
+import { ToastService } from '../utils/toast.service';
 
 
 @Injectable({
@@ -10,7 +11,8 @@ import { UserModel } from '../models/user.model';
 export class LoginService {
 
   constructor(
-    private auth: Auth
+    private auth: Auth,
+    private toastService: ToastService
   ) { }
 
   async registerUser(userModel: UserModel) {
@@ -26,8 +28,13 @@ export class LoginService {
     try {
       const user = signInWithEmailAndPassword(this.auth, userModel.email, userModel.password)
       return user
-    } catch (e) {
-      return null
+    } catch (err) {
+      this.toastService.show('Erro', String(err), {
+        color: 'danger',
+        duration: 2000,
+        position: 'top',
+      });
+      return err
     }
   }
 

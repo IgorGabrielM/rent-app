@@ -2,6 +2,7 @@ import { AssetModel } from "./asset.model";
 import { DefaultModel } from "./default.model";
 
 export class ContractModel extends DefaultModel {
+  identifier: string;
   neighborhood: string;
   street: string;
   cep: number;

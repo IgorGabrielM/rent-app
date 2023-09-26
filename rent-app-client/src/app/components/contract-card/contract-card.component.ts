@@ -5,7 +5,6 @@ import { ModalContractPdfComponent } from '../modal-contract-pdf/modal-contract-
 import { AssetModel } from 'src/@core/models/asset.model';
 import { ContractService } from 'src/@core/services/contract.service';
 import { ToastService } from 'src/@core/utils/toast.service';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'contract-card',

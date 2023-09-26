@@ -16,7 +16,6 @@ export class SignUpPage implements OnInit {
   userToCreate: UserModel
   passwordConfirm: boolean
 
-
   readonly maskPredicate: MaskitoElementPredicateAsync = async (el) => (el as HTMLIonInputElement).getInputElement();
   readonly cnpjMask: MaskitoOptions = {
     mask: [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', '0', '0', '0', '1', '-', /\d/, /\d/],

@@ -1,10 +1,11 @@
 <ion-content>
   <div class="mx-2 mt-3">
-    <ion-searchbar animated="true" placeholder="Buscar equipamento" color="secondary"></ion-searchbar>
+    <ion-searchbar animated="true" placeholder="Buscar equipamento" color="secondary"
+      (ionInput)="handleInput($event)"></ion-searchbar>
   </div>
   <div class="content">
     <div class="mt-1">
-      <div class="mt-3" *ngFor="let asset of assetCategories">
+      <div class="mt-3" *ngFor="let asset of results">
         <asset-category-card data="edit-categories-and-tools" [queryParamData]="asset.id"
           [assetCategotry]="asset"></asset-category-card>
       </div>

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ToastService } from 'src/@core/utils/toast.service';
 
 @Component({
   selector: 'omni-button',
@@ -9,9 +10,11 @@ export class OmniButtonComponent implements OnInit {
   @Input() title: string
   @Input() type: 'primary' | 'outline' | 'success'
   @Input() disabled: boolean
+  @Input() function?: Function
 
-  constructor() { }
+  constructor(
+    private toastService: ToastService
+  ) { }
 
   ngOnInit() { }
-
 }

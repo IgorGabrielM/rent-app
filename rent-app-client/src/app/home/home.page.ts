@@ -66,6 +66,7 @@ export class HomePage implements OnInit {
   }
 
   async logout() {
+    localStorage.removeItem('uid')
     await this.loginService.logout()
     this.router.navigateByUrl('/', { replaceUrl: true })
   }

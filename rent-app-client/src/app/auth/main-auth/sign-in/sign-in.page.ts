@@ -31,6 +31,8 @@ export class SignInPage implements OnInit {
 
     const user = await this.loginService.login(this.userLogin)
     if (user) {
+      localStorage.setItem('uid', user.user.uid)
+
       this.toastService.show('Successo', 'Asseco autorizado.', {
         color: 'success',
         duration: 2000,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MaskitoElementPredicateAsync, MaskitoOptions } from '@maskito/core';
 import { ContactModel } from 'src/@core/models/contact.model';
 import { ContactService } from 'src/@core/services/contact.service';
 import { ToastService } from 'src/@core/utils/toast.service';
@@ -13,6 +14,11 @@ export class CreateContactPage implements OnInit {
   codeQueryParam: string
   idContactToEdit: string
   contact: ContactModel
+
+  readonly maskPredicate: MaskitoElementPredicateAsync = async (el) => (el as HTMLIonInputElement).getInputElement();
+  readonly telphoneMask: MaskitoOptions = {
+    mask: ['(', /\d/, /\d/, ')', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
+  };
 
   constructor(
     private activatedRoute: ActivatedRoute,

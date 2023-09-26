@@ -10,6 +10,7 @@ import { ContractService } from 'src/@core/services/contract.service';
 export class ContractsPage implements OnInit {
 
   contracts: ContractModel[] = []
+  results: ContractModel[] = []
 
   constructor(
     private contractService: ContractService,
@@ -22,6 +23,7 @@ export class ContractsPage implements OnInit {
   loadContracts() {
     this.contractService.list().subscribe((contracts: ContractModel[]) => {
       this.contracts = contracts.sort(this.sortContracts)
+      this.results = this.contracts
     })
   }
 
@@ -33,6 +35,12 @@ export class ContractsPage implements OnInit {
     } else {
       return 0;
     }
+  }
+
+  handleInput(event) {
+    const query = event.target.value.toLowerCase();
+    const filteredContracts = this.contracts.filter((c) => String(c.identifier).toLowerCase().indexOf(query) > -1 && c.identifier);
+    this.results = filteredContracts.sort(this.sortContracts)
   }
 
 }

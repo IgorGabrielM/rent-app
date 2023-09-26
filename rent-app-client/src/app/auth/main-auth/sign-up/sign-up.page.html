@@ -25,8 +25,8 @@
 
       <div class="flex justify-center mt-5 mb-5">
         <div>
-          <omni-button type="primary" title="Criar conta" [disabled]="!form.valid && !passwordConfirm"
-            (click)="onSubmit()"></omni-button>
+          <omni-button type="primary" title="Criar conta" [disabled]="!form.valid || !passwordConfirm"
+            [function]="onSubmit"></omni-button>
         </div>
       </div>
     </ng-form>

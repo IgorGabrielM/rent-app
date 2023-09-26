@@ -9,26 +9,8 @@ import { AssetCategoryService } from 'src/@core/services/assetCategory.service';
 })
 export class PatrimonyPage implements OnInit {
 
-  data = [
-    {
-      title: 'Escoras',
-      description: {
-        data1: 'R$10,00',
-        data2: '01/10',
-        data3: '(Disponiveis)'
-      }
-    },
-    {
-      title: 'Betoneiras',
-      description: {
-        data1: 'R$10,00',
-        data2: '01/10',
-        data3: '(Disponiveis)'
-      }
-    }
-  ]
-
   assetCategories: AssetCategoryModel[] = []
+  results: AssetCategoryModel[] = []
 
   constructor(
     private assetCategoryService: AssetCategoryService
@@ -41,7 +23,13 @@ export class PatrimonyPage implements OnInit {
   loadCategoriesAsset() {
     this.assetCategoryService.list().subscribe((assetsCategories) => {
       this.assetCategories = assetsCategories as AssetCategoryModel[]
+      this.results = this.assetCategories
     })
+  }
+
+  handleInput(event) {
+    const query = event.target.value.toLowerCase();
+    this.results = this.assetCategories.filter((a) => a.description.toLowerCase().indexOf(query) > -1);
   }
 
 }

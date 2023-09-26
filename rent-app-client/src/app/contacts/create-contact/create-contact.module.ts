@@ -8,12 +8,14 @@ import { CreateContactPageRoutingModule } from './create-contact-routing.module'
 
 import { CreateContactPage } from './create-contact.page';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { MaskitoModule } from '@maskito/angular';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    MaskitoModule,
     CreateContactPageRoutingModule,
     ComponentsModule,
   ],

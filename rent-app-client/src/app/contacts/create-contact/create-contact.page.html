@@ -18,14 +18,14 @@
         </div>
         <div class="mt-4 flex flex-col gap-2">
           <ion-input class="custom" placeholder="Nome" name="Nome" [(ngModel)]="contact.name" required></ion-input>
-          <ion-input class="custom" placeholder="Telefone" name="telephone" [(ngModel)]="contact.telephone"
-            required></ion-input>
+          <ion-input class="custom" placeholder="Telefone" name="telephone" [maskito]="telphoneMask"
+            [maskitoElement]="maskPredicate" [(ngModel)]="contact.telephone" required></ion-input>
           <ion-input class="custom" placeholder="Email" name="email" [(ngModel)]="contact.email" required></ion-input>
         </div>
         <div class="flex justify-center mt-7">
           <div>
             <omni-button type="primary" [title]="idContactToEdit ? 'Editar' : 'Criar'" [disabled]="form.valid"
-              (click)="onSubmit()"></omni-button>
+              [function]="onSubmit"></omni-button>
           </div>
         </div>
       </ng-form>

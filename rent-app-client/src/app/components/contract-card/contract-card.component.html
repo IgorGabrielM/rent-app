@@ -28,13 +28,14 @@
                     [class]="contract.endDateLocate ? 'rounded-md' : 'rounded-md border-green-500 border-2'">
                     <div class="card w-full h-fit p-1 py-2 flex justify-between items-center">
                         <div>
-                            <strong class="text-xl">{{ contract.contactName }}</strong>
                             <div class="flex flex-col text-slate-500">
-                                <h2>Bairro: {{ contract.neighborhood }}</h2>
-                                <h2>Rua: {{ contract.neighborhood }}</h2>
-                                <h2>Nº: {{ contract.numberHouse }}</h2>
-                                <h2 *ngIf="contract.endDateLocate">Data final: {{ contract.endDateLocate |
-                                    date:'dd/MM/yyyy' }}</h2>
+                                <strong class="text-xl text-black">{{ contract.identifier }}</strong>
+                                <p>{{ contract.contactName }}</p>
+                                <p>Bairro: {{ contract.neighborhood }}</p>
+                                <p>Rua: {{ contract.neighborhood }}</p>
+                                <p>Nº: {{ contract.numberHouse }}</p>
+                                <p *ngIf="contract.endDateLocate">Data final: {{ contract.endDateLocate |
+                                    date:'dd/MM/yyyy' }}</p>
 
                             </div>
                         </div>

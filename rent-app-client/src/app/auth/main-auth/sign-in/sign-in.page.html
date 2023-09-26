@@ -15,7 +15,8 @@
         </div>
 
         <div class="mt-5">
-          <omni-button [disabled]="!form.valid" type="primary" title="Entrar" (click)="onSubmit()"></omni-button>
+          <omni-button [disabled]="!form.valid" (click)="form.valid ? onSubmit() : null" type="primary"
+            title="Entrar"></omni-button>
         </div>
       </ng-form>
     </div>
