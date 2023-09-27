@@ -62,6 +62,17 @@ export class ContractCardComponent implements OnInit {
     }
   }
 
+  verifyIsExpired(): string {
+    const currentDate = new Date()
+    if (currentDate.getUTCDate() > new Date(this.contract.endDateLocate).getUTCDate()) {
+      return 'rounded-md border-red-500 border-2'
+    } else if (currentDate.getUTCDate() == new Date(this.contract.endDateLocate).getUTCDate()) {
+      return 'rounded-md border-yellow-500 border-2'
+    } else {
+      return 'rounded-md'
+    }
+  }
+
   async deleteContractAlert(contractId: string) {
     const alert = await this.alertController.create({
       header: 'Deletar',

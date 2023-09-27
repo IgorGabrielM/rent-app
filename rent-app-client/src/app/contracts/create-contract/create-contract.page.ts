@@ -156,7 +156,7 @@ export class CreateContractPage implements OnInit {
     }
     if (step == 2) {
       if (this.contract.identifier && this.contract.neighborhood && this.contract.street && this.contract.numberHouse &&
-        this.contract.contactId && this.contract.endDateLocate && this.contract?.assets.length > 0 && this.isAgreed && this.imageUrl) {
+        this.contract.contactId && this.contract.endDateLocate && this.contract?.assets.length > 0 && this.isAgreed && (this.imageUrl || this.contract.image)) {
         return true
       } else {
         return false
