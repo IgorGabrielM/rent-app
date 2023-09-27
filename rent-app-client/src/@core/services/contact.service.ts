@@ -18,8 +18,10 @@ export class ContactService {
   }
 
   list() {
+    const uid = localStorage.getItem('uid')
     const contactsRef = collection(this.firestore, 'contact')
-    return collectionData(contactsRef, { idField: 'id' })
+    const contactsByUser = query(contactsRef, where("uid", "==", uid));
+    return collectionData(contactsByUser, { idField: 'id' })
   }
 
   async find(id: string) {

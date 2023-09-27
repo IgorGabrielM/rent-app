@@ -20,8 +20,10 @@ export class AssetService {
   }
 
   list() {
+    const uid = localStorage.getItem('uid')
     const assetsRef = collection(this.firestore, 'asset')
-    return collectionData(assetsRef, { idField: 'id' })
+    const assetsByUser = query(assetsRef, where("uid", "==", uid))
+    return collectionData(assetsByUser, { idField: 'id' })
   }
 
   async find(id: string) {
@@ -38,8 +40,9 @@ export class AssetService {
   }
 
   listByAssetCategory(idAssetCategory: string) {
+    const uid = localStorage.getItem('uid')
     const assetsRef = collection(this.firestore, 'asset');
-    const q = query(assetsRef, where('assetCategory.id', '==', idAssetCategory));
+    const q = query(assetsRef, where('assetCategory.id', '==', idAssetCategory), where("uid", "==", uid));
     return collectionData(q, { idField: 'id' });
   }
 

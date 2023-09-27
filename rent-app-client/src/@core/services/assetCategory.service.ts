@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, getDoc, updateDoc } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, getDoc, query, updateDoc, where } from '@angular/fire/firestore';
 import { AssetCategoryModel } from '../models/assetCategory.model';
 
 
@@ -20,8 +20,10 @@ export class AssetCategoryService {
   }
 
   list() {
+    const uid = localStorage.getItem('uid')
     const assetsCategoryRef = collection(this.firestore, 'asset_category')
-    return collectionData(assetsCategoryRef, { idField: 'id' })
+    const categoryAssetByUser = query(assetsCategoryRef, where("uid", "==", uid))
+    return collectionData(categoryAssetByUser, { idField: 'id' })
   }
 
   async find(id: string) {

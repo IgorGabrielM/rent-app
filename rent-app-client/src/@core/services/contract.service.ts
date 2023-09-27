@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, addDoc, collection, collectionData, doc, deleteDoc, updateDoc, getDoc } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, collectionData, doc, deleteDoc, updateDoc, getDoc, query, where } from '@angular/fire/firestore';
 import { ContractModel } from '../models/contract.model';
 
 
@@ -20,8 +20,10 @@ export class ContractService {
   }
 
   list() {
+    const uid = localStorage.getItem('uid')
     const contractsRef = collection(this.firestore, 'contract')
-    return collectionData(contractsRef, { idField: 'id' })
+    const contractByUser = query(contractsRef, where("uid", "==", uid));
+    return collectionData(contractByUser, { idField: 'id' })
   }
 
   getTermsServices() {
@@ -43,8 +45,10 @@ export class ContractService {
   }
 
   update(contract: ContractModel) {
+    const uid = localStorage.getItem('uid')
+
     const contractDocRef = doc(this.firestore, `contract/${contract.id}`)
-    return updateDoc(contractDocRef, contract as {});
+    return updateDoc(contractDocRef, { ...contract, uid: uid } as {});
   }
 
   delete(contractId: string) {

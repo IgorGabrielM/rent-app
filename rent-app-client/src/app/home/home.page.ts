@@ -32,6 +32,15 @@ export class HomePage implements OnInit {
   ionViewWillEnter() {
     this.filteredContracts = this.contracts
     this.loadContacts()
+    this.getUserUid()
+  }
+
+  async getUserUid() {
+    const uid = localStorage.getItem('uid')
+    if (!uid) {
+      await this.loginService.logout()
+      this.router.navigateByUrl('/', { replaceUrl: true })
+    }
   }
 
   filterData() {
