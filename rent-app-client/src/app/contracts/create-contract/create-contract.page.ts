@@ -6,10 +6,12 @@ import { MaskitoElementPredicateAsync, MaskitoOptions } from '@maskito/core';
 import { AssetModel } from 'src/@core/models/asset.model';
 import { ContactModel } from 'src/@core/models/contact.model';
 import { ContractModel } from 'src/@core/models/contract.model';
+import { UserModel } from 'src/@core/models/user.model';
 import { AssetService } from 'src/@core/services/asset.service';
 import { ContactService } from 'src/@core/services/contact.service';
 import { ContractService } from 'src/@core/services/contract.service';
 import { ImageService } from 'src/@core/services/image.service';
+import { UserService } from 'src/@core/services/user.service';
 import { CepService } from 'src/@core/utils/cep.service';
 import { DateFormatService } from 'src/@core/utils/date-format.service';
 import { ToastService } from 'src/@core/utils/toast.service';
@@ -28,7 +30,7 @@ export class CreateContractPage implements OnInit {
 
   isAgreed: boolean = false
   isOpenContractTerms: boolean = false
-  contractTerms: any
+  contractTerms: string
   imageAsBase64: string
   imageUrl?: string
 
@@ -44,16 +46,17 @@ export class CreateContractPage implements OnInit {
 
 
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private route: Router,
-    private toastService: ToastService,
-
     private contactService: ContactService,
     private contractService: ContractService,
+    private userService: UserService,
     private assetService: AssetService,
     private dateFormatService: DateFormatService,
     private cepService: CepService,
     private imageService: ImageService,
+
+    private activatedRoute: ActivatedRoute,
+    private route: Router,
+    private toastService: ToastService,
   ) { }
 
   ngOnInit() {
@@ -92,8 +95,10 @@ export class CreateContractPage implements OnInit {
   }
 
   loadContactTerms() {
-    this.contractService.getTermsServices().subscribe((term) => {
-      this.contractTerms = term
+    const uid = localStorage.getItem('uid')
+    this.userService.find(uid).then((user: UserModel) => {
+      console.log(user.contractTerms)
+      this.contractTerms = user.contractTerms
     })
   }
 
@@ -176,8 +181,7 @@ export class CreateContractPage implements OnInit {
           image: this.imageUrl,
           contactName: this.getNameContact(this.contract.contactId),
           createdAt: this.dateFormatService.turnTimestampOnYearMonthDay(data),
-          titleContract: this.contractTerms[0].title,
-          termsContract: this.contractTerms[0].term
+          termsContract: this.contractTerms
         }).then(() => {
           this.toastService.show('Sucesso', 'Contrato criado com sucesso!', {
             color: 'success',

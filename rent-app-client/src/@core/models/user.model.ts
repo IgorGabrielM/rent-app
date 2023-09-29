@@ -6,4 +6,5 @@ export class UserModel extends DefaultModel {
 
     name: string
     cnpj: string
+    contractTerms: string
 }

@@ -1,16 +1,12 @@
 <ion-accordion-group class="card">
     <ion-item-sliding (ionDrag)="slideToDelete($event, contract.id)" #itemSlide>
         <ion-item-options side="start">
-            <ion-item-option [color]="i % 2 === 0 ? 'secondary' : 'medium'" *ngFor="let option of icons; let i = index">
-                <div *ngIf="option !== 'clipboard-sharp'" [routerLink]="routerLinks[i]"
-                    [queryParams]="{ id: contract.id}"
-                    class="w-12 text-3xl flex justify-center items-center text-black">
-                    <ion-icon [name]="option"></ion-icon>
-                </div>
-                <div *ngIf="option === 'clipboard-sharp'" (click)="openPdfModal()"
-                    class="w-12 text-3xl flex justify-center items-center text-black">
-                    <ion-icon [name]="option"></ion-icon>
-                </div>
+            <ion-item-option *ngFor="let option of icons; let i = index" [color]="i % 2 === 0 ? 'secondary' : 'medium'"
+                class="w-16 h-full" [routerLink]="routerLinks.length > 0 ? routerLinks[i] : null"
+                [queryParams]="routerLinks.length > 0 ? { id: contract.id} : null"
+                (click)="option === 'clipboard-sharp' ? openPdfModal() : null">
+                <ion-icon *ngIf="option !== 'clipboard-sharp'" [name]="option" color="primary" size="large"></ion-icon>
+                <ion-icon *ngIf="option === 'clipboard-sharp'" [name]="option" color="primary" size="large"></ion-icon>
             </ion-item-option>
         </ion-item-options>
 

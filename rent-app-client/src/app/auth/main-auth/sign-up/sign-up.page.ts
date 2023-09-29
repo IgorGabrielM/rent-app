@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { MaskitoElementPredicateAsync, MaskitoOptions } from '@maskito/core';
 import { UserModel } from 'src/@core/models/user.model';
 import { LoginService } from 'src/@core/services/login.service';
@@ -27,11 +27,27 @@ export class SignUpPage implements OnInit {
 
     private router: Router,
     private toastService: ToastService,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private alertController: AlertController
   ) { }
 
   ngOnInit() {
     this.userToCreate = new UserModel()
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Termos do contrato',
+      message: 'O texto inserido será mostrado nos termos do contrato.',
+      buttons: [
+        {
+          text: 'OK',
+          role: 'confirm',
+          cssClass: 'alert-button-confirm',
+        }
+      ],
+    });
+    await alert.present();
   }
 
   async onSubmit() {

@@ -15,6 +15,17 @@
 
         <ion-input [(ngModel)]="userToCreate.email" class="custom" placeholder="Email" name="email"
           required></ion-input>
+
+        <ion-textarea [(ngModel)]="userToCreate.contractTerms" class="custom mt-5" placeholder="Termos do contrato"
+          name="constractTerms" required rows="5"></ion-textarea>
+        <div class="flex justify-between mb-5">
+          <span class="w-72 text-sm text-gray-500">Esse campo poderá ser alterado futuramente.</span>
+          <ion-button color="secondary" size="small" (click)="presentAlert()">
+            <ion-icon name="alert-circle"></ion-icon>
+          </ion-button>
+        </div>
+
+
         <ion-input [(ngModel)]="userToCreate.password" type="password"
           [class]="!passwordConfirm ? 'custom border-2 border-red-300' : 'custom border-2 border-green-300'"
           placeholder="Senha" name="password" required minlength="6"></ion-input>
@@ -26,7 +37,7 @@
       <div class="flex justify-center mt-5 mb-5">
         <div>
           <omni-button type="primary" title="Criar conta" [disabled]="!form.valid || !passwordConfirm"
-            [function]="onSubmit"></omni-button>
+            (click)="form.valid && passwordConfirm ? onSubmit() : null"></omni-button>
         </div>
       </div>
     </ng-form>

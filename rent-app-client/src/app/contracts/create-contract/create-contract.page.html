@@ -61,7 +61,7 @@
 
         <div class="flex justify-center mt-5 mb-5">
           <omni-button type="primary" title="Termos de contrato" [disabled]="!verifyToSubmit(1)"
-            (click)="isOpenContractTerms = true"></omni-button>
+            (click)="verifyToSubmit(1) ? isOpenContractTerms = true : null"></omni-button>
         </div>
       </ng-form>
     </div>
@@ -86,13 +86,13 @@
       <div class="text-center mt-3">
         <div>
           <strong class="text-xl">
-            {{contractTerms[0].title }}
+            Termos do contrato
           </strong>
         </div>
 
         <div class="m-5">
           <p>
-            {{contractTerms[0].term }}
+            {{contractTerms }}
           </p>
         </div>
         <div *ngIf="contract?.assets?.length > 0">

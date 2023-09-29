@@ -5,6 +5,7 @@ import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { ContractService } from 'src/@core/services/contract.service';
 import { ToastService } from 'src/@core/utils/toast.service';
+import { Clipboard } from '@capacitor/clipboard';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -101,6 +102,14 @@ export class ModalContractPdfComponent implements OnInit {
 
   totalValueCalculator(assetQuantity: number, assetPrice: number) {
     return String(assetQuantity * assetPrice)
+  }
+
+  async generateMesage() {
+    const message = ``
+
+    await Clipboard.write({
+      string: "Hello World!"
+    });
   }
 
   confirmNewDateForPay() {

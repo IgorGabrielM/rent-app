@@ -24,8 +24,8 @@
         </div>
         <div class="flex justify-center mt-7">
           <div>
-            <omni-button type="primary" [title]="idContactToEdit ? 'Editar' : 'Criar'" [disabled]="form.valid"
-              [function]="onSubmit"></omni-button>
+            <omni-button type="primary" [title]="idContactToEdit ? 'Editar' : 'Criar'" [disabled]="!form.valid"
+              (click)="onSubmit()"></omni-button>
           </div>
         </div>
       </ng-form>

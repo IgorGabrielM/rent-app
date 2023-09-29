@@ -45,8 +45,11 @@
 
 
     <div class="flex flex-col items-center gap-4">
-        <omni-button type="primary" title="Gerar PDF" [function]="generatePdf"></omni-button>
-        <omni-button type="success" title="Mensalidade paga" (click)="handlePaid = true"></omni-button>
+        <omni-button type="primary" title="Gerar PDF" (click)="generatePdf(contract)"></omni-button>
+        <omni-button type="outline" title="Gerar mensagem" (click)="generateMesage()"></omni-button>
+
+        <omni-button class="mt-2" type="success" title="Mensalidade paga" (click)="handlePaid = true"></omni-button>
+
     </div>
 
     <ion-modal #modal [isOpen]="handlePaid" [backdropDismiss]="false">

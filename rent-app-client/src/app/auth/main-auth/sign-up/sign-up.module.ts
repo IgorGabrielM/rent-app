@@ -17,7 +17,7 @@ import { MaskitoModule } from '@maskito/angular';
     IonicModule,
     SignUpPageRoutingModule,
     ComponentsModule,
-    MaskitoModule
+    MaskitoModule,
   ],
   declarations: [SignUpPage]
 })
