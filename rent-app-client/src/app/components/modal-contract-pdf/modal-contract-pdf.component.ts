@@ -105,7 +105,7 @@ export class ModalContractPdfComponent implements OnInit {
   }
 
   async generateMesage() {
-    const message = ``
+    const message = `Seu contrato expirou, o contrato possui um valor total de ${this.getTotalValue()}, com a data de vencimento de ${this.contract.endDateLocate}, deseja renova-lo?`
 
     await Clipboard.write({
       string: "Hello World!"
