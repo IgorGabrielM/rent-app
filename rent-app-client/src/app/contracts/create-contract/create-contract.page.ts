@@ -97,7 +97,6 @@ export class CreateContractPage implements OnInit {
   loadContactTerms() {
     const uid = localStorage.getItem('uid')
     this.userService.find(uid).then((user: UserModel) => {
-      console.log(user.contractTerms)
       this.contractTerms = user.contractTerms
     })
   }

@@ -1,19 +1,18 @@
 <ion-toolbar color="secondary">
   <ion-buttons slot="end">
     <ion-button (click)="logout()">
-      <ion-icon size="large" name="log-out"></ion-icon>
+      <ion-icon size="large" name="log-out-outline"></ion-icon>
     </ion-button>
   </ion-buttons>
   <ion-title class="font-bold">Home</ion-title>
 </ion-toolbar>
 
 <ion-content>
-  <div>
-    <div class="mt-1 bg-black">
-      <ion-datetime class="mx-auto " presentation="date" [preferWheel]="true" display-format="DD/MM/YYYY"
-        [(ngModel)]="selectedDate" (ionChange)="filterData()"></ion-datetime>
-    </div>
+  <div class="bg-transparent">
+    <ion-datetime class="mx-auto " presentation="date" [preferWheel]="true" display-format="DD/MM/YYYY"
+      [(ngModel)]="selectedDate" (ionChange)="filterData()"></ion-datetime>
   </div>
+  <ion-searchbar [debounce]="1000" (ionInput)="handleInput($event)" placeholder="Procurar"></ion-searchbar>
 
   <div class="content">
     <div class="mt-5">

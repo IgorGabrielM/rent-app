@@ -8,7 +8,7 @@ const redirectLoggedInToHome = () => redirectLoggedInTo(['tabs'])
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./auth/main-auth/main-auth.module').then(m => m.MainAuthPageModule),
+    loadChildren: () => import('./auth/sign-in/sign-in.module').then(m => m.SignInPageModule),
     ...canActivate(redirectLoggedInToHome)
   },
   {
@@ -21,16 +21,8 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule),
   },
   {
-    path: 'auth',
-    loadChildren: () => import('./auth/main-auth/main-auth.module').then(m => m.MainAuthPageModule),
-  },
-  {
-    path: 'sign-in',
-    loadChildren: () => import('./auth/main-auth/sign-in/sign-in.module').then(m => m.SignInPageModule)
-  },
-  {
     path: 'sign-up',
-    loadChildren: () => import('./auth/main-auth/sign-up/sign-up.module').then(m => m.SignUpPageModule)
+    loadChildren: () => import('./auth/sign-up/sign-up.module').then(m => m.SignUpPageModule)
   },
   {
     path: 'help-desk',

@@ -5,7 +5,6 @@ import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { ContractService } from 'src/@core/services/contract.service';
 import { ToastService } from 'src/@core/utils/toast.service';
-import { Clipboard } from '@capacitor/clipboard';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -107,9 +106,9 @@ export class ModalContractPdfComponent implements OnInit {
   async generateMesage() {
     const message = `Seu contrato expirou, o contrato possui um valor total de ${this.getTotalValue()}, com a data de vencimento de ${this.contract.endDateLocate}, deseja renova-lo?`
 
-    await Clipboard.write({
-      string: "Hello World!"
-    });
+    /*     await Clipboard.write({
+          string: "Hello World!"
+        }); */
   }
 
   confirmNewDateForPay() {

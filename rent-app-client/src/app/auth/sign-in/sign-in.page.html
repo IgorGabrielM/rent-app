@@ -1,9 +1,3 @@
-<ion-toolbar color="secondary">
-  <ion-buttons slot="start">
-    <ion-back-button default-href="#"></ion-back-button>
-  </ion-buttons>
-  <ion-title>Entrar</ion-title>
-</ion-toolbar>
 <ion-content fullscreen="true">
   <div class="h-full">
     <div class="w-full h-full flex justify-center items-center">
@@ -17,6 +11,9 @@
         <div class="mt-5">
           <omni-button [disabled]="!form.valid" (click)="form.valid ? onSubmit() : null" type="primary"
             title="Entrar"></omni-button>
+          <span class="text-sm/[10px]">Não possui conta? Crie uma <a
+              class="text-[color:var(--ion-color-secondary-shade)] font-bold" href="/sign-up">clicando
+              aqui</a></span>
         </div>
       </ng-form>
     </div>

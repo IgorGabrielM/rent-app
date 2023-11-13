@@ -25,21 +25,36 @@ export class HomePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.filteredContracts = this.contracts
     this.loadContacts()
+    this.filteredContracts = this.contracts
   }
 
   ionViewWillEnter() {
-    this.filteredContracts = this.contracts
-    this.loadContacts()
     this.getUserUid()
+    this.loadContacts()
+    this.filteredContracts = this.contracts
   }
-
   async getUserUid() {
     const uid = localStorage.getItem('uid')
     if (!uid) {
       await this.loginService.logout()
       this.router.navigateByUrl('/', { replaceUrl: true })
+    }
+  }
+
+  loadContacts() {
+    this.contractService.list().subscribe((contracts: ContractModel[]) => {
+      this.contracts = contracts
+      this.filterData()
+    })
+  }
+
+  handleInput(event) {
+    const query = event.target.value.toLowerCase();
+    if (query.length > 0) {
+      this.filteredContracts = this.contracts.filter((d) => d.contactName.toLowerCase().indexOf(query) > -1 || d.identifier === query);
+    } else {
+      this.loadContacts()
     }
   }
 
@@ -65,13 +80,6 @@ export class HomePage implements OnInit {
       });
     }
 
-  }
-
-  loadContacts() {
-    this.contractService.list().subscribe((contracts: ContractModel[]) => {
-      this.contracts = contracts
-      this.filterData()
-    })
   }
 
   async logout() {
