@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { Storage } from '@angular/fire/storage';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MaskitoElementPredicateAsync, MaskitoOptions } from '@maskito/core';
 import { AssetModel } from 'src/@core/models/asset.model';
@@ -29,7 +27,7 @@ export class CreateContractPage implements OnInit {
   contract: ContractModel
 
   isAgreed: boolean = false
-  isOpenContractTerms: boolean = false
+  isOpenContractTerms: boolean = true
   contractTerms: string
   imageAsBase64: string
   imageUrl?: string
@@ -43,7 +41,6 @@ export class CreateContractPage implements OnInit {
   };
 
   readonly maskPredicate: MaskitoElementPredicateAsync = async (el) => (el as HTMLIonInputElement).getInputElement();
-
 
   constructor(
     private contactService: ContactService,
@@ -84,6 +81,7 @@ export class CreateContractPage implements OnInit {
         })
       } else {
         this.contract = new ContractModel()
+        this.contract.assets = []
       }
     });
   }

@@ -1,5 +1,5 @@
 <ion-item [color]="contract.endDateLocate ? 'secondary' : 'medium'" lines="none" routerLink="./create-contract"
-    [queryParams]="{ id: contract.id}">
+    [queryParams]="{ id: contract.id}" class="shadow-md shadow-gray-700">
     <div class="h-fit p-1 py-2 flex justify-between items-center">
         <div class="flex flex-col text-slate-500">
             <strong class="text-xl text-black">{{ contract.identifier }}</strong>
@@ -7,7 +7,7 @@
             <p>Bairro: {{ contract.neighborhood }}</p>
             <p>Rua: {{ contract.neighborhood }}</p>
             <p>Nº: {{ contract.numberHouse }}</p>
-            <p *ngIf="contract.endDateLocate">Data final: {{ contract.endDateLocate |
+            <p *ngIf="contract.endDateLocate" [class]="verifyIsExpired()">Data final: {{ contract.endDateLocate |
                 date:'dd/MM/yyyy' }}</p>
         </div>
     </div>
