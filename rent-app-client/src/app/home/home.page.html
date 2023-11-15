@@ -1,4 +1,4 @@
-<ion-toolbar color="secondary">
+<ion-toolbar color="primary">
   <ion-buttons slot="end">
     <ion-button (click)="logout()">
       <ion-icon size="large" name="log-out-outline"></ion-icon>
@@ -8,11 +8,10 @@
 </ion-toolbar>
 
 <ion-content>
-  <div class="bg-transparent">
-    <ion-datetime class="mx-auto " presentation="date" [preferWheel]="true" display-format="DD/MM/YYYY"
-      [(ngModel)]="selectedDate" (ionChange)="filterData()"></ion-datetime>
-  </div>
-  <ion-searchbar [debounce]="1000" (ionInput)="handleInput($event)" placeholder="Procurar"></ion-searchbar>
+  <app-date-carousel (daySelected)="getDaySelected($event)"></app-date-carousel>
+
+  <ion-searchbar color="primary" [debounce]="1000" (ionInput)="handleInput($event)"
+    placeholder="Procurar"></ion-searchbar>
 
   <div class="content">
     <div class="mt-5">
@@ -23,4 +22,10 @@
       </div>
     </div>
   </div>
+
+  <!--   <div class="bg-transparent">
+    <ion-datetime class="mx-auto " presentation="date" [preferWheel]="true" display-format="DD/MM/YYYY"
+      [(ngModel)]="selectedDate" (ionChange)="filterData()"></ion-datetime>
+  </div> -->
+
 </ion-content>

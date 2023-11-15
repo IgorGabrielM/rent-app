@@ -58,6 +58,16 @@ export class HomePage implements OnInit {
     }
   }
 
+
+  getDaySelected(day: number) {
+    var date = new Date();
+    var ano = date.getFullYear();
+    var mes = (date.getMonth() + 1).toString().padStart(2, '0');
+    var dia = day.toString().padStart(2, '0');
+    this.selectedDate = ano + '-' + mes + '-' + dia
+    this.filterData()
+  }
+
   filterData() {
     if (!this.selectedDate) {
       var dat = new Date();

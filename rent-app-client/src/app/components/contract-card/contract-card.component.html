@@ -1,5 +1,21 @@
-<ion-accordion-group class="card">
-    <ion-item-sliding (ionDrag)="slideToDelete($event, contract.id)" #itemSlide>
+<ion-item [color]="contract.endDateLocate ? 'secondary' : 'medium'" lines="none" routerLink="./create-contract"
+    [queryParams]="{ id: contract.id}">
+    <div class="h-fit p-1 py-2 flex justify-between items-center">
+        <div class="flex flex-col text-slate-500">
+            <strong class="text-xl text-black">{{ contract.identifier }}</strong>
+            <p>{{ contract.contactName }}</p>
+            <p>Bairro: {{ contract.neighborhood }}</p>
+            <p>Rua: {{ contract.neighborhood }}</p>
+            <p>Nº: {{ contract.numberHouse }}</p>
+            <p *ngIf="contract.endDateLocate">Data final: {{ contract.endDateLocate |
+                date:'dd/MM/yyyy' }}</p>
+        </div>
+    </div>
+</ion-item>
+
+
+<!-- <ion-accordion-group class="card"> -->
+<!--     <ion-item-sliding (ionDrag)="slideToDelete($event, contract.id)" #itemSlide>
         <ion-item-options side="start">
             <ion-item-option *ngFor="let option of icons; let i = index" [color]="i % 2 === 0 ? 'secondary' : 'medium'"
                 class="w-16 h-full" [routerLink]="routerLinks.length > 0 ? routerLinks[i] : null"
@@ -10,43 +26,26 @@
             </ion-item-option>
         </ion-item-options>
 
-        <ion-item-options side="end">
+         <ion-item-options side="end">
             <ion-item-option color="danger">
                 <div class="w-12 text-3xl flex justify-center items-center text-gray text-black">
                     <ion-icon name="trash-sharp"></ion-icon>
                 </div>
             </ion-item-option>
-        </ion-item-options>
+        </ion-item-options> 
+    </ion-item-sliding> 
 
-        <ion-item class="w-96" lines="none">
-            <ion-accordion value="first">
-                <ion-item slot="header" [color]="contract.endDateLocate ? 'secondary' : 'medium'"
-                    [class]="contract.endDateLocate ? verifyIsExpired() : 'rounded-md border-green-500 border-2'">
-                    <div class="card w-full h-fit p-1 py-2 flex justify-between items-center">
-                        <div>
-                            <div class="flex flex-col text-slate-500">
-                                <strong class="text-xl text-black">{{ contract.identifier }}</strong>
-                                <p>{{ contract.contactName }}</p>
-                                <p>Bairro: {{ contract.neighborhood }}</p>
-                                <p>Rua: {{ contract.neighborhood }}</p>
-                                <p>Nº: {{ contract.numberHouse }}</p>
-                                <p *ngIf="contract.endDateLocate">Data final: {{ contract.endDateLocate |
-                                    date:'dd/MM/yyyy' }}</p>
+    -->
+<!--
+             <ion-accordion value="first">
+<div class="mx-auto ion-padding flex flex-col w-80 justify-between rounded-b-lg bg-[color:var(--ion-color-secondary)] text-[color:var(--ion-color-tertiary-contrast)]"
+    slot="content">
+    <div class="">
+        <p *ngFor="let asset of contract.assets">{{ asset.quantity }} - {{ asset.name }} - R${{
+            getValueOfQuantity(asset) }},00</p>
+    </div>
+    <p class="mt-2 font-bold">Valor total: R${{ getTotalValue() }},00</p>
 
-                            </div>
-                        </div>
-                    </div>
-                </ion-item>
-                <div class="mx-auto ion-padding flex flex-col w-80 justify-between rounded-b-lg bg-[color:var(--ion-color-secondary)] text-[color:var(--ion-color-tertiary-contrast)]"
-                    slot="content">
-                    <div class="">
-                        <p *ngFor="let asset of contract.assets">{{ asset.quantity }} - {{ asset.name }} - R${{
-                            getValueOfQuantity(asset) }},00</p>
-                    </div>
-                    <p class="mt-2 font-bold">Valor total: R${{ getTotalValue() }},00</p>
-
-                </div>
-            </ion-accordion>
-        </ion-item>
-    </ion-item-sliding>
-</ion-accordion-group>
+</div>
+</ion-accordion> -->
+<!-- </ion-accordion-group> -->

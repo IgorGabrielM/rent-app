@@ -15,6 +15,7 @@ import { AssetCardComponent } from './asset-card/asset-card.component';
 import { ContactCardComponent } from './contact-card/contact-card.component';
 import { ContractCardComponent } from './contract-card/contract-card.component';
 import { ModalContractPdfComponent } from './modal-contract-pdf/modal-contract-pdf.component';
+import { DateCarouselComponent } from './date-carousel/date-carousel.component';
 @NgModule({
   declarations: [
     OmniButtonComponent,
@@ -28,6 +29,7 @@ import { ModalContractPdfComponent } from './modal-contract-pdf/modal-contract-p
     ContactCardComponent,
     ContractCardComponent,
     ModalContractPdfComponent,
+    DateCarouselComponent,
   ],
   imports: [
     CommonModule,
@@ -47,6 +49,7 @@ import { ModalContractPdfComponent } from './modal-contract-pdf/modal-contract-p
     AssetCategoryCardComponent,
     ContactCardComponent,
     ContractCardComponent,
+    DateCarouselComponent,
   ]
 })
 export class ComponentsModule { }

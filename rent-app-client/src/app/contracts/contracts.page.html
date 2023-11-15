@@ -1,15 +1,14 @@
 <ion-content>
   <div class="mx-2 mt-1">
-    <ion-searchbar placeholder="Buscar contrato" color="secondary" (ionInput)="handleInput($event)"></ion-searchbar>
+    <ion-searchbar placeholder="Buscar contrato" color="primary" (ionInput)="handleInput($event)"></ion-searchbar>
   </div>
   <div class="mt-4 flex flex-col items-center justify-center" *ngFor="let contract of results">
-    <contract-card [routerLinks]="['./create-contract', 'open-modal']" [icons]="['pencil-sharp', 'clipboard-sharp']"
-      [routerLinkContract]="'./create-contract'" [contract]="contract"></contract-card>
+    <contract-card class="w-full" [contract]="contract"></contract-card>
   </div>
 </ion-content>
 
 <ion-fab vertical="bottom" horizontal="end">
-  <ion-fab-button routerLink="./create-contract" color="secondary">
+  <ion-fab-button routerLink="./create-contract" color="primary">
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
 </ion-fab>
