@@ -13,7 +13,7 @@ export class DateCarouselComponent implements OnInit {
   daySelectedToClass: number
 
   ngOnInit(): void {
-    this.getDaysOfCurrentMonth().then(() => console.log(this.daysOfCurrentMonth))
+    this.getDaysOfCurrentMonth().then()
   }
 
   getDaysOfCurrentMonth(): Promise<void> {

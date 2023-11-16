@@ -13,19 +13,13 @@
   <ion-searchbar color="primary" [debounce]="1000" (ionInput)="handleInput($event)"
     placeholder="Procurar"></ion-searchbar>
 
-  <div class="content">
+  <div class="felx justify-center">
     <div class="mt-5">
-      <div class="mt-4 mx-5" *ngFor="let contract of filteredContracts">
+      <div class="mt-4 mx-2" *ngFor="let contract of filteredContracts">
         <contract-card [routerLinks]="['../contracts/create-contract', 'open-modal']"
           [icons]="['pencil-sharp', 'clipboard-sharp']" [routerLinkContract]="'../contracts/create-contract'"
           [contract]="contract"></contract-card>
       </div>
     </div>
   </div>
-
-  <!--   <div class="bg-transparent">
-    <ion-datetime class="mx-auto " presentation="date" [preferWheel]="true" display-format="DD/MM/YYYY"
-      [(ngModel)]="selectedDate" (ionChange)="filterData()"></ion-datetime>
-  </div> -->
-
 </ion-content>

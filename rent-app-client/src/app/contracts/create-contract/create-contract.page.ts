@@ -27,7 +27,7 @@ export class CreateContractPage implements OnInit {
   contract: ContractModel
 
   isAgreed: boolean = false
-  isOpenContractTerms: boolean = true
+  isOpenContractTerms: boolean = false
   contractTerms: string
   imageAsBase64: string
   imageUrl?: string

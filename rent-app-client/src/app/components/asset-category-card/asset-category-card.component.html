@@ -1,28 +1,16 @@
-<ion-accordion-group>
-    <ion-item-sliding (ionDrag)="slideToDelete($event, assetCategotry.id)" #itemSlide>
-        <ion-item-options side="end">
-            <ion-item-option color="danger">
-                <div class="w-12 text-3xl flex justify-center items-center text-gray text-black">
-                    <ion-icon name="trash-sharp"></ion-icon>
-                </div>
-            </ion-item-option>
-        </ion-item-options>
-
-        <ion-item slot="header" color="secondary" class="rounded-md w-96 mx-2" [routerLink]="[data]"
-            [queryParams]="{ id: queryParamData }">
-            <div class="card h-fit p-1 flex justify-between items-center">
-                <div>
-                    <strong class="text-xl">{{ assetCategotry.description }}</strong>
-                    <div class="flex flex-col">
-                        <h2 class="text-gray-700">R$ {{ assetCategotry.value }},00 <span class="text-gray-400">(Valor
-                                Unitário)</span></h2>
-                        <!--                         <h2 *ngIf="assetsAvailable.length > 0 && assets.length > 0">
+<ion-item slot="header" color="secondary" lines="none" class="mx-auto shadow-md shadow-gray-500" [routerLink]="[data]"
+    [queryParams]="{ id: queryParamData }">
+    <div class="card h-fit p-1 flex justify-between items-center">
+        <div>
+            <strong class="text-xl">{{ assetCategotry.description }}</strong>
+            <div class="flex flex-col">
+                <h2 class="text-gray-700">R$ {{ assetCategotry.value }},00 <span class="text-gray-400">(Valor
+                        Unitário)</span></h2>
+                <!--                         <h2 *ngIf="assetsAvailable.length > 0 && assets.length > 0">
                             {{ assetsAvailable.length }} / {{ assets.length }} <span
                                 class="text-gray-400">(Disponiveis)</span>
                         </h2> -->
-                    </div>
-                </div>
             </div>
-        </ion-item>
-    </ion-item-sliding>
-</ion-accordion-group>
+        </div>
+    </div>
+</ion-item>
