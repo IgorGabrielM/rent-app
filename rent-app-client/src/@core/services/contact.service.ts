@@ -38,8 +38,10 @@ export class ContactService {
   }
 
   update(contact: ContactModel) {
+    const uid = localStorage.getItem('uid')
+
     const contactDocRef = doc(this.firestore, `contact/${contact.id}`)
-    return updateDoc(contactDocRef, { contact })
+    return updateDoc(contactDocRef, { contact, uid: uid })
   }
 
   delete(contactId: string) {

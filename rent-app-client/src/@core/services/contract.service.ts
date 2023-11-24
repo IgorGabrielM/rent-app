@@ -16,7 +16,7 @@ export class ContractService {
     const uid = localStorage.getItem('uid')
 
     const contractsRef = collection(this.firestore, 'contract')
-    return addDoc(contractsRef, { ...contract, uid: uid, contactId: contract.contactId, createdAt: new Date() } as ContractModel)
+    return addDoc(contractsRef, { ...contract, uid: uid, createdAt: new Date() } as ContractModel)
   }
 
   list() {

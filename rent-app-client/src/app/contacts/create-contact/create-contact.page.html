@@ -1,4 +1,4 @@
-<ion-toolbar color="secondary">
+<ion-toolbar color="primary">
   <ion-buttons slot="start">
     <ion-back-button default-href="#"></ion-back-button>
   </ion-buttons>
@@ -12,8 +12,8 @@
       <ng-form #form="ngForm">
         <div class="flex justify-center mt-8">
           <div
-            class="w-52 h-52 rounded-full flex justify-center items-center  shadow-xl bg-[color:var(--ion-color-secondary)]">
-            <ion-icon name="person-sharp" class="text-9xl mb-5 text-[color:var(--ion-color-primary)]"></ion-icon>
+            class="w-52 h-52 rounded-full flex justify-center items-center  shadow-xl bg-[color:var(--ion-color-primary)]">
+            <ion-icon name="person-sharp" class="text-9xl mb-5 text-[color:var(--ion-color-secondary)]"></ion-icon>
           </div>
         </div>
         <div class="mt-4 flex flex-col gap-2">
@@ -22,11 +22,10 @@
             [maskitoElement]="maskPredicate" [(ngModel)]="contact.telephone" required></ion-input>
           <ion-input class="custom" placeholder="Email" name="email" [(ngModel)]="contact.email" required></ion-input>
         </div>
-        <div class="flex justify-center mt-7">
-          <div>
-            <omni-button type="primary" [title]="idContactToEdit ? 'Editar' : 'Criar'" [disabled]="!form.valid"
-              (click)="onSubmit()"></omni-button>
-          </div>
+        <div class="flex flex-col items-center-center mt-7">
+          <omni-button type="primary" [title]="idContactToEdit ? 'Editar' : 'Criar'" [disabled]="!form.valid"
+            (click)="onSubmit()"></omni-button>
+          <omni-button type="danger" title="Deletar" (click)="deleteContractAlert()"></omni-button>
         </div>
       </ng-form>
     </div>
@@ -39,8 +38,8 @@
     <div>
       <div class="flex justify-center mt-8">
         <div
-          class="w-52 h-52 rounded-full flex justify-center items-center shadow-xl bg-[color:var(--ion-color-secondary)]">
-          <ion-icon name="person-sharp" class="text-9xl mb-5 text-[color:var(--ion-color-primary)]"></ion-icon>
+          class="w-52 h-52 rounded-full flex justify-center items-center shadow-xl bg-[color:var(--ion-color-primary)]">
+          <ion-icon name="person-sharp" class="text-9xl mb-5 text-[color:var(--ion-color-secondary)]"></ion-icon>
         </div>
       </div>
       <div class="mt-4 flex flex-col items-center gap-2">

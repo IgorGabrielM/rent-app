@@ -10,22 +10,27 @@
     <div>
       <div class="flex justify-center mt-2">
         <div
-          class="category-card h-52 rounded-xl flex justify-center items-center shadow-xl bg-[color:var(--ion-color-secondary)]">
-          <div class="flex flex-col justify-center">
-            <ion-icon name="folder-open-sharp" class="text-9xl ml-6 text-[color:var(--ion-color-primary)]"></ion-icon>
-            <strong class="text-3xl text-[color:var(--ion-color-primary)]">Categoria</strong>
+          class="category-card h-52 rounded-xl flex justify-center items-center shadow-xl bg-[color:var(--ion-color-primary)]">
+          <div class="flex flex-col justify-center text-[color:var(--ion-color-secondary)]">
+            <ion-icon name="folder-open-sharp" class="text-9xl ml-6"></ion-icon>
+            <strong class="text-3xl">Categoria</strong>
           </div>
         </div>
       </div>
-      <div class="mt-2 w-full" *ngIf="assetCategory">
-        <asset-category-card class="mx-auto w-full" data="../create-tool-category/" [queryParamData]="assetCategoryId"
-          [assetCategotry]="assetCategory"></asset-category-card>
-      </div>
+      <div *ngIf="assetCategory">
+        <div class="flex justify-center">
+          <asset-category-card class="mt-2 w-90" data="../create-tool-category/" [queryParamData]="assetCategoryId"
+            [assetCategotry]="assetCategory"></asset-category-card>
+        </div>
 
-      <div class="mt-6">
-        <div class="mt-2" *ngFor="let asset of assets">
-          <asset-card [title]="asset.name" [description]="asset.identifier" [assetId]="asset.id" icon="pencil-sharp"
-            data="../edit-tool/" [queryParamData]="asset.id"></asset-card>
+        <div class="w-80 mx-auto mt-6 mb-2 flex justify-center items-center gap-2">
+          <h4 class="text-xl font-bold">Equipamentos</h4>
+          <div class="w-full h-1 bg-stone-800 rounded-xl"></div>
+        </div>
+
+        <div class="w-90 flex mt-2 gap-2" *ngFor="let asset of assets">
+          <asset-card class="w-90" [title]="asset.name" [description]="asset.identifier" [assetId]="asset.id"
+            icon="pencil-sharp" data="../edit-tool/" [queryParamData]="asset.id"></asset-card>
         </div>
       </div>
     </div>

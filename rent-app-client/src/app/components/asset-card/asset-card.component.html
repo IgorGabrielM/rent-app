@@ -1,30 +1,11 @@
-<ion-item-sliding (ionDrag)="slideToDelete($event, assetId)" #itemSlide>
-  <ion-item-options side="start">
-    <ion-item-option color="secondary" class="rounded-xl">
-      <div *ngIf="icon && data" [routerLink]="[data]" [queryParams]="{ id: queryParamData }"
-        class="w-12 text-3xl flex justify-center items-center text-gray text-black">
-        <ion-icon [name]="icon"></ion-icon>
-      </div>
-    </ion-item-option>
-  </ion-item-options>
-
-  <ion-item-options side="end">
-    <ion-item-option color="danger" class="rounded-xl">
-      <div class="w-12 text-3xl flex justify-center items-center text-gray text-black">
-        <ion-icon name="trash-sharp"></ion-icon>
-      </div>
-    </ion-item-option>
-  </ion-item-options>
-
-  <ion-item slot="header" color="secondary" class="rounded-md w-96 mx-2">
-    <div class="card h-fit p-1 flex justify-between items-center">
-      <div class="">
-        <strong class="text-xl">{{ title }}</strong>
-        <div class="flex">
-          <h2 class="text-gray-500">{{ description }} &nbsp;</h2>
-        </div>
+<ion-item color="secondary" lines="none" class="w-full mx-auto rounded-md shadow-md shadow-gray-500"
+  [routerLink]="[data]" [queryParams]="{ id: queryParamData }">
+  <div class="card h-fit p-1 flex justify-between items-center">
+    <div class="">
+      <strong class="text-xl">{{ title }}</strong>
+      <div class="flex">
+        <h2 class="text-gray-500">{{ description }} &nbsp;</h2>
       </div>
     </div>
-  </ion-item>
-
-</ion-item-sliding>
+  </div>
+</ion-item>

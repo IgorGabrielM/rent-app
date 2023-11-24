@@ -16,6 +16,7 @@ import { ContactCardComponent } from './contact-card/contact-card.component';
 import { ContractCardComponent } from './contract-card/contract-card.component';
 import { ModalContractPdfComponent } from './modal-contract-pdf/modal-contract-pdf.component';
 import { DateCarouselComponent } from './date-carousel/date-carousel.component';
+import { CalendarComponent } from './calendar/calendar.component';
 @NgModule({
   declarations: [
     OmniButtonComponent,
@@ -30,6 +31,7 @@ import { DateCarouselComponent } from './date-carousel/date-carousel.component';
     ContractCardComponent,
     ModalContractPdfComponent,
     DateCarouselComponent,
+    CalendarComponent,
   ],
   imports: [
     CommonModule,
@@ -49,6 +51,7 @@ import { DateCarouselComponent } from './date-carousel/date-carousel.component';
     AssetCategoryCardComponent,
     ContactCardComponent,
     ContractCardComponent,
+    CalendarComponent,
     DateCarouselComponent,
   ]
 })

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { MaskitoElementPredicateAsync, MaskitoOptions } from '@maskito/core';
 import { ContactModel } from 'src/@core/models/contact.model';
 import { ContactService } from 'src/@core/services/contact.service';
@@ -21,10 +22,12 @@ export class CreateContactPage implements OnInit {
   };
 
   constructor(
-    private activatedRoute: ActivatedRoute,
     private contactService: ContactService,
+
+    private activatedRoute: ActivatedRoute,
     private toastService: ToastService,
-    private route: Router,
+    private router: Router,
+    private alertController: AlertController,
   ) { }
 
   ngOnInit() {
@@ -55,7 +58,7 @@ export class CreateContactPage implements OnInit {
             duration: 2000,
             position: 'top',
           });
-          this.route.navigate(['/tabs/contacts'])
+          this.router.navigate(['/tabs/contacts'])
           this.contact = new ContactModel()
         })
       } else {
@@ -65,7 +68,7 @@ export class CreateContactPage implements OnInit {
             duration: 2000,
             position: 'top',
           });
-          this.route.navigate(['/tabs/contacts'])
+          this.router.navigate(['/tabs/contacts'])
           this.contact = new ContactModel()
         })
       }
@@ -76,6 +79,40 @@ export class CreateContactPage implements OnInit {
         position: 'top',
       });
     }
+  }
+
+  async deleteContractAlert() {
+    const alert = await this.alertController.create({
+      header: 'Deletar',
+      message: 'Deseja deletar o contrato? Ele não podera ser restaurado posteriormente.',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'alert-button-confirm',
+          handler: () => { }
+        },
+        {
+          text: 'Confirmar',
+          cssClass: 'alert-button-confirm',
+          handler: () => {
+            this.deleteContact()
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  deleteContact() {
+    this.contactService.delete(this.idContactToEdit).then(() => {
+      this.router.navigate(['/tabs/contacts']);
+      this.toastService.show('Sucesso', 'Contato deletado com sucesso', {
+        color: 'success',
+        duration: 2000,
+        position: 'top',
+      })
+    })
   }
 
 }

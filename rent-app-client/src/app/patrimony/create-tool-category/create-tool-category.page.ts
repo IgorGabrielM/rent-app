@@ -18,8 +18,9 @@ export class CreateToolCategoryPage implements OnInit {
     private assetCategoryService: AssetCategoryService,
 
     private toastService: ToastService,
-    private route: Router,
+    private router: Router,
     private activatedRoute: ActivatedRoute,
+    private alertController: AlertController,
   ) { }
 
   ngOnInit() {
@@ -54,7 +55,7 @@ export class CreateToolCategoryPage implements OnInit {
             duration: 2000,
             position: 'top',
           });
-          this.route.navigate(['/tabs/patrimony'])
+          this.router.navigate(['/tabs/patrimony'])
           this.assetCategory = new AssetCategoryModel()
         })
       } else {
@@ -64,7 +65,7 @@ export class CreateToolCategoryPage implements OnInit {
             duration: 2000,
             position: 'top',
           });
-          this.route.navigate(['/tabs/patrimony'])
+          this.router.navigate(['/tabs/patrimony'])
           this.assetCategory = new AssetCategoryModel()
         })
       }
@@ -75,6 +76,40 @@ export class CreateToolCategoryPage implements OnInit {
         position: 'top',
       })
     }
+  }
+
+  async showAlertToDelete(categoryAssetId: string) {
+    const alert = await this.alertController.create({
+      header: 'Deletar',
+      message: 'Deseja deletar a categoria? Ela não podera ser restaurado posteriormente.',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'alert-button-confirm',
+          handler: () => { }
+        },
+        {
+          text: 'Confirmar',
+          cssClass: 'alert-button-confirm',
+          handler: () => {
+            this.deleteCategoryAsset(categoryAssetId)
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  deleteCategoryAsset(categoryAssetId: string) {
+    this.assetCategoryService.delete(categoryAssetId).then(() => {
+      this.router.navigate(['/tabs/patrimony']);
+      this.toastService.show('Successo', 'Equipamento deletado com sucesso', {
+        color: 'success',
+        duration: 2000,
+        position: 'top',
+      });
+    })
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { AssetModel } from 'src/@core/models/asset.model';
 import { AssetCategoryModel } from 'src/@core/models/assetCategory.model';
 import { AssetService } from 'src/@core/services/asset.service';
@@ -19,9 +20,12 @@ export class CreateToolPage implements OnInit {
   constructor(
     private assetCategoryService: AssetCategoryService,
     private assetService: AssetService,
+
     private toastService: ToastService,
-    private route: Router,
+    private router: Router,
+    private route: ActivatedRoute,
     private activatedRoute: ActivatedRoute,
+    private alertController: AlertController,
   ) { }
 
   ngOnInit() {
@@ -57,7 +61,11 @@ export class CreateToolPage implements OnInit {
             duration: 2000,
             position: 'top',
           });
-          this.route.navigate(['/tabs/patrimony'])
+          this.router.navigate(['/tabs/patrimony/edit-categories-and-tools'], {
+            relativeTo: this.route,
+            queryParams: { id: this.asset.assetCategory.id },
+            queryParamsHandling: 'merge'
+          });
           this.asset = new AssetModel()
         })
       } else {
@@ -67,7 +75,11 @@ export class CreateToolPage implements OnInit {
             duration: 2000,
             position: 'top',
           });
-          this.route.navigate(['/tabs/patrimony'])
+          this.router.navigate(['/tabs/patrimony/edit-categories-and-tools'], {
+            relativeTo: this.route,
+            queryParams: { id: this.asset.assetCategory.id },
+            queryParamsHandling: 'merge'
+          });
           this.asset = new AssetModel()
         })
       }
@@ -78,6 +90,44 @@ export class CreateToolPage implements OnInit {
         position: 'top',
       });
     }
+  }
+
+  async showAlertToDelete(assetId: string) {
+    const alert = await this.alertController.create({
+      header: 'Deletar',
+      message: 'Deseja deletar o equipamento? Ele não podera ser restaurado posteriormente.',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'alert-button-confirm',
+          handler: () => { }
+        },
+        {
+          text: 'Confirmar',
+          cssClass: 'alert-button-confirm',
+          handler: () => {
+            this.deleteAsset(assetId)
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  deleteAsset(assetId: string) {
+    this.assetService.delete(assetId).then(() => {
+      this.router.navigate(['/tabs/patrimony/edit-categories-and-tools'], {
+        relativeTo: this.route,
+        queryParams: { id: this.asset.assetCategory.id },
+        queryParamsHandling: 'merge'
+      });
+      this.toastService.show('Successo', 'Equipamento deletado com sucesso', {
+        color: 'success',
+        duration: 2000,
+        position: 'top',
+      });
+    })
   }
 
 }

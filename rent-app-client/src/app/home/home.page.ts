@@ -98,4 +98,8 @@ export class HomePage implements OnInit {
     this.router.navigateByUrl('/', { replaceUrl: true })
   }
 
+  handleCalendar(event) {
+    console.log(event)
+  }
+
 }

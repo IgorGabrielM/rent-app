@@ -10,3 +10,8 @@
 <ion-button *ngIf="type === 'success'" [disabled]="disabled" color="success" class="success">
   <strong>{{ title }}</strong>
 </ion-button>
+
+<ion-button *ngIf="type === 'danger'" color="danger" (click)=" function()" [disabled]="disabled ? true : false"
+  class="primary">
+  <strong>{{ title }}</strong>
+</ion-button>

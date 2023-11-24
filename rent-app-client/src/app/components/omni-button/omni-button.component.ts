@@ -8,7 +8,7 @@ import { ToastService } from 'src/@core/utils/toast.service';
 })
 export class OmniButtonComponent implements OnInit {
   @Input() title: string
-  @Input() type: 'primary' | 'outline' | 'success'
+  @Input() type: 'primary' | 'outline' | 'success' | 'danger'
   @Input() disabled: boolean
   @Input() function?: Function
 

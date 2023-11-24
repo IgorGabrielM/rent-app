@@ -1,4 +1,4 @@
-<ion-toolbar color="secondary">
+<ion-toolbar color="primary">
   <ion-title>Criar ticket</ion-title>
 </ion-toolbar>
 
@@ -6,24 +6,28 @@
   <ng-form #form="ngForm">
     <div class="w-full flex justify-center">
       <div class="mt-4 flex flex-col gap-2 justify-center items-center">
-        <ion-input class="custom" placeholder="Titulo" name="title" [(ngModel)]="ticket.title" required></ion-input>
-        <ion-textarea class="custom" placeholder="Descrição" name="description" [(ngModel)]="ticket.description"
-          rows="20" required></ion-textarea>
+        <ion-input class="custom rounded-md shadow-md shadow-gray-500" placeholder="Titulo" name="title"
+          [(ngModel)]="ticket.title" required></ion-input>
+        <ion-textarea class="custom rounded-md shadow-md shadow-gray-500" placeholder="Descrição" name="description"
+          [(ngModel)]="ticket.description" rows="20" required></ion-textarea>
 
-        <div class="w-full flex justify-center">
-          <omni-button (click)="uploadImage()" type="primary"
-            [title]="!imageUrl ? 'Enviar imagem' : 'Editar imagem'"></omni-button>
+        <div>
+          <div class="flex justify-center">
+            <omni-button (click)="uploadImage()" type="primary"
+              [title]="!imageUrl ? 'Enviar imagem' : 'Editar imagem'"></omni-button>
+          </div>
+
+          <div *ngIf="imageUrl" class="w-96 my-2">
+            <ion-img [src]="imageUrl" alt="Imagem selecionada"></ion-img>
+          </div>
         </div>
 
-        <div class="w-96 my-2">
-          <ion-img *ngIf="imageUrl" [src]="imageUrl" alt="Imagem selecionada"></ion-img>
-        </div>
       </div>
     </div>
 
-    <div class="flex justify-center mt-5">
-      <ion-button *ngIf="isUploadingImage" color="secondary" class="w-full h-10 mx-5 shadow-md shadow-gray-300">
-        <ion-spinner color="primary" name="circular"></ion-spinner>
+    <div class="flex justify-center">
+      <ion-button *ngIf="isUploadingImage" color="primary" class="w-full h-10 mx-5 shadow-md shadow-gray-300">
+        <ion-spinner color="secondary" name="circular"></ion-spinner>
       </ion-button>
       <omni-button *ngIf="!isUploadingImage" type="outline" title="Enviar" (click)="onSubmit()"></omni-button>
     </div>
