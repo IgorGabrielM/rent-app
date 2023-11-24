@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { InfiniteScrollCustomEvent } from '@ionic/angular';
 
 export class DayModel {
   day: number
@@ -20,7 +22,9 @@ export class CalendarComponent implements OnInit {
 
   @Input() eventsDays: { day: number, color: string, [key: string]: any; }[]
 
-  isOpenPopover: boolean = false;
+  isOpenSelectYear: boolean = false;
+
+  years: number[] = []
 
   mounthsName: string[] = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
   daysOfWeek: string[] = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
@@ -33,16 +37,19 @@ export class CalendarComponent implements OnInit {
 
   selectedDay: number;
   selectedYear: number
-
   selectedMonth: number;
   selectedMonthName: string;
 
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.generateCalendar(new Date());
+    this.loadDate()
     setTimeout(() => {
       this.loadEvents()
-      this.loadDate()
+      this.generateYears()
     }, 500)
   }
 
@@ -62,10 +69,63 @@ export class CalendarComponent implements OnInit {
     }
   }
 
+  handleModal() {
+    if (!this.isOpenSelectYear) {
+      setTimeout(() => {
+        this.router.navigate([], { fragment: this.selectedYear.toString() }).then(() => {
+          const element = document.getElementById(this.selectedYear.toString());
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          } else {
+          }
+        });
+      }, 100)
+    }
+    this.isOpenSelectYear = !this.isOpenSelectYear
+  }
+
+  generateYears(lastYear?: number) {
+    if (!lastYear) {
+      const date = new Date()
+      const curentYear = date.getFullYear()
+      for (let i = 1; i < 20; i++) {
+        this.years.push(curentYear - i)
+      }
+      for (let i = 0; i < 20; i++) {
+        this.years.push(curentYear + i)
+      }
+      this.years = this.years.sort((a, b) => a - b)
+    }
+  }
+
+  onIonInfinite(ev) {
+    this.generateItems();
+    setTimeout(() => {
+      (ev as InfiniteScrollCustomEvent).target.complete();
+    }, 1500);
+  }
+
+  private generateItems() {
+    const count = this.years[this.years.length - 1];
+    for (let i = 0; i < 20; i++) {
+      this.years.push(count + i);
+    }
+  }
+
+  selectYear(year: number) {
+    this.selectedYear = year
+    this.weeks = []
+    this.generateCalendar(new Date(this.selectedYear, this.selectedMonth, 1))
+    setTimeout(() => {
+      this.loadEvents()
+    }, 500)
+    this.isOpenSelectYear = !this.isOpenSelectYear
+    this.currentMonth == this.selectedMonth && this.currentYear === this.selectedYear ? this.currentDay = new Date().getDate() : this.currentDay = undefined
+  }
+
   generateCalendar(date: Date) {
     const firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1);
     const lastDayOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-
     const firstDayOfWeek = firstDayOfMonth.getDay();
 
     let currentDay = firstDayOfMonth;
@@ -81,26 +141,24 @@ export class CalendarComponent implements OnInit {
     // Preencher os dias do mês atual
     while (currentDay <= lastDayOfMonth) {
       currentWeek.push({ day: currentDay.getDate(), mounth: this.mounthsName[date.getMonth()], events: [] });
-
       if (currentDay.getDay() === 6) {
         this.weeks.push(currentWeek);
         currentWeek = [];
       }
-
       currentDay.setDate(currentDay.getDate() + 1);
-    }
-
-    // Preencher os dias do próximo mês
-    for (let i = currentWeek.length; i < 7; i++) {
-      const day = new Date(lastDayOfMonth);
-
-      day.setDate(i - 4);
-      currentWeek.push({ day: day.getDate(), mounth: this.mounthsName[date.getMonth() + 1], events: [] });
     }
 
     // Adicionar a última semana
     if (currentWeek.length > 0) {
       this.weeks.push(currentWeek);
+    }
+
+    // Preencher os dias do próximo mês
+    const lastWeek = this.weeks[this.weeks.length - 1]
+    if (lastWeek.length < 7) {
+      for (let i = 1; lastWeek.length < 7; i += 1) {
+        lastWeek.push({ day: i, mounth: this.mounthsName[(this.selectedMonth + 1)], events: [] })
+      }
     }
   }
 
@@ -108,11 +166,13 @@ export class CalendarComponent implements OnInit {
     this.weeks.forEach((week) => {
       week.forEach((day) => {
         const events = this.eventsDays.filter((event) => event.day === day.day)
-        events.forEach((event) => {
-          if (event && day.mounth === this.currentMonthName) {
-            day.events.push(event)
-          }
-        })
+        if (events && events.length > 0) {
+          events.forEach((event) => {
+            if (event && day.mounth === this.currentMonthName) {
+              day.events.push(event)
+            }
+          })
+        }
       })
     })
   }
@@ -138,7 +198,10 @@ export class CalendarComponent implements OnInit {
 
       this.weeks = []
       this.generateCalendar(new Date(this.selectedMonth))
-      this.currentMonth == this.selectedMonth ? this.currentDay = new Date().getDate() : this.currentDay = undefined
+      setTimeout(() => {
+        this.loadEvents()
+      }, 500)
+      this.currentMonth == this.selectedMonth && this.currentYear === this.selectedYear ? this.currentDay = new Date().getDate() : this.currentDay = undefined
 
     } else {
       this.selectedMonth -= 1
@@ -146,7 +209,10 @@ export class CalendarComponent implements OnInit {
 
       this.weeks = []
       this.generateCalendar(new Date(this.selectedYear, this.selectedMonth, 1))
-      this.currentMonth == this.selectedMonth ? this.currentDay = new Date().getDate() : this.currentDay = undefined
+      setTimeout(() => {
+        this.loadEvents()
+      }, 500)
+      this.currentMonth == this.selectedMonth && this.currentYear === this.selectedYear ? this.currentDay = new Date().getDate() : this.currentDay = undefined
     }
   }
 
@@ -158,7 +224,10 @@ export class CalendarComponent implements OnInit {
 
       this.weeks = []
       this.generateCalendar(new Date(this.selectedMonth))
-      this.currentMonth == this.selectedMonth ? this.currentDay = new Date().getDate() : this.currentDay = undefined
+      setTimeout(() => {
+        this.loadEvents()
+      }, 500)
+      this.currentMonth == this.selectedMonth && this.currentYear === this.selectedYear ? this.currentDay = new Date().getDate() : this.currentDay = undefined
 
     } else {
       this.selectedMonth += 1
@@ -166,7 +235,10 @@ export class CalendarComponent implements OnInit {
 
       this.weeks = []
       this.generateCalendar(new Date(this.selectedYear, this.selectedMonth, 1))
-      this.currentMonth == this.selectedMonth ? this.currentDay = new Date().getDate() : this.currentDay = undefined
+      setTimeout(() => {
+        this.loadEvents()
+      }, 500)
+      this.currentMonth == this.selectedMonth && this.currentYear === this.selectedYear ? this.currentDay = new Date().getDate() : this.currentDay = undefined
     }
   }
 }

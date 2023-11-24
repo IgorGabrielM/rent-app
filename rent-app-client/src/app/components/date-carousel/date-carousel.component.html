@@ -1,9 +1,9 @@
 <swiper [slidesPerView]="10" [config]="{ width: 45 }" [initialSlide]="currentDay - 4">
     <ng-template *ngFor="let day of daysOfCurrentMonth" swiperSlide>
         <div (click)="selectDay(day)"
-            [class]="daySelectedToClass === day ? 'w-[40px] h-[40px] bg-[color:var(--ion-color-primary)] text-white shadow-md my-3 rounded-full flex justify-center items-center ion-activatable ripple-parent'
-            : currentDay !== day ? 'w-[35px] h-[35px] bg-white shadow-lg my-3 rounded-full flex justify-center items-center ion-activatable ripple-parent'
-            : 'w-[35px] h-[35px] bg-[color:var(--ion-color-primary-tint)] shadow-lg my-3 rounded-full flex justify-center items-center ion-activatable ripple-parent'">
+            [class]="daySelectedToClass === day ? 'w-[40px] h-[40px] bg-[color:var(--ion-color-tertiary)] text-white shadow-md my-3 rounded-full flex justify-center items-center ion-activatable ripple-parent'
+            : currentDay !== day ? 'w-[35px] h-[35px] bg-[color:var(--ion-color-secondary)] text-gray-400 shadow-lg my-3 rounded-full flex justify-center items-center ion-activatable ripple-parent'
+            : 'w-[35px] h-[35px] bg-[color:var(--ion-color-primary)] text-gray-400 shadow-lg my-3 rounded-full flex justify-center items-center ion-activatable ripple-parent'">
             <ion-ripple-effect class="rounded-full"></ion-ripple-effect>
             <ion-label>{{ day }}</ion-label>
         </div>
