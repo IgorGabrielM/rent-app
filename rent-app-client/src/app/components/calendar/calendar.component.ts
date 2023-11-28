@@ -6,6 +6,7 @@ export class DayModel {
   day: number
   mounth: string
   events?: {
+    date: Date
     color: string
     [key: string]: any;
   }[]
@@ -20,7 +21,7 @@ export class DayModel {
 export class CalendarComponent implements OnInit {
   @Output() dayEvent: EventEmitter<DayModel> = new EventEmitter<DayModel>();
 
-  @Input() eventsDays: { day: number, color: string, [key: string]: any; }[]
+  @Input() eventsDays: { date: Date, color: string, [key: string]: any; }[]
 
   isOpenSelectYear: boolean = false;
 
@@ -35,7 +36,7 @@ export class CalendarComponent implements OnInit {
   currentYear: number;
   currentDay: number;
 
-  selectedDay: number;
+  selectedDay: Date;
   selectedYear: number
   selectedMonth: number;
   selectedMonthName: string;
@@ -45,8 +46,8 @@ export class CalendarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.generateCalendar(new Date());
     this.loadDate()
+    this.generateCalendar(new Date());
     setTimeout(() => {
       this.loadEvents()
       this.generateYears()
@@ -165,7 +166,7 @@ export class CalendarComponent implements OnInit {
   loadEvents() {
     this.weeks.forEach((week) => {
       week.forEach((day) => {
-        const events = this.eventsDays.filter((event) => event.day === day.day)
+        const events = this.eventsDays.filter((event) => event.date.getDate() === day.day && (event.date.getMonth() - 1) === this.selectedMonth && event.date.getFullYear() === this.selectedYear)
         if (events && events.length > 0) {
           events.forEach((event) => {
             if (event && day.mounth === this.currentMonthName) {
@@ -184,10 +185,10 @@ export class CalendarComponent implements OnInit {
   }
 
   clickDay(day: DayModel) {
-    if (day.mounth === this.currentMonthName) {
-      this.selectedDay = day.day
-      this.dayEvent.emit(day)
-    }
+    console.log(this.selectedMonth)
+    console.log(this.mounthsName.findIndex((month) => month === day.mounth))
+    this.selectedDay = new Date(this.selectedYear, (this.mounthsName.findIndex((month) => month === day.mounth)), day.day)
+    this.dayEvent.emit(day)
   }
 
   backMounth() {

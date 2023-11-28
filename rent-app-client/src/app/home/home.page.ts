@@ -17,6 +17,8 @@ export class HomePage implements OnInit {
   searchTerm: string = '';
   selectedDate: string = '';
 
+  events = [{ date: new Date(2023, 11, 2), color: '#606B73', id: 1 }, { date: new Date(2023, 11, 11), color: '#6370ff' }, { date: new Date(2023, 11, 10), color: '#606B73' }, { date: new Date(2023, 11, 15), color: '#E02E29' }]
+
   constructor(
     private contractService: ContractService,
     private loginService: LoginService,

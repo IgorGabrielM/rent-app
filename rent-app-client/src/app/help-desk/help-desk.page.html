@@ -1,14 +1,14 @@
 <ion-toolbar color="primary">
-  <ion-title>Criar ticket</ion-title>
+  <ion-title class="font-bold">Criar ticket</ion-title>
 </ion-toolbar>
 
 <ion-content>
   <ng-form #form="ngForm">
     <div class="w-full flex justify-center">
       <div class="mt-4 flex flex-col gap-2 justify-center items-center">
-        <ion-input class="custom rounded-md shadow-md shadow-gray-500" placeholder="Titulo" name="title"
+        <ion-input class="custom rounded-md border-2 border-gray-600" placeholder="Titulo" name="title"
           [(ngModel)]="ticket.title" required></ion-input>
-        <ion-textarea class="custom rounded-md shadow-md shadow-gray-500" placeholder="Descrição" name="description"
+        <ion-textarea class="custom rounded-md border-2 border-gray-600" placeholder="Descrição" name="description"
           [(ngModel)]="ticket.description" rows="20" required></ion-textarea>
 
         <div>
@@ -26,7 +26,7 @@
     </div>
 
     <div class="flex justify-center">
-      <ion-button *ngIf="isUploadingImage" color="primary" class="w-full h-10 mx-5 shadow-md shadow-gray-300">
+      <ion-button *ngIf="isUploadingImage" color="primary" class="w-full h-10 mx-5 border-2 border-gray-600">
         <ion-spinner color="secondary" name="circular"></ion-spinner>
       </ion-button>
       <omni-button *ngIf="!isUploadingImage" type="outline" title="Enviar" (click)="onSubmit()"></omni-button>

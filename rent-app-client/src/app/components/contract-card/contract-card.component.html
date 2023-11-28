@@ -1,8 +1,8 @@
-<ion-item [color]="contract.endDateLocate ? 'secondary' : 'medium'" lines="none" routerLink="/create-contract"
-    [queryParams]="{ id: contract.id}" class="shadow-md shadow-gray-500">
+<ion-item [color]="contract.endDateLocate ? 'primary' : 'medium'" lines="none" routerLink="/create-contract"
+    [queryParams]="{ id: contract.id}" class="border-2 border-gray-600">
     <div class="h-fit p-1 py-2 flex justify-between items-center">
-        <div class="flex flex-col text-slate-500">
-            <strong class="text-xl text-black">{{ contract.identifier }}</strong>
+        <div class="flex flex-col text-gray-400">
+            <strong class="text-xl text-gray-200">{{ contract.identifier }}</strong>
             <p>{{ contract.contactName }}</p>
             <p>Bairro: {{ contract.neighborhood }}</p>
             <p>Rua: {{ contract.neighborhood }}</p>

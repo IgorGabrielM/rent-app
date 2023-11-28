@@ -20,12 +20,12 @@
             </div>
             <div *ngFor="let week of weeks" class="w-full grid grid-cols-7 grid-rows-auto text-ce">
                 <div *ngFor="let day of week" (click)="clickDay(day)" style="min-width: 40px;"
-                    [class]="day.day === selectedDay && day.mounth === currentMonthName 
+                    [class]="selectedDay && day.day === selectedDay.getDate() && selectedDay.getMonth() === selectedMonth 
                     ? 'border-2 border-[color:var(--ion-color-tertiary)] rounded-full h-[40px] px-2 m-1 flex items-center justify-center' : (day.day === currentDay 
                     ? 'bg-[color:var(--ion-color-tertiary)] rounded-full shadow-md ' : '') + ' h-[40px] px-2 m-1 flex items-center justify-center'">
                     <div class="w-full h-full flex flex-col justify-center items-center">
-                        <p [class]="day.day > currentDay && day.mounth === currentMonthName 
-                        ? 'text-white' : day.day === currentDay ? 'text-white font-bold' : 'text-gray-600'
+                        <p [class]="day.day > currentDay && day.mounth === mounthsName[selectedMonth] 
+                        ? 'text-white' : day.day === currentDay ? 'text-white font-bold' : selectedDay && day.day === selectedDay.getDate() ? 'text-gray-200' : 'text-gray-600'
                         ">
                             {{ day.day }}</p>
                         <div class="flex" *ngIf="day.events">

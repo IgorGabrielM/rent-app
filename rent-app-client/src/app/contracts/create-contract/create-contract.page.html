@@ -2,8 +2,8 @@
   <ion-buttons slot="start">
     <ion-back-button default-href="#"></ion-back-button>
   </ion-buttons>
-  <ion-title *ngIf="!idContractToEdit">Criar contrato</ion-title>
-  <ion-title *ngIf="idContractToEdit">Editar contrato</ion-title>
+  <ion-title class="font-bold" *ngIf="!idContractToEdit">Criar contrato</ion-title>
+  <ion-title class="font-bold" *ngIf="idContractToEdit">Editar contrato</ion-title>
 </ion-toolbar>
 
 <ion-content *ngIf="contract">
@@ -29,9 +29,9 @@
           <div class="select-input">
             <ion-select interface="popover" placeholder="Contato" name="id_contact" [(ngModel)]="contract.contactId"
               required>
-              <ion-select-option *ngFor="let contact of contacts" [value]="contact.id">{{
-                contact.name
-                }}</ion-select-option>
+              <ion-select-option class="text-white" *ngFor="let contact of contacts" [value]="contact.id">
+                <ion-label color="light">{{contact.name}}</ion-label>
+              </ion-select-option>
             </ion-select>
           </div>
 
@@ -39,17 +39,18 @@
             <ion-select (ionChange)="handleChangeAsset($event)" interface="popover"
               placeholder="Selecione os equipamentos" name="assetes_ids" [(ngModel)]="contract.assets" required
               [multiple]="true">
-              <ion-select-option *ngFor="let asset of assets" [value]="asset">{{
-                asset.name
-                }}</ion-select-option>
+              <ion-select-option class="text-white" *ngFor="let asset of assets" [value]="asset">
+                <ion-label>{{asset.name}}</ion-label>
+              </ion-select-option>
             </ion-select>
           </div>
 
           <div *ngIf="contract.assets.length > 0">
-            <p class="text-end mr-5 text-sm text-gray-700">Quantidade</p>
-            <div class="even:bg-gray-100 odd:bg-gray-300 mx-2 rounded-md my-2" *ngFor="let asset of contract.assets">
+            <p class="text-end mr-5 text-sm text-gray-500">Quantidade</p>
+            <div class="bg-[color:var(--ion-color-primary)] border-2 border-gray-600 mx-2 rounded-md my-2"
+              *ngFor="let asset of contract.assets">
               <div class="mx-5 flex items-center justify-between">
-                <p class="mr-5 text-black">{{ asset.name }}</p>
+                <p class="mr-5 text-white">{{ asset.name }}</p>
                 <div>
                   <ion-input class="assets" placeholder="Quantidade" [name]="asset.name" [(ngModel)]="asset.quantity"
                     type="number"></ion-input>
@@ -73,7 +74,7 @@
   <ng-template>
     <ion-toolbar color="primary">
       <ion-buttons slot="end">
-        <ion-button color="secondary" (click)="isOpenContractTerms = false">
+        <ion-button color="light" (click)=" isOpenContractTerms=false">
           <ion-icon size="large" slot="icon-only" name="close-circle-sharp"></ion-icon>
         </ion-button>
       </ion-buttons>
@@ -81,17 +82,13 @@
     </ion-toolbar>
 
     <ion-content>
-      <div class="text-center mt-3">
+      <div class="text-center mt-3 text-white">
         <div>
-          <strong class="text-xl">
-            Termos do contrato
-          </strong>
+          <strong class="text-xl">Termos do contrato</strong>
         </div>
 
         <div class="m-5">
-          <p>
-            {{contractTerms }}
-          </p>
+          <p>{{contractTerms}}</p>
         </div>
         <div *ngIf="contract?.assets?.length > 0">
           <p>Os seguinte termos se referem à locação dos seguintes equipamentos:</p>
@@ -99,7 +96,7 @@
             <thead>
               <tr>
                 <th class="w-80">Nome</th>
-                <th>Quantidade</th>
+                <th>Quant.</th>
                 <th>Valor Unitário</th>
                 <th>Valor Total</th>
               </tr>
@@ -115,9 +112,9 @@
           </table>
         </div>
       </div>
-      <div class="flex items-center m-3">
+      <div class="flex items-center m-3 text-white">
         <p>Concorda com os termos acima:</p>
-        <ion-checkbox (ionChange)="isAgreed = true" class="w-8 h-8 mx-2"></ion-checkbox>
+        <ion-checkbox color="light" (ionChange)="isAgreed = true" class="w-8 h-8 mx-2"></ion-checkbox>
       </div>
 
       <div>
