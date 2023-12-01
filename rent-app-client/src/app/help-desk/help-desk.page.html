@@ -9,7 +9,7 @@
         <ion-input class="custom rounded-md border-2 border-gray-600" placeholder="Titulo" name="title"
           [(ngModel)]="ticket.title" required></ion-input>
         <ion-textarea class="custom rounded-md border-2 border-gray-600" placeholder="Descrição" name="description"
-          [(ngModel)]="ticket.description" rows="20" required></ion-textarea>
+          [(ngModel)]="ticket.description" rows="12" required></ion-textarea>
 
         <div>
           <div class="flex justify-center">
@@ -17,7 +17,7 @@
               [title]="!imageUrl ? 'Enviar imagem' : 'Editar imagem'"></omni-button>
           </div>
 
-          <div *ngIf="imageUrl" class="w-96 my-2">
+          <div *ngIf="imageUrl" class="w-96 my-2 px-2">
             <ion-img [src]="imageUrl" alt="Imagem selecionada"></ion-img>
           </div>
         </div>

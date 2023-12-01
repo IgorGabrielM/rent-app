@@ -2,8 +2,8 @@
   <ion-buttons slot="start">
     <ion-back-button default-href="#"></ion-back-button>
   </ion-buttons>
-  <ion-title *ngIf="!codeQueryParam">Criar contato</ion-title>
-  <ion-title *ngIf="codeQueryParam">Editarr contato</ion-title>
+  <ion-title *ngIf="!idContactToEdit">Criar contato</ion-title>
+  <ion-title *ngIf="idContactToEdit">Editar contato</ion-title>
 </ion-toolbar>
 
 <ion-content *ngIf="contact">

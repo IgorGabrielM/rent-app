@@ -165,7 +165,6 @@ export class CreateContractPage implements OnInit {
       }
     }
     return false
-
   }
 
   onSubmit() {

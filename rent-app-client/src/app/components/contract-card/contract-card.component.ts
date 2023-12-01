@@ -64,12 +64,12 @@ export class ContractCardComponent implements OnInit {
 
   verifyIsExpired(): string {
     const currentDate = new Date()
-    if (currentDate.getUTCDate() > new Date(this.contract.endDateLocate).getUTCDate()) {
+    if (currentDate > new Date(this.contract.endDateLocate)) {
       return 'text-red-500'
-    } else if (currentDate.getUTCDate() == new Date(this.contract.endDateLocate).getUTCDate()) {
+    } else if (currentDate == new Date(this.contract.endDateLocate)) {
       return 'text-yellow-500'
     } else {
-      return ''
+      return 'text-green-500'
     }
   }
 

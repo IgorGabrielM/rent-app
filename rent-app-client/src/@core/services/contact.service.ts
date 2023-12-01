@@ -41,7 +41,7 @@ export class ContactService {
     const uid = localStorage.getItem('uid')
 
     const contactDocRef = doc(this.firestore, `contact/${contact.id}`)
-    return updateDoc(contactDocRef, { contact, uid: uid })
+    return updateDoc(contactDocRef, { ...contact, uid: uid } as {})
   }
 
   delete(contactId: string) {
