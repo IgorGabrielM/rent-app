@@ -33,7 +33,7 @@ export class SignInPage implements OnInit {
     if (user) {
       localStorage.setItem('uid', user.user.uid)
 
-      this.toastService.show('Successo', 'Asseco autorizado.', {
+      this.toastService.show('Successo', 'Acesso autorizado.', {
         color: 'success',
         duration: 2000,
         position: 'top',

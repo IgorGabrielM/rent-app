@@ -69,7 +69,7 @@ export class ContractCardComponent implements OnInit {
     } else if (currentDate == new Date(this.contract.endDateLocate)) {
       return 'text-yellow-500'
     } else {
-      return 'text-green-500'
+      return 'text-[color:var(--ion-color-tertiary-tint)]'
     }
   }
 
