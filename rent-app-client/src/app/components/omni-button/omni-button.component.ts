@@ -10,6 +10,7 @@ export class OmniButtonComponent implements OnInit {
   @Input() title: string
   @Input() type: 'primary' | 'outline' | 'success' | 'danger'
   @Input() disabled: boolean
+  @Input() icon?: string
   @Input() function?: Function
 
   constructor(

@@ -12,23 +12,25 @@
       <ng-form #form="ngForm">
         <div class="mt-3 flex flex-col gap-3">
           <ion-input class="custom" placeholder="Identificador" name="identifier" [(ngModel)]="contract.identifier"
-            required></ion-input>
+            required data-testid="identifier"></ion-input>
           <ion-input class="custom" placeholder="CEP" (ionChange)="onCepChange()" [maskito]="cepMask"
-            [maskitoElement]="maskPredicate" name="cep" [(ngModel)]="contract.cep" required></ion-input>
+            [maskitoElement]="maskPredicate" name="cep" [(ngModel)]="contract.cep" required
+            data-testid="cep"></ion-input>
           <ion-input class="custom" placeholder="Bairro" name="neighborhood" [(ngModel)]="contract.neighborhood"
-            required></ion-input>
-          <ion-input class="custom" placeholder="Rua" name="street" [(ngModel)]="contract.street" required></ion-input>
-          <ion-input class="custom" placeholder="Número" name="numberHouse" [(ngModel)]="contract.numberHouse"
-            required></ion-input>
-          <ion-input class="custom" placeholder="Complemento" name="complement"
-            [(ngModel)]="contract.complement"></ion-input>
+            required data-testid="neighborhood"></ion-input>
+          <ion-input class="custom" placeholder="Rua" name="street" [(ngModel)]="contract.street" required
+            data-testid="street"></ion-input>
+          <ion-input class="custom" placeholder="Número" name="numberHouse" [(ngModel)]="contract.numberHouse" required
+            data-testid="numberHouse"></ion-input>
+          <ion-input class="custom" placeholder="Complemento" name="complement" [(ngModel)]="contract.complement"
+            data-testid="complement"></ion-input>
 
           <ion-input class="date" type="date" placeholder="Data final da locação" name="endDateLocate"
-            [(ngModel)]="contract.endDateLocate"></ion-input>
+            [(ngModel)]="contract.endDateLocate" data-testid="endDateLocate"></ion-input>
 
           <div class="select-input">
             <ion-select interface="popover" placeholder="Contato" name="id_contact" [(ngModel)]="contract.contactId"
-              required>
+              required data-testid="contact">
               <ion-select-option class="text-white" *ngFor="let contact of contacts" [value]="contact.id">
                 <ion-label color="light">{{contact.name}}</ion-label>
               </ion-select-option>
@@ -38,7 +40,7 @@
           <div class="select-input">
             <ion-select (ionChange)="handleChangeAsset($event)" interface="popover"
               placeholder="Selecione os equipamentos" name="assetes_ids" [(ngModel)]="contract.assets" required
-              [multiple]="true">
+              [multiple]="true" data-testid="assets">
               <ion-select-option class="text-white" *ngFor="let asset of assets" [value]="asset">
                 <ion-label>{{asset.name}}</ion-label>
               </ion-select-option>
@@ -53,16 +55,19 @@
                 <p class="mr-5 text-white">{{ asset.name }}</p>
                 <div>
                   <ion-input class="assets" placeholder="Quantidade" [name]="asset.name" [(ngModel)]="asset.quantity"
-                    type="number"></ion-input>
+                    data-testid="quantity" type="number"></ion-input>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="flex justify-center mt-5 mb-5">
+        <div class="flex flex-col items-center gap-1 mt-5 mb-5">
+          <omni-button *ngIf="idContractToEdit" type="outline" title="Gerenciar pagamento" (click)="openPdfModal()"
+            data-testid="OpenContractTerms"></omni-button>
           <omni-button type="primary" title="Termos de contrato" [disabled]="!verifyToSubmit(1)"
-            (click)="verifyToSubmit(1) ? isOpenContractTerms = true : null"></omni-button>
+            (click)="verifyToSubmit(1) ? isOpenContractTerms = true : undefined"
+            data-testid="OpenContractTerms"></omni-button>
         </div>
       </ng-form>
     </div>

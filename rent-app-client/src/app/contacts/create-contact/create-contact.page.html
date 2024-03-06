@@ -17,15 +17,19 @@
           </div>
         </div>
         <div class="mt-4 flex flex-col gap-2">
-          <ion-input class="custom" placeholder="Nome" name="Nome" [(ngModel)]="contact.name" required></ion-input>
+          <ion-input class="custom" placeholder="Nome" name="Nome" [(ngModel)]="contact.name" data-testid="name"
+            required></ion-input>
           <ion-input class="custom" placeholder="Telefone" name="telephone" [maskito]="telphoneMask"
-            [maskitoElement]="maskPredicate" [(ngModel)]="contact.telephone" required></ion-input>
-          <ion-input class="custom" placeholder="Email" name="email" [(ngModel)]="contact.email" required></ion-input>
+            [maskitoElement]="maskPredicate" [(ngModel)]="contact.telephone" required
+            data-testid="telephone"></ion-input>
+          <ion-input class="custom" placeholder="Email" name="email" [(ngModel)]="contact.email" required
+            data-testid="email"></ion-input>
         </div>
         <div class="flex flex-col items-center-center mt-7">
           <omni-button type="primary" [title]="idContactToEdit ? 'Editar' : 'Criar'" [disabled]="!form.valid"
-            (click)="onSubmit()"></omni-button>
-          <omni-button type="danger" title="Deletar" (click)="deleteContractAlert()"></omni-button>
+            (click)="onSubmit()" data-testid="submit"></omni-button>
+          <omni-button *ngIf="!idContactToEdit" type="danger" title="Deletar"
+            (click)="deleteContractAlert()"></omni-button>
         </div>
       </ng-form>
     </div>

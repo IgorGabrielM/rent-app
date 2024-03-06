@@ -185,8 +185,6 @@ export class CalendarComponent implements OnInit {
   }
 
   clickDay(day: DayModel) {
-    console.log(this.selectedMonth)
-    console.log(this.mounthsName.findIndex((month) => month === day.mounth))
     this.selectedDay = new Date(this.selectedYear, (this.mounthsName.findIndex((month) => month === day.mounth)), day.day)
     this.dayEvent.emit(day)
   }

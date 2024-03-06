@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
 import { MaskitoElementPredicateAsync, MaskitoOptions } from '@maskito/core';
 import { AssetModel } from 'src/@core/models/asset.model';
 import { ContactModel } from 'src/@core/models/contact.model';
@@ -13,6 +14,7 @@ import { UserService } from 'src/@core/services/user.service';
 import { CepService } from 'src/@core/utils/cep.service';
 import { DateFormatService } from 'src/@core/utils/date-format.service';
 import { ToastService } from 'src/@core/utils/toast.service';
+import { ModalContractPdfComponent } from 'src/app/components/modal-contract-pdf/modal-contract-pdf.component';
 
 @Component({
   selector: 'app-create-contract',
@@ -52,6 +54,7 @@ export class CreateContractPage implements OnInit {
     private imageService: ImageService,
 
     private activatedRoute: ActivatedRoute,
+    private modalController: ModalController,
     private route: Router,
     private toastService: ToastService,
   ) { }
@@ -165,6 +168,16 @@ export class CreateContractPage implements OnInit {
       }
     }
     return false
+  }
+
+  async openPdfModal() {
+    const modal = await this.modalController.create({
+      component: ModalContractPdfComponent,
+      componentProps: {
+        contract: this.contract
+      }
+    });
+    return await modal.present();
   }
 
   onSubmit() {

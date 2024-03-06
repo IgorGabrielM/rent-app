@@ -15,15 +15,15 @@
   </div>
 </ion-content>
 
-<ion-fab vertical="bottom" horizontal="end">
+<ion-fab vertical="bottom" horizontal="end" data-testid="fab-tool">
   <ion-fab-button color="primary">
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
   <ion-fab-list side="top">
-    <ion-fab-button color="primary" routerLink="create-tool-category">
+    <ion-fab-button color="primary" routerLink="create-tool-category" data-testid="create-tool-category">
       <ion-icon name="folder-open"></ion-icon>
     </ion-fab-button>
-    <ion-fab-button color="primary" routerLink="create-tool">
+    <ion-fab-button color="primary" routerLink="create-tool" data-testid="create-tool">
       <ion-icon name="hammer"></ion-icon>
     </ion-fab-button>
   </ion-fab-list>

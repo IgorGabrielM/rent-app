@@ -17,19 +17,23 @@
         </div>
         <div class="mt-3 flex flex-col gap-2">
           <ion-input class="custom" placeholder="Identificador" name="identifier" [(ngModel)]="asset.identifier"
-            required></ion-input>
-          <ion-input class="custom" placeholder="Nome" name="name" [(ngModel)]="asset.name" required></ion-input>
+            required data-testid="identifier"></ion-input>
+          <ion-input class="custom" placeholder="Nome" name="name" [(ngModel)]="asset.name" required
+            data-testid="name"></ion-input>
           <div class="select-input">
             <ion-select interface="popover" placeholder="Categoria de equipamento" name="assetCategory"
-              [(ngModel)]="asset.assetCategory" required>
-              <ion-select-option *ngFor="let option of assetCategories" [value]="option">{{
-                option.description
-                }}</ion-select-option>
+              [(ngModel)]="asset.assetCategory" required data-testid="tool-categories">
+              <ion-select-option
+                class="text-white hover:text-white focus:text-white placeholder:text-white placeholder:hover:text-white"
+                *ngFor="let option of assetCategories" [value]="option" data-testid="tool-category">
+                {{option.description}}
+              </ion-select-option>
             </ion-select>
           </div>
         </div>
         <div class="flex flex-col items-center mt-4 mb-5">
-          <omni-button type="outline" [title]="idAssetToEdit ? 'Editar' : 'Criar'" (click)="onSubmit()"></omni-button>
+          <omni-button type="outline" [title]="idAssetToEdit ? 'Editar' : 'Criar'" (click)="onSubmit()"
+            data-testid="submit"></omni-button>
           <omni-button *ngIf="idAssetToEdit" type="danger" title="Deletar"
             (click)="showAlertToDelete(idAssetToEdit)"></omni-button>
         </div>

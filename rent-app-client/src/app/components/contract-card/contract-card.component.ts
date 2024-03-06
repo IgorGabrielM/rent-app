@@ -25,7 +25,6 @@ export class ContractCardComponent implements OnInit {
   constructor(
     private contractService: ContractService,
 
-    private modalController: ModalController,
     private toastService: ToastService,
     private alertController: AlertController,
   ) { }
@@ -42,16 +41,6 @@ export class ContractCardComponent implements OnInit {
       totalValue += Number(asset.assetCategory.value) * asset.quantity;
     });
     return totalValue;
-  }
-
-  async openPdfModal() {
-    const modal = await this.modalController.create({
-      component: ModalContractPdfComponent,
-      componentProps: {
-        contract: this.contract
-      }
-    });
-    return await modal.present();
   }
 
   slideToDelete(event: any, contractId: string) {

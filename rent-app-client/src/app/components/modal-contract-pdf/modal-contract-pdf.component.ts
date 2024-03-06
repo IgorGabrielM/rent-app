@@ -5,6 +5,8 @@ import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { ContractService } from 'src/@core/services/contract.service';
 import { ToastService } from 'src/@core/utils/toast.service';
+import { ContactService } from 'src/@core/services/contact.service';
+import { ContactModel } from 'src/@core/models/contact.model';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -22,6 +24,7 @@ export class ModalContractPdfComponent implements OnInit {
 
   constructor(
     private contractService: ContractService,
+    private contactService: ContactService,
 
     private toastService: ToastService,
     private modalController: ModalController,
@@ -104,11 +107,23 @@ export class ModalContractPdfComponent implements OnInit {
   }
 
   async generateMesage() {
-    const message = `Seu contrato expirou, o contrato possui um valor total de ${this.getTotalValue()}, com a data de vencimento de ${this.contract.endDateLocate}, deseja renova-lo?`
+    const contactNumber = (await this.contactService.find(this.contract.contactId) as ContactModel).telephone.replace(/\D/g, '')
 
-    /*     await Clipboard.write({
-          string: "Hello World!"
-        }); */
+    const assets = this.contract.assets.map((asset) => {
+      return `${asset.quantity}x ${asset.name} = R$${asset.assetCategory.value.toFixed(2)}`
+    })
+
+    const date = new Date(this.contract.endDateLocate);
+    const formattedDate = date.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
+    const message = `Seu contrato expirou!
+    Contrato referente aos seguintes equipamentos:
+    ${assets.map((asset) => asset)} 
+    O contrato possui um valor total de R$${this.getTotalValue().toFixed(2)}
+    Com a data de vencimento de ${formattedDate}, deseja renova-lo?`
+
+    const url = `https://wa.me/${contactNumber}?text=${message}`;
+    window.open(url, '_system');
   }
 
   confirmNewDateForPay() {

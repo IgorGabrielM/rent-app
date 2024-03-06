@@ -3,16 +3,17 @@
     <div class="w-full h-full flex justify-center items-center">
       <ng-form #form="ngForm">
         <div class="mt-3 flex flex-col gap-2">
-          <ion-input [(ngModel)]="userLogin.email" class="custom" placeholder="Email" name="email" required></ion-input>
-          <ion-input [(ngModel)]="userLogin.password" class="custom" placeholder="Senha" name="password" required
-            type="password"></ion-input>
+          <ion-input [(ngModel)]="userLogin.email" class="custom" placeholder="Email" name="email" data-testid="email"
+            required></ion-input>
+          <ion-input [(ngModel)]="userLogin.password" class="custom" placeholder="Senha" name="password"
+            data-testid="password" required type="password"></ion-input>
         </div>
 
         <div class="mt-5">
-          <omni-button [disabled]="!form.valid" (click)="form.valid ? onSubmit() : null" type="primary"
-            title="Entrar"></omni-button>
-          <span class="text-sm/[10px] text-gray-500">Não possui conta? Crie uma <a class="text-gray-300 font-bold"
-              href="/sign-up">clicando
+          <omni-button [disabled]="!form.valid" (click)="form.valid ? onSubmit() : null" type="primary" title="Entrar"
+            data-testid="submit"></omni-button>
+          <span class="text-sm/[10px] text-gray-500">Não possui conta? Crie uma <a data-testid="link-to-signup"
+              class="text-gray-300 font-bold" href="/sign-up">clicando
               aqui</a></span>
         </div>
       </ng-form>

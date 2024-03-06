@@ -17,13 +17,13 @@
         </div>
         <div class="mt-3 flex flex-col gap-2">
           <ion-input required class="custom" placeholder="Nome" name="name" required
-            [(ngModel)]="assetCategory.description"></ion-input>
+            [(ngModel)]="assetCategory.description" data-testid="name"></ion-input>
           <ion-input required class="custom" placeholder="Valor" type="number" name="value" required
-            [(ngModel)]="assetCategory.value"></ion-input>
+            [(ngModel)]="assetCategory.value" data-testid="value"></ion-input>
         </div>
         <div class="flex flex-col justify-center mt-4 mb-5">
-          <omni-button type="primary" [title]="idAssetCategoryToEdit ? 'Editar' : 'Criar'"
-            (click)="onSubmit()"></omni-button>
+          <omni-button type="primary" [title]="idAssetCategoryToEdit ? 'Editar' : 'Criar'" (click)="onSubmit()"
+            data-testid="submit"></omni-button>
           <omni-button *ngIf="idAssetCategoryToEdit" type="danger" title="Deletar"
             (click)="showAlertToDelete(idAssetCategoryToEdit)"></omni-button>
         </div>

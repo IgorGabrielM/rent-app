@@ -101,7 +101,6 @@ export class HomePage implements OnInit {
   }
 
   handleCalendar(event) {
-    console.log(event)
   }
 
 }

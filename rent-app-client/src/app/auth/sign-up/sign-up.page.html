@@ -9,33 +9,36 @@
   <div class="w-screen h-full flex justify-center">
     <ng-form #form="ngForm">
       <div class="flex flex-col items-center gap-2 mt-2">
-        <ion-input [(ngModel)]="userToCreate.name" class="custom" placeholder="Nome" name="name" required></ion-input>
-        <ion-input [(ngModel)]="userToCreate.cnpj" class="custom" placeholder="CNPJ" [maskito]="cnpjMask"
-          [maskitoElement]="maskPredicate" name="cnpj" required></ion-input>
-        <ion-input [(ngModel)]="userToCreate.email" class="custom" placeholder="Email" name="email"
+        <ion-input [(ngModel)]="userToCreate.name" class="custom" placeholder="Nome" name="name" data-testid="userName"
+          required></ion-input>
+        <ion-input [(ngModel)]="userToCreate.cnpj" class="custom" placeholder="CNPJ" data-testid="cnpj"
+          [maskito]="cnpjMask" [maskitoElement]="maskPredicate" name="cnpj" required></ion-input>
+        <ion-input [(ngModel)]="userToCreate.email" class="custom" placeholder="Email" data-testid="email" name="email"
           required></ion-input>
 
         <ion-input [(ngModel)]="userToCreate.password" type="password"
           [class]="!passwordConfirm ? 'custom border-2 border-red-300' : 'custom border-2 border-green-300'"
-          placeholder="Senha" name="password" required minlength="6"></ion-input>
+          placeholder="Senha" name="password" required minlength="6" data-testid="password"></ion-input>
         <ion-input (ionChange)="verifyConsfirmPassword($event)" type="password"
           [class]="!passwordConfirm ? 'custom border-2 border-red-300' : 'custom border-2 border-green-300'"
-          placeholder="Confirme a senha" name="password-confirm" required minlength="6"></ion-input>
+          placeholder="Confirme a senha" name="password-confirm" required minlength="6"
+          data-testid="password-confirm"></ion-input>
 
         <div class="mt-5">
           <div class="flex justify-between">
             <span class="w-64 text-sm text-gray-500">Esse campo poderá ser alterado futuramente.</span>
-            <ion-button color="secondary" size="small" (click)="presentAlert()">
+            <ion-button color="secondary" size="small" data-testid="show-terms" (click)="presentAlert()">
               <ion-icon name="help-circle"></ion-icon>
             </ion-button>
           </div>
-          <ion-textarea [(ngModel)]="userToCreate.contractTerms" class="custom" placeholder="Termos do contrato"
-            name="constractTerms" required rows="5"></ion-textarea>
+          <ion-textarea [(ngModel)]="userToCreate.contractTerms" class="custom" data-testid="contract-terms"
+            placeholder="Termos do contrato" name="constractTerms" required rows="5"></ion-textarea>
         </div>
       </div>
 
       <div class="flex justify-center mt-5">
-        <omni-button type="primary" title="Criar conta" [disabled]="!form.valid || !passwordConfirm"
+        <omni-button type="primary" title="Criar conta" data-testid="submit"
+          [disabled]="!form.valid || !passwordConfirm"
           (click)="form.valid && passwordConfirm ? onSubmit() : null"></omni-button>
       </div>
     </ng-form>

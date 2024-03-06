@@ -30,8 +30,12 @@ ion-input.custom {
     background-color: var(--ion-color-secondary);
 
     ion-select {
-        color: var(--ion-color-primary);
+        color: #fff;
         --placeholder-color: var(--ion-color-primary);
         --placeholder-opacity: 0.3;
+
+        ion-select-option {
+            --color: #fff;
+        }
     }
 }
