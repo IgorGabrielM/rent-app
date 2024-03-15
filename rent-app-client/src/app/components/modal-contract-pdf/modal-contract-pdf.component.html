@@ -1,8 +1,8 @@
-<ion-toolbar color="secondary">
+<ion-toolbar color="primary">
+    <ion-title class=" font-bold">Gerenciamento</ion-title>
     <ion-buttons slot="end">
-        <ion-button (click)="closeModal()" color="primary" type="danger">
-            <ion-title class="font-bold text-white text-start">Gerenciamento</ion-title>
-            <ion-icon size="large" name="close-circle-sharp" class="text-white" slot="end"></ion-icon>
+        <ion-button (click)="closeModal()" type="danger">
+            <ion-icon name="close-circle-sharp" slot="end"></ion-icon>
         </ion-button>
     </ion-buttons>
     <ion-title class="text-white">{{ contract.titleContract }}</ion-title>
@@ -10,12 +10,12 @@
 
 <ion-content>
     <div class="m-5 text-center">
-        <p class="text-white">{{ contract.termsContract}}</p>
+        <p>{{ contract.termsContract}}</p>
     </div>
 
     <div *ngIf="contract?.assets?.length > 0">
-        <table class="my-5 text-white">
-            <thead>
+        <table class="my-5">
+            <thead class="bg-slate-300 dark:bg-gray-500">
                 <tr>
                     <th class="w-80">Nome</th>
                     <th>Quant.</th>
@@ -25,7 +25,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let asset of contract.assets, let i = index"
-                    [class]="i % 2 === 0 ? 'bg-black' : 'bg-gray-900'">
+                    [class]="i % 2 === 0 ? 'bg-gray-100 dark:bg-black' : 'bg-gray-200 dark:bg-gray-900'">
                     <td>{{ asset.name }}</td>
                     <td>{{ asset.quantity }}</td>
                     <td>{{ "R$" + asset.assetCategory.value }}</td>
@@ -45,28 +45,38 @@
     </div>
 
     <div class="flex flex-col items-center gap-2 mt-3">
-        <!-- <omni-button type="primary" title="Gerar PDF" (click)="generatePdf(contract)"></omni-button> -->
-        <omni-button type="outline" title="Enviar mensagem" icon="logo-whatsapp"
-            (click)="generateMesage()"></omni-button>
+        <ion-button class="w-11/12 h-10 text-lg font-bold" fill="outline" (click)="generateMesage()"
+            data-testid="OpenContractTerms">
+            Enviar mensagem
+            <ion-icon slot="end" name="logo-whatsapp"></ion-icon>
+        </ion-button>
 
-        <omni-button type="success" title="Mensalidade paga" (click)="handlePaid = true"></omni-button>
-
+        <ion-button class="w-11/12 h-10 text-lg font-bold" (click)="handlePaid = true" data-testid="OpenContractTerms">
+            Mensalidade paga
+        </ion-button>
     </div>
 
     <ion-modal #modal [isOpen]="handlePaid" [backdropDismiss]="false">
         <ng-template>
             <ion-content>
-                <ion-toolbar color="secondary" class="px-2">
+                <ion-toolbar class="px-2">
                     <ion-title slot="start">Próximo vencimento</ion-title>
                     <ion-icon size="large" slot="end" name="close-circle-sharp" (click)="handlePaid = false"></ion-icon>
                 </ion-toolbar>
-                <div class="h-full flex flex-col justify-start items-center">
+                <div class="h-fit flex flex-col justify-start items-center">
                     <ion-datetime [(ngModel)]="newDateForPay" class="w-full mx-auto" presentation="date"
                         display-format="DD/MM/YYYY"></ion-datetime>
 
-                    <div class="flex flex-col gap-2 justify-center items-center mt-2">
-                        <omni-button type="primary" title="Reagendar" (click)="confirmNewDateForPay()"></omni-button>
-                        <omni-button type="primary" title="Marcar como pago" (click)="markAsPaid()"></omni-button>
+                    <div class="w-full flex flex-col">
+                        <ion-item lines="none" color="transparent" class="mt-2">
+                            <ion-button class="w-full h-10 text-lg font-bold"
+                                (click)="confirmNewDateForPay()">Reagendar</ion-button>
+                        </ion-item>
+                        <ion-item lines="none" color="transparent" class="mt-2">
+                            <ion-button color="success" class="w-full h-10 text-lg font-bold"
+                                (click)="markAsPaid()">Marcar como
+                                pago</ion-button>
+                        </ion-item>
                     </div>
                 </div>
             </ion-content>

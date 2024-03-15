@@ -1,46 +1,59 @@
-<ion-toolbar color="secondary">
+<ion-toolbar color="primary">
   <ion-buttons slot="start">
-    <ion-back-button default-href="#"></ion-back-button>
+    <ion-button (click)="back()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </ion-button>
   </ion-buttons>
-  <ion-title>Criar conta</ion-title>
+  <ion-title class="font-bold">Criar conta</ion-title>
 </ion-toolbar>
 
-<ion-content>
-  <div class="w-screen h-full flex justify-center">
+<ion-content fullscreen="true">
+  <div class="flex justify-center">
     <ng-form #form="ngForm">
-      <div class="flex flex-col items-center gap-2 mt-2">
-        <ion-input [(ngModel)]="userToCreate.name" class="custom" placeholder="Nome" name="name" data-testid="userName"
-          required></ion-input>
-        <ion-input [(ngModel)]="userToCreate.cnpj" class="custom" placeholder="CNPJ" data-testid="cnpj"
-          [maskito]="cnpjMask" [maskitoElement]="maskPredicate" name="cnpj" required></ion-input>
-        <ion-input [(ngModel)]="userToCreate.email" class="custom" placeholder="Email" data-testid="email" name="email"
-          required></ion-input>
+      <div class="flex flex-col gap-2 mt-2">
+        <ion-item>
+          <ion-input [(ngModel)]="userToCreate.name" placeholder="Nome" name="name" data-testid="userName"
+            required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input [(ngModel)]="userToCreate.cnpj" placeholder="CNPJ" data-testid="cnpj" [maskito]="cnpjMask"
+            [maskitoElement]="maskPredicate" name="cnpj" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input [(ngModel)]="userToCreate.email" placeholder="Email" data-testid="email" name="email"
+            required></ion-input>
+        </ion-item>
 
-        <ion-input [(ngModel)]="userToCreate.password" type="password"
-          [class]="!passwordConfirm ? 'custom border-2 border-red-300' : 'custom border-2 border-green-300'"
-          placeholder="Senha" name="password" required minlength="6" data-testid="password"></ion-input>
-        <ion-input (ionChange)="verifyConsfirmPassword($event)" type="password"
-          [class]="!passwordConfirm ? 'custom border-2 border-red-300' : 'custom border-2 border-green-300'"
-          placeholder="Confirme a senha" name="password-confirm" required minlength="6"
-          data-testid="password-confirm"></ion-input>
+        <ion-item>
+          <ion-input [(ngModel)]="userToCreate.password" type="password"
+            [color]="!passwordConfirm ? 'danger' : 'success'" placeholder="Senha" name="password" required minlength="6"
+            data-testid="password"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input (ionChange)="verifyConsfirmPassword($event)" type="password"
+            [color]="!passwordConfirm ? 'danger' : 'success'" placeholder="Confirme a senha" name="password-confirm"
+            required minlength="6" data-testid="password-confirm"></ion-input>
+        </ion-item>
 
         <div class="mt-5">
           <div class="flex justify-between">
             <span class="w-64 text-sm text-gray-500">Esse campo poderá ser alterado futuramente.</span>
-            <ion-button color="secondary" size="small" data-testid="show-terms" (click)="presentAlert()">
+            <ion-button color="primary" size="small" data-testid="show-terms" (click)="presentAlert()">
               <ion-icon name="help-circle"></ion-icon>
             </ion-button>
           </div>
-          <ion-textarea [(ngModel)]="userToCreate.contractTerms" class="custom" data-testid="contract-terms"
-            placeholder="Termos do contrato" name="constractTerms" required rows="5"></ion-textarea>
+          <ion-item>
+            <ion-textarea [(ngModel)]="userToCreate.contractTerms" data-testid="contract-terms"
+              placeholder="Termos do contrato" name="constractTerms" required rows="5"></ion-textarea>
+          </ion-item>
         </div>
       </div>
 
-      <div class="flex justify-center mt-5">
-        <omni-button type="primary" title="Criar conta" data-testid="submit"
-          [disabled]="!form.valid || !passwordConfirm"
-          (click)="form.valid && passwordConfirm ? onSubmit() : null"></omni-button>
-      </div>
+      <ion-item lines="none" color="transparent" class="mt-2">
+        <ion-button [disabled]="!form.valid" (click)="form.valid && passwordConfirm ? onSubmit() : null"
+          class="w-full h-10 text-lg font-bold" data-testid="submit">Criar conta</ion-button>
+      </ion-item>
     </ng-form>
   </div>
 </ion-content>

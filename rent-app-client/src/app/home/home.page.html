@@ -10,13 +10,8 @@
 <ion-content>
   <app-date-carousel (daySelected)="getDaySelected($event)"></app-date-carousel>
 
-  <ion-searchbar color="primary" [debounce]="1000" (ionInput)="handleInput($event)"
+  <ion-searchbar color="medium" [debounce]="1000" (ionInput)="handleInput($event)"
     placeholder="Procurar"></ion-searchbar>
-  <div>
-    <!--     <div class="mx-5 mt-2">
-      <app-calendar (dayEvent)="handleCalendar($event)" [eventsDays]="events"></app-calendar>
-    </div> -->
-  </div>
   <div class="felx justify-center">
     <div class="mt-5">
       <div class="mt-4 mx-2" *ngFor="let contract of filteredContracts">

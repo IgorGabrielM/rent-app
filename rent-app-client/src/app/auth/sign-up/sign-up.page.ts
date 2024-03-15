@@ -35,6 +35,10 @@ export class SignUpPage implements OnInit {
     this.userToCreate = new UserModel()
   }
 
+  back() {
+    this.router.navigate(['../'])
+  }
+
   async presentAlert() {
     const alert = await this.alertController.create({
       header: 'Termos do contrato',
@@ -43,7 +47,6 @@ export class SignUpPage implements OnInit {
         {
           text: 'OK',
           role: 'confirm',
-          cssClass: 'alert-button-confirm',
         }
       ],
     });

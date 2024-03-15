@@ -62,6 +62,14 @@ export class HelpDeskPage implements OnInit {
     })
   }
 
+  canSubmit(): boolean {
+    if (this.imageUrl && this.ticket.title && this.ticket.description) {
+      return true
+    } else {
+      return false
+    }
+  }
+
   onSubmit() {
     this.ticket.image = this.imageUrl
     this.ticketService.create(this.ticket).then(() => {

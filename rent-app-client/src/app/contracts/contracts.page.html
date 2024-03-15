@@ -3,7 +3,7 @@
 </ion-toolbar>
 <ion-content>
   <div class="mx-2 mt-1">
-    <ion-searchbar placeholder="Buscar contrato" color="primary" (ionInput)="handleInput($event)"></ion-searchbar>
+    <ion-searchbar placeholder="Buscar contrato" color="medium" (ionInput)="handleInput($event)"></ion-searchbar>
   </div>
   <div class="mt-4 mx-2 flex flex-col items-center justify-center" *ngFor="let contract of results">
     <contract-card class="w-full" [contract]="contract"></contract-card>

@@ -1,10 +1,10 @@
-<ion-item color="primary" lines="none" class="w-full mx-auto rounded-md border-2 border-gray-600" [routerLink]="[data]"
+<ion-item lines="none" class="w-full mx-auto rounded-md border-2 border-gray-600 shadow-md" [routerLink]="[data]"
   [queryParams]="{ id: queryParamData }">
   <div class="card h-fit p-1 flex justify-between items-center">
     <div class="">
-      <strong class="text-xl">{{ title }}</strong>
+      <strong class="text-xl text-stone-800 dark:text-gray-100">{{ title }}</strong>
       <div class="flex">
-        <h2 class="text-gray-500">{{ description }} &nbsp;</h2>
+        <h2 class="text-gray-600 dark:text-gray-400">{{ description }} &nbsp;</h2>
       </div>
     </div>
   </div>

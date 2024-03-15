@@ -1,18 +1,14 @@
 table {
     border-collapse: collapse;
     width: 100%;
-    border: 1px solid rgb(255, 255, 255);
+    border: 1px solid rgb(62, 62, 62);
 }
 
 th,
 td {
-    border: 2px solid rgb(255, 255, 255);
+    border: 2px solid rgb(62, 62, 62);
     padding: 8px;
     text-align: center;
-}
-
-th {
-    background-color: #858585;
 }
 
 .custom {
@@ -20,7 +16,7 @@ th {
 }
 
 ion-modal {
-    --height: 65vh;
+    --height: 68vh;
     --width: 90%;
     --border-radius: 16px;
     --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
@@ -28,7 +24,11 @@ ion-modal {
     z-index: 1;
 }
 
-ion-datetime {
-    --background: rgb(12, 12, 12);
-    color: #7c7c7c;
+
+
+@media (prefers-color-scheme: dark) {
+    ion-datetime {
+        --background: rgb(12, 12, 12);
+        color: #7c7c7c;
+    }
 }

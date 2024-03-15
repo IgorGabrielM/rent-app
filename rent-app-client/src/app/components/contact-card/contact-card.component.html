@@ -1,9 +1,9 @@
-<ion-item color="primary" class="w-full mx-auto rounded-md border-2 border-gray-600" routerLink="create-contact"
+<ion-item color="light" class="w-full mx-auto rounded-md border-2 border-gray-300 shadow-lg" routerLink="create-contact"
     [queryParams]="{ id: contact.id }" lines="none">
     <div class="h-fit p-1 my-2 flex justify-between items-center">
         <div>
             <strong class="text-xl">{{ contact.name }}</strong>
-            <div class="flex flex-col gap-1 text-gray-400 mt-2">
+            <div class="flex flex-col gap-1 text-gray-500 dark:text-gray-400 mt-2">
                 <h2>{{ contact.telephone }}</h2>
                 <h2>{{ contact.email }}</h2>
             </div>

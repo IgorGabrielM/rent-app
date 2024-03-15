@@ -180,6 +180,16 @@ export class CreateContractPage implements OnInit {
     return await modal.present();
   }
 
+  getTotalValue(): number {
+    let totalValue: number = 0;
+
+    this.contract?.assets.forEach((asset) => {
+      totalValue += Number(asset.assetCategory.value) * asset.quantity;
+    });
+
+    return totalValue;
+  }
+
   onSubmit() {
     const data = new Date()
     if (this.contract.neighborhood && this.contract.street && this.contract.numberHouse &&

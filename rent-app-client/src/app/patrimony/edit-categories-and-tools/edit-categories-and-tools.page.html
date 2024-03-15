@@ -2,7 +2,7 @@
   <ion-buttons slot="start">
     <ion-back-button default-href="#"></ion-back-button>
   </ion-buttons>
-  <ion-title>Editar</ion-title>
+  <ion-title class="font-bold">Editar</ion-title>
 </ion-toolbar>
 
 <ion-content>
@@ -11,7 +11,7 @@
       <div class="flex justify-center mt-2">
         <div
           class="category-card h-52 rounded-xl flex justify-center items-center shadow-xl bg-[color:var(--ion-color-primary)]">
-          <div class="flex flex-col justify-center text-[color:#b8b8b8]">
+          <div class="flex flex-col justify-center text-white">
             <ion-icon name="folder-open-sharp" class="text-9xl ml-6"></ion-icon>
             <strong class="text-3xl">Categoria</strong>
           </div>
@@ -24,8 +24,8 @@
         </div>
 
         <div class="w-80 mx-auto mt-6 mb-2 flex justify-center items-center gap-2">
-          <h4 class="text-xl font-bold text-gray-200">Equipamentos</h4>
-          <div class="w-full h-1 bg-stone-800 rounded-xl"></div>
+          <h4 class="text-xl font-bold text-stone-800 dark:text-gray-200">Equipamentos</h4>
+          <div class="w-full h-1 bg-stone-800 dark:bg-gray-200 rounded-xl"></div>
         </div>
 
         <div class="w-90 flex mt-2 gap-2" *ngFor="let asset of assets">

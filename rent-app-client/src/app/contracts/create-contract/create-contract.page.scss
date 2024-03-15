@@ -3,90 +3,19 @@
     justify-content: center;
 }
 
-ion-input.custom {
-    width: 90vw;
-    height: 50px;
-    font-size: 15px;
-    border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.237) 0px 2px 5px 0px;
-    --color: #ffffff;
-    --background: var(--ion-color-secondary);
-    --placeholder-opacity: .3;
-    --padding-bottom: 10px;
-    --padding-end: 10px;
-    --padding-start: 15px;
-    --padding-top: 10px;
-}
-
-ion-input.date {
-    width: 90vw;
-    height: 50px;
-    font-size: 15px;
-    border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.237) 0px 2px 5px 0px;
-    --color: #ffffff;
-    --background: var(--ion-color-secondary);
-    --padding-bottom: 10px;
-    --padding-end: 10px;
-    --padding-start: 15px;
-    --padding-top: 10px;
-}
-
-ion-input.assets {
-    width: 100px;
-    height: 50px;
-    margin: 10px 0;
-    font-size: 15px;
-    border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.237) 0px 2px 5px 0px;
-    --color: #ffffff;
-    --background: var(--ion-color-secondary);
-    --placeholder-opacity: .3;
-    --padding-bottom: 10px;
-    --padding-end: 10px;
-    --padding-start: 15px;
-    --padding-top: 10px;
-}
-
-.select-input {
-    width: 90vw;
-    height: 50px;
-    font-size: 15px;
-    border-radius: 5px;
-    padding-top: 5px;
-    padding-right: 5px;
-    background-color: var(--ion-color-secondary);
-    color: #ffffff;
-
-    ion-select {
-        --placeholder-color: #dbdbdb;
-        --placeholder-opacity: 0.2;
-    }
-}
-
 table {
     border-collapse: collapse;
     width: 100%;
-    border: 1px solid rgb(255, 255, 255);
-}
-
-th {
-    background-color: rgb(75 85 99);
+    border: 1px solid rgb(62, 62, 62);
 }
 
 th,
 td {
-    border: 2px solid rgb(255, 255, 255);
+    border: 2px solid rgb(62, 62, 62);
     padding: 8px;
     text-align: center;
 }
 
 ion-checkbox {
     --border-color: #fff
-}
-
-canvas {
-    display: block;
-    border: 1px solid rgb(187, 178, 178);
-    background-color: var(--ion-color-success);
 }
