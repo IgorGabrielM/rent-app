@@ -17,7 +17,10 @@ export class OmniSignaturePadComponent implements OnInit, AfterViewInit {
   ngOnInit() {
   }
 
-  ngAfterViewInit() {
+  async ngAfterViewInit() {
+    this.canvasEl.nativeElement.width = window.innerWidth;
+    this.canvasEl.nativeElement.height = 250;
+
     if (this.canvasEl) {
       this.signaturePad = new SignaturePad(this.canvasEl.nativeElement);
     } else {
@@ -27,15 +30,14 @@ export class OmniSignaturePadComponent implements OnInit, AfterViewInit {
   startDrawing(event: Event) {
   }
 
+  touchUp(event) {
+    this.imageBase64Emitter.emit(this.signaturePad.toDataURL());
+  }
+
   moved(event: Event) {
   }
 
   clearPad() {
     this.signaturePad.clear();
   }
-
-  savePad() {
-    this.imageBase64Emitter.emit(this.signaturePad.toDataURL());
-  }
-
 }

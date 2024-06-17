@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalContractPdfComponent } from './modal-contract-pdf.component';
+import { ModalContractPdfComponent } from './modal-management-payment.component';
 
 describe('ModalContractPdfComponent', () => {
   let component: ModalContractPdfComponent;
@@ -8,9 +8,9 @@ describe('ModalContractPdfComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ModalContractPdfComponent ]
+      declarations: [ModalContractPdfComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ModalContractPdfComponent);
     component = fixture.componentInstance;

@@ -16,24 +16,12 @@ const routes: Routes = [
         loadChildren: () => import('../contacts/contacts.module').then(m => m.ContactsPageModule),
       },
       {
-        path: 'contacts/create-contact',
-        loadChildren: () => import('../contacts/create-contact/create-contact.module').then(m => m.CreateContactPageModule)
-      },
-      {
-        path: 'contacts/edit-contact/:id',
-        loadChildren: () => import('../contacts/create-contact/create-contact.module').then(m => m.CreateContactPageModule)
-      },
-      {
         path: 'home',
         loadChildren: () => import('../home/home.module').then(m => m.HomePageModule)
       },
       {
         path: 'contracts',
         loadChildren: () => import('../contracts/contracts.module').then(m => m.ContractsPageModule)
-      },
-      {
-        path: 'contracts/create-contract',
-        loadChildren: () => import('../contracts/create-contract/create-contract.module').then(m => m.CreateContractPageModule)
       },
       {
         path: 'patrimony',
@@ -46,11 +34,6 @@ const routes: Routes = [
       {
         path: 'patrimony/edit-tool',
         loadChildren: () => import('../patrimony/create-tool/create-tool.module').then(m => m.CreateToolPageModule)
-      },
-      {
-        path: 'patrimony/edit-categories-and-tools',
-        //path: 'patrimony/edit-categories-and-tools/:category-id',
-        loadChildren: () => import('../patrimony/edit-categories-and-tools/edit-categories-and-tools.module').then(m => m.EditCategoriesAndToolsPageModule)
       },
       {
         path: 'patrimony/create-tool-category',

@@ -1,4 +1,5 @@
 import { AssetModel } from "./asset.model";
+import { AssetCategoryModel } from "./assetCategory.model";
 import { DefaultModel } from "./default.model";
 
 export class ContractModel extends DefaultModel {
@@ -8,7 +9,7 @@ export class ContractModel extends DefaultModel {
   cep: number;
   numberHouse: number;
   complement: string;
-  endDateLocate: Date;
+  endDateLocate: Date | string;
 
   image: string
 
@@ -16,6 +17,11 @@ export class ContractModel extends DefaultModel {
   contactName: string;
   termsContract: string;
   titleContract: string;
-  assets?: AssetModel[];
+  assetCategories?: AssetCategoryModel[];
   signaturePath: string;
+
+  isPaid: boolean;
+  isRetourned: boolean;
+
+  datasPaid: { valuePaid: number, date: Date }[]
 }

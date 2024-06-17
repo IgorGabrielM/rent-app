@@ -1,7 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { AlertController, IonItemSliding, ModalController } from '@ionic/angular';
 import { ContractModel } from 'src/@core/models/contract.model';
-import { ModalContractPdfComponent } from '../modal-contract-pdf/modal-contract-pdf.component';
 import { AssetModel } from 'src/@core/models/asset.model';
 import { ContractService } from 'src/@core/services/contract.service';
 import { ToastService } from 'src/@core/utils/toast.service';
@@ -37,8 +36,8 @@ export class ContractCardComponent implements OnInit {
 
   getTotalValue(): number {
     let totalValue: number = 0;
-    this.contract?.assets.forEach((asset) => {
-      totalValue += Number(asset.assetCategory.value) * asset.quantity;
+    this.contract?.assetCategories.forEach((asset) => {
+      totalValue += Number(asset.value) * asset.quantity;
     });
     return totalValue;
   }

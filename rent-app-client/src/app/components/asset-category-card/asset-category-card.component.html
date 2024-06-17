@@ -3,14 +3,14 @@
     <div class="card h-fit p-1 flex justify-between items-center">
         <div>
             <strong class="text-xl text-stone-800 dark:text-gray-100">{{ assetCategotry.description }}</strong>
-            <div class="flex flex-col">
-                <h2 class="text-gray-600 dark:text-gray-400">R$ {{ assetCategotry.value }},00 <span
-                        class="text-gray-400 dark:text-gray-600">(Valor
-                        Unitário)</span></h2>
-                <!--                         <h2 *ngIf="assetsAvailable.length > 0 && assets.length > 0">
-                            {{ assetsAvailable.length }} / {{ assets.length }} <span
-                                class="text-gray-400">(Disponiveis)</span>
-                        </h2> -->
+            <div class="flex flex-col mt-1">
+                <h2 class="text-gray-600 dark:text-gray-400">
+                    R$ {{ assetCategotry.value }},00
+                    <span class="text-gray-400 dark:text-gray-600">(Valor Unitário)</span>
+                </h2>
+                <h2 class="text-gray-600 dark:text-gray-400">
+                    Quantidade: <span>{{ assetCategotry.quantityAll }}</span>
+                </h2>
             </div>
         </div>
     </div>

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Firestore, addDoc, collection, collectionData, doc, deleteDoc, updateDoc, getDoc, query, where } from '@angular/fire/firestore';
 import { ContractModel } from '../models/contract.model';
 
-
 @Injectable({
   providedIn: 'root'
 })

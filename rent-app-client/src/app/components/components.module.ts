@@ -14,7 +14,7 @@ import { AssetCategoryCardComponent } from './asset-category-card/asset-category
 import { AssetCardComponent } from './asset-card/asset-card.component';
 import { ContactCardComponent } from './contact-card/contact-card.component';
 import { ContractCardComponent } from './contract-card/contract-card.component';
-import { ModalContractPdfComponent } from './modal-contract-pdf/modal-contract-pdf.component';
+import { ModalManagementPaymentComponent } from './modal-management-payment/modal-management-payment.component';
 import { DateCarouselComponent } from './date-carousel/date-carousel.component';
 import { CalendarComponent } from './calendar/calendar.component';
 @NgModule({
@@ -29,7 +29,7 @@ import { CalendarComponent } from './calendar/calendar.component';
     AssetCategoryCardComponent,
     ContactCardComponent,
     ContractCardComponent,
-    ModalContractPdfComponent,
+    ModalManagementPaymentComponent,
     DateCarouselComponent,
     CalendarComponent,
   ],

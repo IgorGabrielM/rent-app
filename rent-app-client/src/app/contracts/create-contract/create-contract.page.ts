@@ -14,7 +14,6 @@ import { UserService } from 'src/@core/services/user.service';
 import { CepService } from 'src/@core/utils/cep.service';
 import { DateFormatService } from 'src/@core/utils/date-format.service';
 import { ToastService } from 'src/@core/utils/toast.service';
-import { ModalContractPdfComponent } from 'src/app/components/modal-contract-pdf/modal-contract-pdf.component';
 
 @Component({
   selector: 'app-create-contract',
@@ -34,9 +33,9 @@ export class CreateContractPage implements OnInit {
   imageAsBase64: string
   imageUrl?: string
 
-  readonly phoneMask: MaskitoOptions = {
-    mask: ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
-  };
+  handlePaid: boolean = false;
+  newDateForPay: Date;
+  valuePaid: number;
 
   readonly cepMask: MaskitoOptions = {
     mask: [/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/],
@@ -84,7 +83,7 @@ export class CreateContractPage implements OnInit {
         })
       } else {
         this.contract = new ContractModel()
-        this.contract.assets = []
+        this.contract.assetCategories = []
       }
     });
   }
@@ -113,7 +112,7 @@ export class CreateContractPage implements OnInit {
   }
 
   handleChangeAsset(event: any) {
-    this.contract?.assets.forEach((asset) => {
+    this.contract?.assetCategories.forEach((asset) => {
       if (!asset.quantity || asset.quantity == 0) {
         asset.quantity = 1
       }
@@ -153,7 +152,7 @@ export class CreateContractPage implements OnInit {
   verifyToSubmit(step: 1 | 2): boolean {
     if (step == 1) {
       if (this.contract.identifier && this.contract.neighborhood && this.contract.street && this.contract.numberHouse &&
-        this.contract.contactId && this.contract.endDateLocate && this.contract?.assets.length > 0) {
+        this.contract.contactId && this.contract.endDateLocate && this.contract?.assetCategories.length > 0) {
         return true
       } else {
         return false
@@ -161,7 +160,7 @@ export class CreateContractPage implements OnInit {
     }
     if (step == 2) {
       if (this.contract.identifier && this.contract.neighborhood && this.contract.street && this.contract.numberHouse &&
-        this.contract.contactId && this.contract.endDateLocate && this.contract?.assets.length > 0 && this.isAgreed && (this.imageUrl || this.contract.image)) {
+        this.contract.contactId && this.contract.endDateLocate && this.contract?.assetCategories.length > 0 && this.isAgreed && (this.imageUrl || this.contract.image)) {
         return true
       } else {
         return false
@@ -170,30 +169,35 @@ export class CreateContractPage implements OnInit {
     return false
   }
 
-  async openPdfModal() {
-    const modal = await this.modalController.create({
-      component: ModalContractPdfComponent,
-      componentProps: {
-        contract: this.contract
-      }
-    });
-    return await modal.present();
+  confirmPaid() {
+    const payload: ContractModel = {
+      ...this.contract, datasPaid: this.contract.datasPaid && this.contract.datasPaid.length
+        ? [...this.contract.datasPaid, { date: new Date(), valuePaid: this.valuePaid }] : [{ date: new Date(), valuePaid: this.valuePaid }]
+    }
+    this.contractService.update(payload).then(() => {
+      this.contractService.find(this.contract.id).then((cont) => {
+        this.contract = cont as ContractModel;
+        this.handlePaid = false;
+      })
+    })
+  }
+
+  markAsRetourned() {
+    this.contractService.update({ ...this.contract, isRetourned: true }).then(() => { this.contract.isRetourned = true; })
   }
 
   getTotalValue(): number {
     let totalValue: number = 0;
-
-    this.contract?.assets.forEach((asset) => {
-      totalValue += Number(asset.assetCategory.value) * asset.quantity;
+    this.contract?.assetCategories.forEach((asset) => {
+      totalValue += Number(asset.value) * asset.quantity;
     });
-
     return totalValue;
   }
 
   onSubmit() {
     const data = new Date()
     if (this.contract.neighborhood && this.contract.street && this.contract.numberHouse &&
-      this.contract.contactId && this.contract.endDateLocate && this.contract?.assets.length > 0 && this.isAgreed) {
+      this.contract.contactId && this.contract.endDateLocate && this.contract?.assetCategories.length > 0 && this.isAgreed) {
       if (!this.idContractToEdit) {
         this.contractService.create({
           ...this.contract,
@@ -238,6 +242,11 @@ export class CreateContractPage implements OnInit {
       });
       this.isOpenContractTerms = false
     }
+  }
+
+  navigateToExternalUrl(contractId: string) {
+    const url = `https://rent-app-client-git-fix-finish-igorgabrielms-projects.vercel.app/contract-information?id=${contractId}`;
+    window.location.href = url;
   }
 
 }

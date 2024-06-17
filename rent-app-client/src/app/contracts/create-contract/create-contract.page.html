@@ -52,7 +52,7 @@
 
           <ion-item>
             <ion-select (ionChange)="handleChangeAsset($event)" interface="popover"
-              placeholder="Selecione os equipamentos" name="assetes_ids" [(ngModel)]="contract.assets" required
+              placeholder="Selecione os equipamentos" name="assetes_ids" [(ngModel)]="contract.assetCategories" required
               [multiple]="true" data-testid="assets">
               <ion-select-option class="text-white" *ngFor="let asset of assets" [value]="asset">
                 <ion-label>{{asset.name}}</ion-label>
@@ -60,15 +60,15 @@
             </ion-select>
           </ion-item>
 
-          <div *ngIf="contract.assets.length > 0">
+          <div *ngIf="contract.assetCategories.length > 0">
             <p class="text-end mr-5 text-sm text-gray-500">Quantidade</p>
             <div
               class="bg-[color:var(--ion-color-medium)] border-2 border-gray-200 dark:border-gray-600 mx-2 rounded-md my-2"
-              *ngFor="let asset of contract.assets">
+              *ngFor="let asset of contract.assetCategories">
               <div class="mx-5 flex items-center justify-between p-1">
-                <p class="mr-5">{{ asset.name }}</p>
+                <p class="mr-5">{{ asset.description }}</p>
                 <ion-item>
-                  <ion-input class="assets text-end" placeholder="Quantidade" [name]="asset.name"
+                  <ion-input class="assets text-end" placeholder="Quantidade" [name]="asset.description"
                     [(ngModel)]="asset.quantity" data-testid="quantity" type="number"></ion-input>
                 </ion-item>
               </div>
@@ -76,12 +76,23 @@
           </div>
         </div>
 
-        <div class="w-11/12 flex flex-col items-center gap-1 mt-2 mb-5">
-          <ion-button class="w-full h-10 text-lg font-bold" *ngIf="idContractToEdit" fill="outline"
-            (click)="openPdfModal()" data-testid="OpenContractTerms">Gerenciar pagamento</ion-button>
+        <div class="w-11/12 mx-auto flex justify-between gap-2 text-sm">
+          <ion-button class="w-full" (click)="handlePaid = true" color="success">Marcar como <br /> pago</ion-button>
+          <ion-button class="w-full" (click)="markAsRetourned()" fill="outline">Marcar como <br />
+            devolvido</ion-button>
+        </div>
+
+        <div class="w-11/12 flex">
           <ion-button class="w-full h-10 text-lg font-bold" type="primary" [disabled]="!verifyToSubmit(1)"
             (click)="verifyToSubmit(1) ? isOpenContractTerms = true : undefined" data-testid="OpenContractTerms">Termos
             de contrato</ion-button>
+        </div>
+
+        <div class="w-full flex justify-center mb-5" *ngIf="contract.datasPaid && contract.datasPaid.length">
+          <ion-button class="w-11/12" fill="outline">
+            <small class="mr-2 text-lg font-bold">Ver extrato</small>
+            <ion-icon name="receipt"></ion-icon>
+          </ion-button>
         </div>
       </ng-form>
     </div>
@@ -109,7 +120,7 @@
         <div class="m-5">
           <p>{{contractTerms}}</p>
         </div>
-        <div *ngIf="contract?.assets?.length > 0">
+        <div *ngIf="contract?.assetCategories?.length > 0">
           <p>Os seguinte termos se referem à locação dos seguintes equipamentos:</p>
           <table class="my-5">
             <thead class="bg-slate-300 dark:bg-gray-500">
@@ -121,12 +132,12 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let asset of contract.assets;let i = index"
+              <tr *ngFor="let asset of contract.assetCategories;let i = index"
                 [class]="i % 2 === 0 ? 'bg-gray-100 dark:bg-black' : 'bg-gray-200 dark:bg-gray-900'">
-                <td>{{ asset.name }}</td>
+                <td>{{ asset.description }}</td>
                 <td>{{ asset.quantity }}</td>
-                <td>{{ "R$" + asset.assetCategory.value + ",00" }}</td>
-                <td>{{ "R$" + totalValueCalculator(asset.quantity, asset.assetCategory.value) + ",00"}}</td>
+                <td>{{ "R$" + asset.value + ",00" }}</td>
+                <td>{{ "R$" + totalValueCalculator(asset.quantity, asset.value) + ",00"}}</td>
               </tr>
             </tbody>
             <tfoot>
@@ -149,7 +160,13 @@
         <omni-signature-pad *ngIf="!contract.image" (imageBase64Emitter)="getImage($event)"></omni-signature-pad>
       </div>
 
-      <omni-button class="flex justify-center mt-5" type="primary"
+      <div class="w-full flex justify-center mt-5" *ngIf="idContractToEdit">
+        <ion-button class="w-11/12 font-bold text-md" fill="outline" (click)="navigateToExternalUrl(contract.id)">
+          Gerar pdf
+        </ion-button>
+      </div>
+
+      <omni-button class="flex justify-center mb-3" type="primary"
         [title]="idContractToEdit ? 'Editar contrato' : 'Criar contrato'" [disabled]="!verifyToSubmit(2)"
         (click)="verifyToSubmit(2) ? onSubmit() : null"></omni-button>
 
@@ -185,3 +202,26 @@
 
   </div>
 </ion-content>
+
+<ion-modal #modal class="custom-modal" [isOpen]="handlePaid" [backdropDismiss]="false">
+  <ng-template>
+    <ion-content>
+      <ion-toolbar class="px-2">
+        <ion-title slot="start">Reagendar vencimento</ion-title>
+        <ion-icon size="large" slot="end" name="close-circle-sharp" (click)="handlePaid = false"></ion-icon>
+      </ion-toolbar>
+      <div>
+        <ion-datetime [(ngModel)]="newDateForPay" class="w-full mx-auto" presentation="date"
+          display-format="DD/MM/YYYY"></ion-datetime>
+        <ion-label class="ml-3 text-gray-600">Valor pago:</ion-label>
+        <ion-input [(ngModel)]="valuePaid" class="w-11/12 mx-auto border border-gray-600 rounded-md"
+          placeholder="Valor pago"></ion-input>
+      </div>
+      <div class="w-full flex justify-center">
+        <ion-button (click)="confirmPaid()">
+          Confirmar
+        </ion-button>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>

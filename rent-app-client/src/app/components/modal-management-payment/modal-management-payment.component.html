@@ -1,0 +1,49 @@
+<ion-toolbar color="primary">
+    <ion-title class=" font-bold">Gerenciamento</ion-title>
+    <ion-buttons slot="end">
+        <ion-button (click)="closeModal()" type="danger">
+            <ion-icon name="close-circle-sharp" slot="end"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+    <ion-title class="text-white">{{ contract.titleContract }}</ion-title>
+</ion-toolbar>
+
+<ion-content>
+    <div class="w-full flex flex-col">
+        <ion-item lines="none" color="transparent" class="mt-2">
+            <ion-button class="w-full h-10 text-lg font-bold" (click)="handlePaid = true">Reagendar</ion-button>
+        </ion-item>
+        <ion-item lines="none" color="transparent" class="mt-2">
+            <ion-button color="success" class="w-full h-10 text-lg font-bold" (click)="markAsPaid()">Marcar como
+                pago</ion-button>
+        </ion-item>
+
+        <ion-item lines="none" color="transparent" class="mt-2">
+            <ion-button fill="outline" class="w-full h-10 text-lg font-bold" (click)="markAsPaid()">Marcar como
+                devolvido</ion-button>
+        </ion-item>
+    </div>
+
+    <div class="flex flex-col items-center gap-2 mt-3">
+        <ion-button class="w-11/12 h-10 text-lg font-bold" fill="outline" (click)="generateMesage()"
+            data-testid="OpenContractTerms">
+            Enviar mensagem
+            <ion-icon slot="end" name="logo-whatsapp"></ion-icon>
+        </ion-button>
+    </div>
+
+    <ion-modal #modal [isOpen]="handlePaid" [backdropDismiss]="false">
+        <ng-template>
+            <ion-content>
+                <ion-toolbar class="px-2">
+                    <ion-title slot="start">Reagendar vencimento</ion-title>
+                    <ion-icon size="large" slot="end" name="close-circle-sharp" (click)="handlePaid = false"></ion-icon>
+                </ion-toolbar>
+                <div>
+                    <ion-datetime [(ngModel)]="newDateForPay" class="w-full mx-auto" presentation="date"
+                        display-format="DD/MM/YYYY" (ionChange)="confirmNewDateForPay($event)"></ion-datetime>
+                </div>
+            </ion-content>
+        </ng-template>
+    </ion-modal>
+</ion-content>

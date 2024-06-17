@@ -37,6 +37,7 @@
     "@maskito/core": "^1.4.0",
     "firebase-tools": "^12.4.5",
     "ionicons": "^6.0.3",
+    "pdfmake": "^0.2.10",
     "rxjs": "~7.5.0",
     "signature_pad": "^4.1.6",
     "swiper": "^8.4.6",

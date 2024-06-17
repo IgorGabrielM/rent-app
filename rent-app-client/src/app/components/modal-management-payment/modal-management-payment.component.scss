@@ -1,8 +1,3 @@
-.content {
-    display: flex;
-    justify-content: center;
-}
-
 table {
     border-collapse: collapse;
     width: 100%;
@@ -16,15 +11,24 @@ td {
     text-align: center;
 }
 
-ion-checkbox {
-    --border-color: #fff
+.custom {
+    background-color: #858585;
 }
 
-.custom-modal {
-    --height: 73vh;
+ion-modal {
+    --height: 58vh;
     --width: 90%;
     --border-radius: 16px;
     --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
     background-color: rgba(0, 0, 0, 0.7);
     z-index: 1;
+}
+
+
+
+@media (prefers-color-scheme: dark) {
+    ion-datetime {
+        --background: rgb(12, 12, 12);
+        color: #7c7c7c;
+    }
 }
